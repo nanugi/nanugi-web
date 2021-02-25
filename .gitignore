@@ -1,0 +1,5 @@
+
+.env
+.eslintcache
+.prettierrc
+/node_modules
