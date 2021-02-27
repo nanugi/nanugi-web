@@ -13,8 +13,9 @@ import {
   SignupBtn,
   LinkBox,
   AfterSignupBox,
-  AfterSignupText,
-  AfterSignupSubText,
+  AfterSignupText1,
+  AfterSignupText2,
+  AfterSignupText3,
   LoginLinkBtn,
 } from './style';
 
@@ -86,14 +87,16 @@ function Signup() {
       {afterSignup ? (
         <div>
           <AfterSignupBox>
-            <AfterSignupText>가입을 축하 드립니다.</AfterSignupText>
-            <AfterSignupText style={{ fontSize: '30px' }}>
-              &apos;{email}&apos; 로 이메일을 전송하였습니다.
-            </AfterSignupText>
-            <AfterSignupSubText>이메일 인증을 완료하고,</AfterSignupSubText>
-            <AfterSignupSubText>
+            <AfterSignupText1>가입을 축하 드립니다.</AfterSignupText1>
+            <AfterSignupText2>&apos;{email}&apos; 로</AfterSignupText2>
+            <AfterSignupText2 className="last">
+              이메일을 전송하였습니다.
+            </AfterSignupText2>
+
+            <AfterSignupText3>이메일 인증을 완료하고,</AfterSignupText3>
+            <AfterSignupText3>
               나누기와 함께 친환경 공유소비 생활을 즐겨보아요!
-            </AfterSignupSubText>
+            </AfterSignupText3>
             <LoginLinkBtn type="button" onClick={() => history.push('/login')}>
               로그인화면으로
             </LoginLinkBtn>

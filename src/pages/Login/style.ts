@@ -14,7 +14,7 @@ export const LoginPage = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 15vw;
+  font-size: clamp(100px, 15vw, 250px);
   font-weight: bold;
 
   color: #f9765a;
@@ -32,9 +32,10 @@ export const InputBox = styled.div`
 
   border-radius: 12px;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
 
-  // background-color: #FFF;
+  /* background-color: #fff; */
 `;
 
 export const Input = styled.input`
@@ -56,16 +57,6 @@ export const Input = styled.input`
     outline: none;
   }
 `;
-
-export const InputName = styled.div`
-  display: inline-flex;
-
-  width: 15%;
-  margin-right: 3%;
-
-  color: #fffafa;
-`;
-
 export const LinkBox = styled.div`
   display: flex;
 
@@ -73,7 +64,8 @@ export const LinkBox = styled.div`
 
   padding: 0px 12px;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
 
   color: gray;
 
@@ -104,7 +96,8 @@ export const LoginBtn = styled.button`
   border: none;
   border-radius: 12px;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
   height: 100px;
 
   color: #fffafa;

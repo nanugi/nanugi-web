@@ -33,12 +33,20 @@ export const Filter = styled.div<{ opacity: number }>`
 
   z-index: 100;
 `;
+export const TypingEffectText = styled.h1`
+  font-size: clamp(32px, 6vw, 100px);
+
+  color: #ffffff;
+`;
 
 export const SlothVideo = styled.video`
   position: relative;
-  top: -18%;
+  top: -18vh;
 
-  height: calc(100vh + 36%);
+  height: 136vh;
+  width: 100vw;
+
+  object-fit: cover;
 `;
 
 export const Btn = styled.div`

@@ -21,7 +21,11 @@ const Routes = () => (
       <Route exact path="/" component={Login} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
-      <Route path="/emailVerification/:code" component={EmailVerification} />
+      <Route
+        exact
+        path="/emailVerification/:code"
+        component={EmailVerification}
+      />
 
       <AuthRoute exact path="/main" component={Main} />
       {/* <Route exact path="/main" component={Main} /> */}

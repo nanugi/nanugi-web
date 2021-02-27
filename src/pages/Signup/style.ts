@@ -14,7 +14,7 @@ export const SignupPage = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 10vw;
+  font-size: clamp(50px, 10vw, 200px);
   font-weight: bold;
 
   color: #f9765a;
@@ -30,7 +30,8 @@ export const InputBox = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
 
   // background-color: #FFF;
 `;
@@ -71,7 +72,8 @@ export const LinkBox = styled.div`
 
   padding: 0px 12px;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
 
   color: gray;
 
@@ -102,7 +104,8 @@ export const SignupBtn = styled.button`
   border: none;
   border-radius: 12px;
 
-  width: 420px;
+  width: 90vw;
+  max-width: 420px;
   height: 100px;
 
   color: #fffafa;
@@ -126,14 +129,22 @@ export const AfterSignupBox = styled.div`
 
   width: 500px;
 `;
-export const AfterSignupText = styled.div`
+export const AfterSignupText1 = styled.div`
   margin-bottom: 40px;
 
-  font-size: 50px;
+  font-size: clamp(30px, 10vw, 50px);
   font-weight: bold;
 `;
-export const AfterSignupSubText = styled.div`
-  font-size: 20px;
+export const AfterSignupText2 = styled.div`
+  font-size: clamp(23px, 4vw, 30px);
+  font-weight: bold;
+
+  &.last {
+    margin-bottom: 40px;
+  }
+`;
+export const AfterSignupText3 = styled.div`
+  font-size: clamp(15px, 3vw, 20px);
 `;
 
 export const LoginLinkBtn = styled.button`

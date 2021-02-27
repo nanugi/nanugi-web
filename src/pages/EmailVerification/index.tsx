@@ -4,6 +4,7 @@ import history from '../../utils/browserHistory';
 import {
   EmailVerificationPage,
   ContentsBox,
+  TypingEffectText,
   Filter,
   SlothVideo,
   Btn,
@@ -64,14 +65,12 @@ const TypingEffect = ({ check, callback }: typingEffectProps) => {
   }, [check, callback]);
 
   return (
-    <h1 ref={ref} style={{ fontSize: 100, color: '#FFFFFF' }}>
-      {/* TypingEffect Text */}
-    </h1>
+    <TypingEffectText ref={ref}>{/* TypingEffect Text */}</TypingEffectText>
   );
 };
 
 const BackgroundGif = () => (
-  <SlothVideo loop autoPlay muted>
+  <SlothVideo loop autoPlay muted playsInline>
     <source
       src="https://thumbs.gfycat.com/AdventurousPointlessGull-mobile.webm"
       type="video/webm"
