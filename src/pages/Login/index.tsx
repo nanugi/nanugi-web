@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import callCookie from '../../utils/cookie';
 import history from '../../utils/browserHistory';
 
-import { login, loginVerify } from '../../container/sign';
+import { login } from '../../container/sign';
 
 import {
   LoginPage,
@@ -39,13 +39,6 @@ function Login() {
     target.disabled = true;
     target.classList.add('on');
 
-    const verify = loginVerify({ id: email, password });
-    if (verify.result === -1) {
-      alert(verify.message);
-      target.disabled = false;
-      target.classList.remove('on');
-      return;
-    }
     const res = await login({ id: email, password });
 
     setLoginField({
@@ -98,7 +91,7 @@ function Login() {
         </LinkBox>
 
         <LoginBtn type="button" onClick={onClickLoginBtn}>
-          Login !
+          로그인
         </LoginBtn>
       </div>
     </LoginPage>

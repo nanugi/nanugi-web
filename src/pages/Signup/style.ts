@@ -30,8 +30,6 @@ export const InputBox = styled.div`
   flex-direction: column;
   align-items: center;
 
-  border-radius: 12px;
-
   width: 420px;
 
   // background-color: #FFF;
@@ -109,6 +107,46 @@ export const SignupBtn = styled.button`
 
   color: #fffafa;
   font-size: 50px;
+  font-weight: bold;
+
+  background-color: #f2a663;
+
+  cursor: pointer;
+
+  &.on {
+    background-color: #d99559;
+    color: #e6e1e1;
+  }
+`;
+
+export const AfterSignupBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 500px;
+`;
+export const AfterSignupText = styled.div`
+  margin-bottom: 40px;
+
+  font-size: 50px;
+  font-weight: bold;
+`;
+export const AfterSignupSubText = styled.div`
+  font-size: 20px;
+`;
+
+export const LoginLinkBtn = styled.button`
+  margin-top: 100px;
+
+  border: none;
+  border-radius: 12px;
+
+  width: 220px;
+  height: 60px;
+
+  color: #fffafa;
+  font-size: 25px;
   font-weight: bold;
 
   background-color: #f2a663;
