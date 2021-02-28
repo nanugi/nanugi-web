@@ -7,6 +7,7 @@ import history from '../../utils/browserHistory';
 // Route
 import Signup from '../../pages/Signup';
 import Login from '../../pages/Login';
+import Find from '../../pages/Find';
 import EmailVerification from '../../pages/EmailVerification';
 
 // AuthRoute
@@ -26,6 +27,7 @@ const Routes = () => (
         path="/emailVerification/:code"
         component={EmailVerification}
       />
+      <Route exact path="/find" component={Find} />
 
       <AuthRoute exact path="/main" component={Main} />
       {/* <Route exact path="/main" component={Main} /> */}

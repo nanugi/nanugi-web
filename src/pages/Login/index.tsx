@@ -66,7 +66,6 @@ function Login() {
       <div>
         <InputBox>
           <Input
-            autoComplete="off"
             name="email"
             placeholder="E-mail"
             value={email}
@@ -85,7 +84,7 @@ function Login() {
             회원가입
           </SignupLink>
           <FindLink onClick={() => history.push('/find')}>
-            아이디 / 비밀번호 찾기
+            비밀번호 찾기
           </FindLink>
         </LinkBox>
 

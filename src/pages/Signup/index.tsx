@@ -59,17 +59,18 @@ function Signup() {
       name,
     });
 
-    setSignupField({
-      email: '',
-      password: '',
-      rPassword: '',
-      name: '',
-    });
-    target.disabled = false;
-    target.classList.remove('on');
-
     if (res?.success === false) {
       alert(res?.msg);
+
+      setSignupField({
+        email: '',
+        password: '',
+        rPassword: '',
+        name: '',
+      });
+      target.disabled = false;
+      target.classList.remove('on');
+
       return;
     }
 
@@ -85,23 +86,21 @@ function Signup() {
       <Title>%</Title>
 
       {afterSignup ? (
-        <div>
-          <AfterSignupBox>
-            <AfterSignupText1>가입을 축하 드립니다.</AfterSignupText1>
-            <AfterSignupText2>&apos;{email}&apos; 로</AfterSignupText2>
-            <AfterSignupText2 className="last">
-              이메일을 전송하였습니다.
-            </AfterSignupText2>
+        <AfterSignupBox>
+          <AfterSignupText1>가입을 축하 드립니다.</AfterSignupText1>
+          <AfterSignupText2>&apos;{email}&apos; 로</AfterSignupText2>
+          <AfterSignupText2 className="last">
+            이메일을 전송하였습니다.
+          </AfterSignupText2>
 
-            <AfterSignupText3>이메일 인증을 완료하고,</AfterSignupText3>
-            <AfterSignupText3>
-              나누기와 함께 친환경 공유소비 생활을 즐겨보아요!
-            </AfterSignupText3>
-            <LoginLinkBtn type="button" onClick={() => history.push('/login')}>
-              로그인화면으로
-            </LoginLinkBtn>
-          </AfterSignupBox>
-        </div>
+          <AfterSignupText3>이메일 인증을 완료하고,</AfterSignupText3>
+          <AfterSignupText3>
+            나누기와 함께 친환경 공유소비 생활을 즐겨보아요!
+          </AfterSignupText3>
+          <LoginLinkBtn type="button" onClick={() => history.push('/login')}>
+            로그인화면으로
+          </LoginLinkBtn>
+        </AfterSignupBox>
       ) : (
         <div>
           <InputBox>
@@ -137,7 +136,7 @@ function Signup() {
           <LinkBox>
             <LoginLink onClick={() => history.push('/login')}>로그인</LoginLink>
             <FindLink onClick={() => history.push('/find')}>
-              아이디 / 비밀번호 찾기
+              비밀번호 찾기
             </FindLink>
           </LinkBox>
           <SignupBtn type="button" onClick={onClickSignupBtn}>

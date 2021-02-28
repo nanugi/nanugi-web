@@ -33,6 +33,26 @@ export const signup = async function (req: signupReq) {
 
 // email-verification
 export const emailVerification = async (code: string) => {
-  const res = await callApi.get(`email-verification?code=${code}`);
+  const res = await callApi.get<{}, {}>(`email-verification?code=${code}`);
+  return res;
+};
+
+// send-certcode
+export type sendCertcodeReq = string;
+export const sendCertcode = async (req: sendCertcodeReq) => {
+  const res = await callApi.post<sendCertcodeReq, {}>('send-certcode', req);
+  return res;
+};
+
+// set-new-password
+export type setNewPasswordReq = {
+  code: string;
+  password: string;
+};
+export const setNewPassword = async (req: setNewPasswordReq) => {
+  const res = await callApi.post<setNewPasswordReq, {}>(
+    'set-new-password',
+    req,
+  );
   return res;
 };
