@@ -1,4 +1,4 @@
-import history from './browserHistory';
+// import history from './browserHistory';
 import callCookie from './cookie';
 
 type fetchMethod = 'get' | 'post' | 'put' | 'delete' | 'PATCH';
@@ -9,22 +9,22 @@ interface networkMessage {
   msg: string;
 }
 
-const errorHandling = async function (response: Response): Promise<boolean> {
-  const { text, ok, status } = response;
+// const errorHandling = async function (response: Response): Promise<boolean> {
+//   const { clone, ok, status } = response;
 
-  if (!ok) {
-    if (status === 401) {
-      callCookie.delete('jwt');
-      history.push('/login');
-      return ok;
-    }
+//   if (!ok) {
+//     if (status === 401) {
+//       callCookie.delete('jwt');
+//       history.push('/login');
+//       return ok;
+//     }
 
-    const responseText = await text();
-    throw new Error(`Internal error : ${responseText}`);
-  }
+//     const responseText = await clone().text();
+//     throw new Error(`Internal error : ${responseText}`);
+//   }
 
-  return ok;
-};
+//   return ok;
+// };
 const callFetch = function <I>(
   url: string,
   method: fetchMethod,
@@ -46,7 +46,6 @@ const toJson = async function <O>(
   response: Response,
 ): Promise<O & networkMessage> {
   let body: O & networkMessage;
-
   try {
     body = await response.clone().json();
   } catch (err) {
@@ -72,12 +71,12 @@ const callApiBase = async function <I, O>(
     body,
   );
 
-  const ok = await errorHandling(response);
+  // const ok = await errorHandling(response);
 
-  if (ok) return toJson<O>(response);
+  return toJson<O>(response);
 
   // console.log('Available after login');
-  return undefined;
+  // return undefined;
 };
 
 export default {

@@ -40,7 +40,6 @@ function Login() {
     target.classList.add('on');
 
     const res = await login({ id: email, password });
-
     setLoginField({
       email: '',
       password: '',
@@ -48,7 +47,7 @@ function Login() {
     target.disabled = false;
     target.classList.remove('on');
 
-    if (res?.success) {
+    if (res?.success === false) {
       alert(res.msg);
       return;
     }

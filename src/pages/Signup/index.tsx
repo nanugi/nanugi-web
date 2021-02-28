@@ -46,7 +46,7 @@ function Signup() {
     target.disabled = true;
     target.classList.add('on');
 
-    if (password === rPassword) {
+    if (password !== rPassword) {
       alert('비밀번호 두 개가 다릅니다.');
       target.disabled = false;
       target.classList.remove('on');
@@ -68,7 +68,7 @@ function Signup() {
     target.disabled = false;
     target.classList.remove('on');
 
-    if (res?.success) {
+    if (res?.success === false) {
       alert(res?.msg);
       return;
     }
