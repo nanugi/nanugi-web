@@ -12,6 +12,8 @@ import {
 
 import { emailVerification } from '../../container/sign';
 
+const texts = ['...인증', '..되었습니다..'];
+
 interface typingEffectProps {
   check: boolean;
   callback: () => void;
@@ -24,7 +26,6 @@ const TypingEffect = ({ check, callback }: typingEffectProps) => {
   // console.log('TypingEffect : ', check);
 
   useEffect(() => {
-    const texts = ['...확인..', '되셨습니다..'];
     const between = '.';
     const speed = 800;
 
@@ -91,7 +92,12 @@ const EmailVerification = () => {
     () =>
       async function () {
         const res = await emailVerification(code);
-        if (res?.success) setAfterVerification(true);
+        if (res?.success) {
+          setAfterVerification(true);
+        } else {
+          texts[1] = '에..실패..했습니다..';
+          setAfterVerification(true);
+        }
       },
     [code],
   );

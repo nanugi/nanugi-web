@@ -48,7 +48,6 @@
 
           const replaceStateUrl = l.pathname.slice(0, -1) + decoded + l.hash;
 
-          console.log(`index.html in js URL : ${replaceStateUrl}`);
           window.history.replaceState(null, null, replaceStateUrl);
         }
       }(window.location))
