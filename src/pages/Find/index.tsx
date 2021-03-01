@@ -43,7 +43,7 @@ function Find() {
     target.disabled = true;
     target.classList.add('on');
 
-    const res = await sendCertcode(email);
+    const res = await sendCertcode({ email });
 
     target.disabled = false;
     target.classList.remove('on');

@@ -38,7 +38,9 @@ export const emailVerification = async (code: string) => {
 };
 
 // send-certcode
-export type sendCertcodeReq = string;
+export type sendCertcodeReq = {
+  email: string;
+};
 export const sendCertcode = async (req: sendCertcodeReq) => {
   const res = await callApi.post<sendCertcodeReq, {}>('send-certcode', req);
   return res;
