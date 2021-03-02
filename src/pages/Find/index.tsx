@@ -77,7 +77,7 @@ function Find() {
       return;
     }
 
-    const res = await setNewPassword({ code: email, password });
+    const res = await setNewPassword({ code, password });
 
     setFindField({
       email: '',
