@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nanugi-web/static/css/main.7bb05dfd.chunk.css",
-    "main.js": "/nanugi-web/static/js/main.f1da8f9b.chunk.js",
-    "main.js.map": "/nanugi-web/static/js/main.f1da8f9b.chunk.js.map",
+    "main.js": "/nanugi-web/static/js/main.7795e28c.chunk.js",
+    "main.js.map": "/nanugi-web/static/js/main.7795e28c.chunk.js.map",
     "runtime-main.js": "/nanugi-web/static/js/runtime-main.e83ef39a.js",
     "runtime-main.js.map": "/nanugi-web/static/js/runtime-main.e83ef39a.js.map",
     "static/js/2.7ed2e159.chunk.js": "/nanugi-web/static/js/2.7ed2e159.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e83ef39a.js",
     "static/js/2.7ed2e159.chunk.js",
     "static/css/main.7bb05dfd.chunk.css",
-    "static/js/main.f1da8f9b.chunk.js"
+    "static/js/main.7795e28c.chunk.js"
   ]
 }
