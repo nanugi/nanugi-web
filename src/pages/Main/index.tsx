@@ -8,30 +8,28 @@ function Main() {
   const [posts, setPosts] = useState<postType[]>([]);
   const [currentPageInfo, setCurrentPageInfo] = useState<getPostsRes>();
 
-  const nextPage = useCallback(
-    () => async () => {
-      if (!currentPageInfo?.data.next) {
-        alert('[nextPage] next가 null 임!');
-        return;
-      }
+  const nextPage = useCallback(async () => {
+    if (!currentPageInfo?.data.next) {
+      // alert('[nextPage] next가 null 임!');
+      return;
+    }
 
-      const res = await getPosts(currentPageInfo.data.page + 1);
-      if (res?.success) {
-        const alreadyImportedPosts_id = currentPageInfo.data.posts.map(
-          (post) => post.post_id,
-        );
-        const newPosts = res.data.posts.filter(
-          (post) => !alreadyImportedPosts_id.includes(post.post_id),
-        );
+    const res = await getPosts(currentPageInfo.data.page + 1);
+    if (res?.success) {
+      const alreadyImportedPosts_id = currentPageInfo.data.posts.map(
+        (post) => post.post_id,
+      );
+      const newPosts = res.data.posts.filter(
+        (post) => !alreadyImportedPosts_id.includes(post.post_id),
+      );
 
-        setPosts([...posts, ...newPosts]);
-        setCurrentPageInfo({ data: res.data });
-      } else {
-        alert('[nextPage] 뭔지 모르겠는데 오류!');
-      }
-    },
-    [currentPageInfo, posts],
-  );
+      setPosts([...posts, ...newPosts]);
+      setCurrentPageInfo({ data: res.data });
+    }
+    //  else {
+    //   alert('[nextPage] 뭔지 모르겠는데 오류!');
+    // }
+  }, [currentPageInfo, posts]);
 
   useEffect(() => {
     async function init() {
@@ -39,9 +37,10 @@ function Main() {
       if (res?.success) {
         setPosts(res.data.posts);
         setCurrentPageInfo({ data: res.data });
-      } else {
-        alert('[init] 뭔지 모르겠는데 오류!');
       }
+      //  else {
+      //   alert('[init] 뭔지 모르겠는데 오류!');
+      // }
     }
     init();
   }, []);
@@ -50,9 +49,12 @@ function Main() {
     <MainPage>
       <Title>%</Title>
       <ul
+        style={{ height: '50vh', overflow: 'auto' }}
         onScroll={(e: React.UIEvent<HTMLUListElement, UIEvent>) => {
           const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
-          if (offsetHeight + scrollTop >= scrollHeight) nextPage();
+          if (offsetHeight + scrollTop >= scrollHeight) {
+            nextPage();
+          }
         }}
       >
         {posts.map((post) => (

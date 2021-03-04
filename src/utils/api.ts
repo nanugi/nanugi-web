@@ -35,7 +35,7 @@ const callFetch = function <I>(
   const init: RequestInit = {
     headers: {
       'Content-Type': 'application/json',
-      authorization: jwt || '',
+      'X-AUTH-TOKEN': jwt || '',
     },
     method,
     body: method !== 'get' ? JSON.stringify(body) : undefined,
