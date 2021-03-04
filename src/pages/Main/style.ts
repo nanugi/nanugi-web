@@ -13,7 +13,7 @@ export const MainPage = styled.div`
   background-color: #f7c46a;
 `;
 
-export const SubText = styled.div`
+export const Title = styled.div`
   color: #f9765a;
 
   opacity: 0.5;
