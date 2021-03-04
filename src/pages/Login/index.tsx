@@ -7,6 +7,9 @@ import { login } from '../../container/sign';
 import {
   LoginPage,
   Title,
+  StaySignedInBox,
+  StaySignedInBtn,
+  StaySignedInLabel,
   InputBox,
   Input,
   LinkBox,
@@ -16,6 +19,7 @@ import {
 } from './style';
 
 function Login() {
+  const [isStaySignedIn, setIsStaySignedIn] = useState(false);
   const [loginField, setLoginField] = useState({
     email: '',
     password: '',
@@ -39,7 +43,7 @@ function Login() {
     target.disabled = true;
     target.classList.add('on');
 
-    const res = await login({ id: email, password });
+    const res = await login(isStaySignedIn, { id: email, password });
     setLoginField({
       email: '',
       password: '',
@@ -56,6 +60,7 @@ function Login() {
   };
 
   useEffect(() => {
+    callCookie.delete('staySignedIn');
     callCookie.delete('jwt');
   }, []);
 
@@ -64,6 +69,16 @@ function Login() {
       <Title>%</Title>
 
       <div>
+        <StaySignedInBox
+          onClick={() => {
+            setIsStaySignedIn(!isStaySignedIn);
+          }}
+        >
+          <StaySignedInBtn type="button" className={isStaySignedIn ? 'on' : ''}>
+            ✔
+          </StaySignedInBtn>
+          <StaySignedInLabel>로그인 상태 유지</StaySignedInLabel>
+        </StaySignedInBox>
         <InputBox>
           <Input
             name="email"

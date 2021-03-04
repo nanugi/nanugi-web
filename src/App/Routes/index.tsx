@@ -1,8 +1,9 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 
-import AuthRoute from './AuthRoute';
+import callCookie from '../../utils/cookie';
 import history from '../../utils/browserHistory';
+import AuthRoute from './AuthRoute';
 
 // Route
 import Signup from '../../pages/Signup';
@@ -19,7 +20,19 @@ import Empty from '../../pages/Enpty';
 const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route
+        exact
+        path="/"
+        render={() => {
+          const staySignedIn = callCookie.get('staySignedIn');
+          if (staySignedIn) {
+            callCookie.set('jwt', staySignedIn, 2);
+            return <Main />;
+          }
+
+          return <Login />;
+        }}
+      />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route

@@ -24,6 +24,46 @@ export const Title = styled.div`
   user-select: none;
 `;
 
+export const StaySignedInBox = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+  padding-left: 4%;
+
+  cursor: pointer;
+`;
+export const StaySignedInBtn = styled.button`
+  padding: 0px;
+  border: solid 1px #dadada;
+  margin-right: 8px;
+
+  width: 18px;
+  height: 18px;
+
+  line-height: 15px;
+  text-align: center;
+
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+
+  background-color: #fff;
+
+  transition: all 0.5s;
+
+  &:focus {
+    outline: none;
+  }
+  &.on {
+    border: none;
+    background-color: #f2a663;
+  }
+`;
+export const StaySignedInLabel = styled.div`
+  font-size: 15px;
+`;
+
 export const InputBox = styled.div`
   display: flex;
 

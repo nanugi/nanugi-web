@@ -9,11 +9,13 @@ export type loginReq = {
 export type loginRes = {
   data: string;
 };
-export const login = async function (req: loginReq) {
+export const login = async function (isStaySignedIn: boolean, req: loginReq) {
   const res = await callApi.post<loginReq, loginRes>('signin', req);
   if (res?.success) {
+    if (isStaySignedIn) callCookie.set('staySignedIn', res.data, 10000);
     callCookie.set('jwt', res.data, 2);
   }
+
   return res;
 };
 
