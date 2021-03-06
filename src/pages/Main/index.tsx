@@ -1,8 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import history from '../../utils/browserHistory';
 
 import { postType, getPosts, getPostsRes } from '../../container/post';
 
-import { MainPage, Title } from './style';
+import {
+  MainPage,
+  Title,
+  PostUl,
+  PostLi,
+  PostBox,
+  PostTitle,
+  PostInfo,
+  PostImage,
+} from './style';
 
 function Main() {
   const [posts, setPosts] = useState<postType[]>([]);
@@ -46,25 +56,43 @@ function Main() {
   }, []);
 
   return (
-    <MainPage>
+    <MainPage
+      onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+        const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
+        if (offsetHeight + scrollTop >= scrollHeight) {
+          nextPage();
+        }
+      }}
+    >
       <Title>%</Title>
-      <ul
-        style={{ height: '50vh', overflow: 'auto' }}
-        onScroll={(e: React.UIEvent<HTMLUListElement, UIEvent>) => {
-          const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
-          if (offsetHeight + scrollTop >= scrollHeight) {
-            nextPage();
-          }
-        }}
-      >
+      <PostUl className="col-4">
         {posts.map((post) => (
-          <li key={post.post_id}>
-            <div>{post.post_id}</div>
-            <div>{post.chatUrl}</div>
-            <div>{post.content}</div>
-          </li>
+          <PostLi key={post.post_id}>
+            <PostBox>
+              <PostImage
+                onClick={() => {
+                  history.push({
+                    pathname: `/post/${post.post_id}`,
+                    state: { propsPost: post },
+                  });
+                }}
+              />
+              <PostInfo>
+                <PostTitle>{post.title}</PostTitle>
+                <div>{post.price}</div>
+                <div>{post.content}</div>
+                <div>{post.chatUrl}</div>
+                {/* <div>{post.nanumPrice}</div> */}
+                <div>{post.user.name}</div>
+                <div>
+                  {post.minParti} ~ {post.maxParti}명
+                </div>
+                <div>{post.createdAt}</div>
+              </PostInfo>
+            </PostBox>
+          </PostLi>
         ))}
-      </ul>
+      </PostUl>
     </MainPage>
   );
 }

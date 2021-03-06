@@ -10,6 +10,7 @@ import Signup from '../../pages/Signup';
 import Login from '../../pages/Login';
 import Find from '../../pages/Find';
 import EmailVerification from '../../pages/EmailVerification';
+import Post from '../../pages/Post';
 
 // AuthRoute
 import Main from '../../pages/Main';
@@ -40,6 +41,8 @@ const Routes = () => (
         path="/emailVerification/:code"
         component={EmailVerification}
       />
+      <Route exact path="/post/:post_id" component={Post} />
+
       <Route exact path="/find" component={Find} />
 
       <AuthRoute exact path="/main" component={Main} />
