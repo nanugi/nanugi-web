@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Page from '../pageStyle';
 
-export const PostPage = styled.div`
+export const PostWritePage = styled.div`
   ${Page}
 
   display: flex;
@@ -13,7 +13,7 @@ export const PostPage = styled.div`
   background-color: #f7c46a;
 `;
 
-export const PostListLink = styled.div`
+export const CancelBtn = styled.div`
   position: absolute;
   top: 5%;
   left: -74px;
@@ -44,7 +44,7 @@ export const PostListLink = styled.div`
   }
 `;
 
-export const PostBox = styled.div`
+export const PostWriteBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,6 +55,7 @@ export const PostBox = styled.div`
   width: 1000px;
   height: 650px;
 `;
+
 export const PostInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -62,8 +63,13 @@ export const PostInfoBox = styled.div`
   width: 100%;
   height: 500px;
 `;
-export const PostImage = styled.div<{ url?: string }>`
+
+export const InputImage = styled.div<{ url?: string }>`
   position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 500px;
   height: 500px;
@@ -75,26 +81,41 @@ export const PostImage = styled.div<{ url?: string }>`
       ? `background-image: url(${props.url}); background-size: cover;`
       : `background-color: #FFBB6B;`}
 `;
-export const PostInfo = styled.div`
+
+export const InputBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-`;
-export const PostInfoTitle = styled.div`
-  margin-bottom: 10px;
+  align-items: center;
 
-  font-size: 40px;
-  font-weight: bold;
-`;
-export const PostInfoText = styled.div`
-  font-size: 20px;
+  width: calc(100% - 500px);
 `;
 
-export const Temp = styled.div`
+export const Input = styled.input`
+  margin-bottom: 8px;
+
+  border: solid 1px #dadada;
+  border-radius: 6px;
+
+  padding-left: 10px;
+
+  width: 80%;
+  height: 45px;
+
+  font-size: 16px;
+
+  background: #fffafa;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const WriteBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
 
+  border: none;
   border-radius: 22px;
 
   width: 80%;
@@ -107,4 +128,11 @@ export const Temp = styled.div`
   font-weight: bold;
 
   background-color: #f2a663;
+
+  cursor: pointer;
+
+  &.on {
+    background-color: #d99559;
+    color: #e6e1e1;
+  }
 `;

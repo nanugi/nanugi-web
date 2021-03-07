@@ -1,12 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, RouteComponentProps } from 'react-router-dom';
 
 import callCookie from '../../utils/cookie';
 
 import history from '../../utils/browserHistory';
 
 interface authRouteProps {
-  component: () => JSX.Element;
+  component:
+    | React.ComponentType<RouteComponentProps<any>>
+    | React.ComponentType<any>;
   path: string | [string];
   exact?: boolean;
 }

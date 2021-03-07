@@ -8,6 +8,7 @@ import {
   Title,
   PostUl,
   PostLi,
+  PostWriteLink,
   PostBox,
   PostTitle,
   PostInfo,
@@ -20,7 +21,6 @@ function Main() {
 
   const nextPage = useCallback(async () => {
     if (!currentPageInfo?.data.next) {
-      // alert('[nextPage] next가 null 임!');
       return;
     }
 
@@ -36,21 +36,15 @@ function Main() {
       setPosts([...posts, ...newPosts]);
       setCurrentPageInfo({ data: res.data });
     }
-    //  else {
-    //   alert('[nextPage] 뭔지 모르겠는데 오류!');
-    // }
   }, [currentPageInfo, posts]);
 
   useEffect(() => {
     async function init() {
-      const res = await getPosts(1);
+      const res = await getPosts(0);
       if (res?.success) {
         setPosts(res.data.posts);
         setCurrentPageInfo({ data: res.data });
       }
-      //  else {
-      //   alert('[init] 뭔지 모르겠는데 오류!');
-      // }
     }
     init();
   }, []);
@@ -66,6 +60,11 @@ function Main() {
     >
       <Title>%</Title>
       <PostUl className="col-4">
+        <PostLi>
+          <PostWriteLink onClick={() => history.push(`/write/post`)}>
+            새로운 나누기
+          </PostWriteLink>
+        </PostLi>
         {posts.map((post) => (
           <PostLi key={post.post_id}>
             <PostBox>

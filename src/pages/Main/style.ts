@@ -67,6 +67,21 @@ export const PostLi = styled.li`
   box-sizing: border-box;
 `;
 
+export const PostWriteLink = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: #ffca6e;
+
+  cursor: pointer;
+`;
+
 export const PostBox = styled.div`
   display: flex;
   flex-direction: column;
