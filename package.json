@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@types/node": "^12.19.11",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
@@ -12,6 +14,8 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.1.0",
     "history": "^4.10.1",
+    "mobx": "^6.1.8",
+    "mobx-react-lite": "^3.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -52,10 +56,13 @@
       "use-before-define": 0,
       "react/jsx-filename-extension": 0,
       "react/jsx-one-expression-per-line": 0,
+      "react/prop-types": "off",
       "import/no-unresolved": 0,
       "import/extensions": 0,
       "func-names": 0,
       "no-undef": 0,
+      "sort-imports": "off",
+      "import/prefer-default-export": "off",
       "no-use-before-define": "off",
       "@typescript-eslint/no-use-before-define": [
         "error"
