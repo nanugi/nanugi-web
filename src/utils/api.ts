@@ -1,4 +1,4 @@
-// import history from './browserHistory';
+import history from './browserHistory';
 import callCookie from './cookie';
 
 type fetchMethod = 'get' | 'post' | 'put' | 'delete' | 'PATCH';
@@ -9,22 +9,17 @@ interface networkMessage {
   msg: string;
 }
 
-// const errorHandling = async function (response: Response): Promise<boolean> {
-//   const { clone, ok, status } = response;
+const errorHandling = async function (response: Response): Promise<boolean> {
+  const { status } = response;
 
-//   if (!ok) {
-//     if (status === 401) {
-//       callCookie.delete('jwt');
-//       history.push('/login');
-//       return ok;
-//     }
+  if (status === 401) {
+    callCookie.delete('jwt');
+    history.push('/login');
+    return false;
+  }
 
-//     const responseText = await clone().text();
-//     throw new Error(`Internal error : ${responseText}`);
-//   }
-
-//   return ok;
-// };
+  return true;
+};
 const callFetch = function <I>(
   url: string,
   method: fetchMethod,
@@ -71,12 +66,11 @@ const callApiBase = async function <I, O>(
     body,
   );
 
-  // const ok = await errorHandling(response);
-
-  return toJson<O>(response);
+  const ok = await errorHandling(response);
+  if (ok) return toJson<O>(response);
 
   // console.log('Available after login');
-  // return undefined;
+  return undefined;
 };
 
 export default {

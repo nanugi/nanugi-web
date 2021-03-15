@@ -1,35 +1,14 @@
 import styled from 'styled-components';
 
-import Page from '../pageStyle';
+import { Page, Button } from '../common';
 
 export const LoginPage = styled.div`
   ${Page}
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  background-color: #f7c46a;
-`;
-
-export const Title = styled.div`
-  font-size: clamp(100px, 15vw, 250px);
-  font-weight: bold;
-
-  color: #f9765a;
-
-  opacity: 0.5;
-
-  user-select: none;
 `;
 
 export const StaySignedInBox = styled.div`
   display: flex;
   align-items: center;
-
-  margin-bottom: 10px;
-  padding-left: 4%;
 
   cursor: pointer;
 `;
@@ -38,8 +17,8 @@ export const StaySignedInBtn = styled.button`
   border: solid 1px #dadada;
   margin-right: 8px;
 
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
 
   line-height: 15px;
   text-align: center;
@@ -57,99 +36,39 @@ export const StaySignedInBtn = styled.button`
   }
   &.on {
     border: none;
-    background-color: #f2a663;
+    background-color: #11a656;
   }
 `;
 export const StaySignedInLabel = styled.div`
-  font-size: 15px;
+  font-size: 12px;
 `;
 
-export const InputBox = styled.div`
-  display: flex;
-
-  flex-direction: column;
-  align-items: center;
-
-  border-radius: 12px;
-
-  width: 90vw;
-  max-width: 420px;
-
-  /* background-color: #fff; */
-`;
-
-export const Input = styled.input`
-  margin-bottom: 8px;
-
-  border: solid 1px #dadada;
-  border-radius: 6px;
-
-  padding-left: 10px;
-
-  width: 90%;
-  height: 45px;
-
-  font-size: 16px;
-
-  background: #fffafa;
-
-  &:focus {
-    outline: none;
-  }
-`;
 export const LinkBox = styled.div`
   display: flex;
 
-  margin-top: 10px;
+  padding-left: 1px;
 
-  padding: 0px 12px;
-
-  width: 90vw;
-  max-width: 420px;
-
-  color: gray;
+  width: 360px;
 
   box-sizing: border-box;
-`;
-
-export const SignupLink = styled.div`
-  color: #0c0000;
-  opacity: 0.6;
-
-  text-decoration: none;
-  cursor: pointer;
 `;
 
 export const FindLink = styled.div`
   margin-left: auto;
 
-  color: #0c0000;
-  opacity: 0.6;
+  color: #828282;
+  font-size: 12px;
 
-  text-decoration: none;
   cursor: pointer;
 `;
 
-export const LoginBtn = styled.button`
-  margin-top: 60px;
+export const LoginBtn = styled(Button)`
+  color: #ffffff;
+  background-color: #11a656;
+`;
+export const SignupLink = styled(Button)`
+  margin-bottom: 13px;
 
-  border: none;
-  border-radius: 12px;
-
-  width: 90vw;
-  max-width: 420px;
-  height: 100px;
-
-  color: #fffafa;
-  font-size: 50px;
-  font-weight: bold;
-
-  background-color: #f2a663;
-
-  cursor: pointer;
-
-  &.on {
-    background-color: #d99559;
-    color: #e6e1e1;
-  }
+  border: solid 1px #11a656;
+  background-color: #ffffff;
 `;

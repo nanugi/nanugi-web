@@ -4,16 +4,14 @@ import { sendCertcode, setNewPassword } from '../../container/sign';
 
 import {
   FindPage,
-  Title,
-  Box,
+  MainText,
   Text,
-  InputBox,
-  Input,
   LinkBox,
   LoginLink,
   SignupLink,
   Btn,
 } from './style';
+import { Input } from '../common';
 
 function Find() {
   const [findField, setFindField] = useState({
@@ -98,9 +96,8 @@ function Find() {
 
   return (
     <FindPage>
-      <Title>%</Title>
-
-      <Box>
+      <MainText>비밀번호 찾기</MainText>
+      <>
         {afterSetNewPassword ? (
           <>
             <Text>비밀번호가 변경되었습니다.</Text>
@@ -112,29 +109,27 @@ function Find() {
           <>
             {afterSendingCode ? (
               <>
-                <InputBox>
-                  <Input
-                    autoComplete="off"
-                    name="code"
-                    placeholder="인증 코드"
-                    value={code}
-                    onChange={changeState}
-                  />
-                  <Input
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    value={password}
-                    onChange={changeState}
-                  />
-                  <Input
-                    name="rPassword"
-                    placeholder="Reenter password"
-                    type="password"
-                    value={rPassword}
-                    onChange={changeState}
-                  />
-                </InputBox>
+                <Input
+                  autoComplete="off"
+                  name="code"
+                  placeholder="인증 코드"
+                  value={code}
+                  onChange={changeState}
+                />
+                <Input
+                  name="password"
+                  placeholder="비밀번호"
+                  type="password"
+                  value={password}
+                  onChange={changeState}
+                />
+                <Input
+                  name="rPassword"
+                  placeholder="비밀번호 확인"
+                  type="password"
+                  value={rPassword}
+                  onChange={changeState}
+                />
 
                 <Btn type="button" onClick={onClickSetNewPasswordBtn}>
                   비밀번호 재설정
@@ -142,14 +137,17 @@ function Find() {
               </>
             ) : (
               <>
-                <InputBox>
-                  <Input
-                    name="email"
-                    placeholder="E-mail"
-                    value={email}
-                    onChange={changeState}
-                  />
-                </InputBox>
+                <Input
+                  name="email"
+                  placeholder="이메일"
+                  value={email}
+                  onChange={changeState}
+                />
+
+                <Btn type="button" onClick={onClickSendCodeBtn}>
+                  인증메일 받기
+                </Btn>
+
                 <LinkBox>
                   <LoginLink onClick={() => history.push('/login')}>
                     로그인
@@ -158,15 +156,11 @@ function Find() {
                     회원가입
                   </SignupLink>
                 </LinkBox>
-
-                <Btn type="button" onClick={onClickSendCodeBtn}>
-                  인증코드 보내기
-                </Btn>
               </>
             )}
           </>
         )}
-      </Box>
+      </>
     </FindPage>
   );
 }

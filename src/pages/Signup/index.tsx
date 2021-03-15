@@ -5,19 +5,19 @@ import { signup } from '../../container/sign';
 
 import {
   SignupPage,
-  Title,
-  InputBox,
-  Input,
-  LoginLink,
-  FindLink,
-  SignupBtn,
-  LinkBox,
   AfterSignupBox,
   AfterSignupText1,
   AfterSignupText2,
+  AfterSignupText2Strong,
   AfterSignupText3,
+  AfterSignupText3Strong,
   LoginLinkBtn,
+  SingupInfo,
+  SingupInfoStrong,
+  SignupBtn,
 } from './style';
+
+import { Input } from '../common';
 
 function Signup() {
   const [signupField, setSignupField] = useState({
@@ -83,66 +83,72 @@ function Signup() {
 
   return (
     <SignupPage>
-      <Title>%</Title>
-
       {afterSignup ? (
         <AfterSignupBox>
-          <AfterSignupText1>가입을 축하 드립니다.</AfterSignupText1>
-          <AfterSignupText2>&apos;{email}&apos; 로</AfterSignupText2>
-          <AfterSignupText2 className="last">
+          <AfterSignupText1>회원가입을</AfterSignupText1>
+          <AfterSignupText1 style={{ marginBottom: '36px' }}>
+            축하드립니다!😆
+          </AfterSignupText1>
+          <AfterSignupText2>
+            <AfterSignupText2Strong>‘{email}’</AfterSignupText2Strong>로
+          </AfterSignupText2>
+          <AfterSignupText2 style={{ marginBottom: '30px' }}>
             이메일을 전송하였습니다.
           </AfterSignupText2>
-
           <AfterSignupText3>이메일 인증을 완료하고,</AfterSignupText3>
-          <AfterSignupText3>
-            나누기와 함께 친환경 공유소비 생활을 즐겨보아요!
+          <AfterSignupText3 style={{ marginBottom: '90px' }}>
+            나누기와 함께{' '}
+            <AfterSignupText3Strong>
+              친환경 공유소비 생활
+            </AfterSignupText3Strong>
+            을 즐겨보아요!
           </AfterSignupText3>
           <LoginLinkBtn type="button" onClick={() => history.push('/login')}>
             로그인화면으로
           </LoginLinkBtn>
         </AfterSignupBox>
       ) : (
-        <div>
-          <InputBox>
-            <Input
-              autoComplete="off"
-              name="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={changeState}
-            />
-            <Input
-              autoComplete="off"
-              name="name"
-              placeholder="Name"
-              value={name}
-              onChange={changeState}
-            />
-            <Input
-              name="password"
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={changeState}
-            />
-            <Input
-              name="rPassword"
-              placeholder="Reenter password"
-              type="password"
-              value={rPassword}
-              onChange={changeState}
-            />
-          </InputBox>
-          <LinkBox>
-            <LoginLink onClick={() => history.push('/login')}>로그인</LoginLink>
-            <FindLink onClick={() => history.push('/find')}>
-              비밀번호 찾기
-            </FindLink>
-          </LinkBox>
+        <>
+          <SingupInfo>나누기는</SingupInfo>
+          <SingupInfo>
+            <SingupInfoStrong>학교 웹메일</SingupInfoStrong>로만
+          </SingupInfo>
+          <SingupInfo style={{ marginBottom: '18px' }}>
+            가입이 가능합니다.
+          </SingupInfo>
+
+          <Input
+            autoComplete="off"
+            name="email"
+            placeholder="이메일"
+            value={email}
+            onChange={changeState}
+          />
+          <Input
+            name="password"
+            placeholder="비밀번호"
+            type="password"
+            value={password}
+            onChange={changeState}
+          />
+          <Input
+            name="rPassword"
+            placeholder="비밀번호 확인"
+            type="password"
+            value={rPassword}
+            onChange={changeState}
+          />
+          <Input
+            autoComplete="off"
+            name="name"
+            placeholder="이름"
+            value={name}
+            onChange={changeState}
+          />
           <SignupBtn type="button" onClick={onClickSignupBtn}>
             회원가입
           </SignupBtn>
-        </div>
+        </>
       )}
     </SignupPage>
   );

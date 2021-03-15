@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Page from '../pageStyle';
+import { Page } from '../common';
 
 export const EnptyPage = styled.div`
   ${Page}

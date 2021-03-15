@@ -1,110 +1,65 @@
 import styled from 'styled-components';
 
-import Page from '../pageStyle';
+import { Button } from '../common';
 
-export const PostPage = styled.div`
-  ${Page}
+export const PostPage = styled.div``;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  background-color: #f7c46a;
-`;
-
-export const PostListLink = styled.div`
-  position: absolute;
-  top: 5%;
-  left: -74px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 6px 8px;
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
-
-  font-size: 17px;
-  font-weight: bold;
-
-  background-color: #fff;
-
-  opacity: 0.3;
-
-  transition: all 0.4s;
-
-  cursor: pointer;
-
-  &:hover {
-    left: -84px;
-
-    opacity: 1;
-  }
-`;
-
-export const PostBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  position: relative;
-
-  width: 1000px;
-  height: 650px;
-`;
-export const PostInfoBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  width: 100%;
-  height: 500px;
-`;
 export const PostImage = styled.div<{ url?: string }>`
   position: relative;
 
-  width: 500px;
-  height: 500px;
+  width: 414px;
+  height: 350px;
 
   cursor: pointer;
 
   ${(props) =>
     props.url
       ? `background-image: url(${props.url}); background-size: cover;`
-      : `background-color: #FFBB6B;`}
+      : `background: rgba(229, 229, 229, 0.5); opacity: 0.8;`}
+`;
+
+export const PostInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  border-bottom: 2px solid #e0e0e0;
+  padding: 16px 27px 24px;
 `;
 export const PostInfo = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-export const PostInfoTitle = styled.div`
-  margin-bottom: 10px;
+  justify-content: space-between;
 
-  font-size: 40px;
+  margin-bottom: 20px;
+`;
+
+export const PostTitle = styled.div`
+  font-size: 15px;
   font-weight: bold;
 `;
-export const PostInfoText = styled.div`
-  font-size: 20px;
+export const PostTag = styled.div`
+  color: #828282;
+  font-size: 10px;
+  font-weight: 400;
+`;
+export const PostInfoKeyValueBox = styled.div`
+  font-size: 11px;
+  font-weight: bold;
+`;
+export const PostInfoKey = styled.div`
+  display: inline;
+
+  color: #11a656;
+  text-decoration: underline;
+`;
+export const Btn = styled(Button)`
+  margin-bottom: 0px;
+
+  color: #ffffff;
+  background-color: #11a656;
 `;
 
-export const Temp = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const PostContent = styled.div`
+  padding: 24px 29px;
 
-  border-radius: 22px;
-
-  width: 80%;
-  height: 100px;
-
-  text-align: center;
-
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-
-  background-color: #f2a663;
+  font-size: 14px;
 `;

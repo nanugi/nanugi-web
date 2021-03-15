@@ -6,17 +6,16 @@ import { login } from '../../container/sign';
 
 import {
   LoginPage,
-  Title,
   StaySignedInBox,
   StaySignedInBtn,
   StaySignedInLabel,
-  InputBox,
-  Input,
   LinkBox,
-  SignupLink,
   FindLink,
   LoginBtn,
+  SignupLink,
 } from './style';
+
+import { Input } from '../common';
 
 function Login() {
   const [isStaySignedIn, setIsStaySignedIn] = useState(false);
@@ -66,9 +65,29 @@ function Login() {
 
   return (
     <LoginPage>
-      <Title>%</Title>
+      <Input
+        name="email"
+        placeholder="이메일"
+        value={email}
+        onChange={changeState}
+      />
+      <Input
+        name="password"
+        placeholder="비밀번호"
+        type="password"
+        value={password}
+        onChange={changeState}
+      />
 
-      <div>
+      <LoginBtn type="button" onClick={onClickLoginBtn}>
+        로그인
+      </LoginBtn>
+
+      <SignupLink type="button" onClick={() => history.push('/signup')}>
+        회원가입
+      </SignupLink>
+
+      <LinkBox>
         <StaySignedInBox
           onClick={() => {
             setIsStaySignedIn(!isStaySignedIn);
@@ -79,34 +98,9 @@ function Login() {
           </StaySignedInBtn>
           <StaySignedInLabel>로그인 상태 유지</StaySignedInLabel>
         </StaySignedInBox>
-        <InputBox>
-          <Input
-            name="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={changeState}
-          />
-          <Input
-            name="password"
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={changeState}
-          />
-        </InputBox>
-        <LinkBox>
-          <SignupLink onClick={() => history.push('/signup')}>
-            회원가입
-          </SignupLink>
-          <FindLink onClick={() => history.push('/find')}>
-            비밀번호 찾기
-          </FindLink>
-        </LinkBox>
 
-        <LoginBtn type="button" onClick={onClickLoginBtn}>
-          로그인
-        </LoginBtn>
-      </div>
+        <FindLink onClick={() => history.push('/find')}>비밀번호 찾기</FindLink>
+      </LinkBox>
     </LoginPage>
   );
 }

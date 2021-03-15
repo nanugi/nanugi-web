@@ -5,14 +5,15 @@ import { postType, getPosts, getPostsRes } from '../../container/post';
 
 import {
   MainPage,
-  Title,
   PostUl,
   PostLi,
-  PostWriteLink,
   PostBox,
-  PostTitle,
-  PostInfo,
   PostImage,
+  PostInfo,
+  PostTitle,
+  PostTag,
+  PostInfoKey,
+  PostInfoKeyValueBox,
 } from './style';
 
 function Main() {
@@ -58,13 +59,7 @@ function Main() {
         }
       }}
     >
-      <Title>%</Title>
-      <PostUl className="col-4">
-        <PostLi>
-          <PostWriteLink onClick={() => history.push(`/write/post`)}>
-            새로운 나누기
-          </PostWriteLink>
-        </PostLi>
+      <PostUl className="col-2">
         {posts.map((post) => (
           <PostLi key={post.post_id}>
             <PostBox>
@@ -77,16 +72,24 @@ function Main() {
                 }}
               />
               <PostInfo>
-                <PostTitle>{post.title}</PostTitle>
-                <div>{post.price}</div>
-                <div>{post.content}</div>
-                <div>{post.chatUrl}</div>
-                {/* <div>{post.nanumPrice}</div> */}
-                <div>{post.user.name}</div>
-                <div>
-                  {post.minParti} ~ {post.maxParti}명
-                </div>
-                <div>{post.createdAt}</div>
+                <PostTitle
+                  onClick={() => {
+                    history.push({
+                      pathname: `/post/${post.post_id}`,
+                      state: { propsPost: post },
+                    });
+                  }}
+                >
+                  {post.title}
+                </PostTitle>
+                <PostTag>반려동물 용품·중화2동</PostTag>
+                <PostInfoKeyValueBox>
+                  <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~{' '}
+                  {post.maxParti}개
+                </PostInfoKeyValueBox>
+                <PostInfoKeyValueBox>
+                  <PostInfoKey>나누기 가격</PostInfoKey> {post.price}원
+                </PostInfoKeyValueBox>
               </PostInfo>
             </PostBox>
           </PostLi>

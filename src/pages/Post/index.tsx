@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 
-import history from '../../utils/browserHistory';
-
 import { postType, getPost } from '../../container/post';
 
 import {
   PostPage,
   PostImage,
-  PostListLink,
-  PostBox,
   PostInfoBox,
   PostInfo,
-  PostInfoTitle,
-  PostInfoText,
-  Temp,
+  PostTitle,
+  PostTag,
+  PostInfoKeyValueBox,
+  PostInfoKey,
+  Btn,
+  PostContent,
 } from './style';
 
 function Post({
@@ -41,33 +40,34 @@ function Post({
 
   return (
     <PostPage>
-      <PostBox>
-        <PostListLink onClick={() => history.push('/main')}>
-          뒤로가기
-        </PostListLink>
-        {post ? (
-          <>
-            <PostInfoBox>
-              <PostImage />
-              <PostInfo>
-                <PostInfoTitle>{post.title}</PostInfoTitle>
-                <PostInfoText>{post.price}</PostInfoText>
-                <PostInfoText>{post.content}</PostInfoText>
-                <PostInfoText>{post.chatUrl}</PostInfoText>
-                <PostInfoText>{post.nanumPrice}</PostInfoText>
-                <PostInfoText>{post.user.name}</PostInfoText>
-                <PostInfoText>
-                  {post.minParti} ~ {post.maxParti}명
-                </PostInfoText>
-                <PostInfoText>{post.createdAt}</PostInfoText>
-              </PostInfo>
-            </PostInfoBox>
-            <Temp>추가 컨텐츠 ...</Temp>
-          </>
-        ) : (
-          <div>스켈레톤 제작 예정 ...</div>
-        )}
-      </PostBox>
+      {post ? (
+        <>
+          <PostImage />
+          <PostInfoBox>
+            <PostInfo>
+              <div>
+                <PostTitle style={{ marginBottom: '5px' }}>
+                  {post.title}
+                </PostTitle>
+                <PostTag>반려동물 용품·중화2동</PostTag>
+              </div>
+              <div>
+                <PostInfoKeyValueBox style={{ marginBottom: '5px' }}>
+                  <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~{' '}
+                  {post.maxParti}개
+                </PostInfoKeyValueBox>
+                <PostInfoKeyValueBox>
+                  <PostInfoKey>나누기 가격</PostInfoKey> {post.price}원
+                </PostInfoKeyValueBox>
+              </div>
+            </PostInfo>
+            <Btn>나누기 참여하기</Btn>
+          </PostInfoBox>
+          <PostContent>{post.content}</PostContent>
+        </>
+      ) : (
+        <div>스켈레톤 제작 예정 ...</div>
+      )}
     </PostPage>
   );
 }
