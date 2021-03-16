@@ -46,6 +46,13 @@ function Signup() {
     target.disabled = true;
     target.classList.add('on');
 
+    if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*\W).{1,10}$/.exec(password) ) {
+      alert('최소 하나의 숫자 및 특수문자를 포함하여 10자 이내로 만들어 주세요.')
+      target.disabled = false
+      target.classList.remove('on')
+      return
+    }
+
     if (password !== rPassword) {
       alert('비밀번호 두 개가 다릅니다.');
       target.disabled = false;

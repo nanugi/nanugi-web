@@ -15,7 +15,7 @@ export const Input = styled.input`
 
   padding-left: 23px;
 
-  width: 360px;
+  width: 100%;
   height: 50px;
 
   font-size: 15px;
@@ -35,7 +35,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 10px;
 
-  width: 360px;
+  width: 100%;
   height: 50px;
 
   font-size: 17px;
