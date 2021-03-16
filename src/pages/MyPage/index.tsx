@@ -19,7 +19,7 @@ import LogOutIcon from '@material-ui/icons/ExitToApp'
 import ResignIcon from '@material-ui/icons/MeetingRoom'
 import { useHistory } from 'react-router-dom'
 import { userStore } from '../../container/user/store'
-import { fetchProfile } from '../../container/user'
+import { fetchProfile, logOut, resignUser } from '../../container/user'
 
 const MyPage = observer(() => {
   const history = useHistory()
@@ -108,7 +108,8 @@ const MyPage = observer(() => {
         button
         onClick={() => {
           if (confirm('로그아웃하시겠습니까?')) {
-            // TODO: 로그아웃 기능 구현
+            logOut()
+            history.replace('/')
           }
         }}
       >
@@ -119,9 +120,14 @@ const MyPage = observer(() => {
       </ListItem>
       <ListItem
         button
-        onClick={() => {
-          if (confirm('로그아웃하시겠습니까?')) {
-            // TODO: 회원탈퇴 기능 구현
+        onClick={async () => {
+          if (confirm('정말 회원탈퇴하시겠습니까?')) {
+            try {
+              await resignUser()
+              history.replace('/')
+            } catch (e) {
+              alert(e)
+            }
           }
         }}
       >
