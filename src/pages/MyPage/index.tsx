@@ -109,6 +109,7 @@ const MyPage = observer(() => {
         onClick={() => {
           if (confirm('로그아웃하시겠습니까?')) {
             logOut()
+            alert('정상적으로 로그아웃되었습니다.')
             history.replace('/')
           }
         }}
@@ -123,8 +124,11 @@ const MyPage = observer(() => {
         onClick={async () => {
           if (confirm('정말 회원탈퇴하시겠습니까?')) {
             try {
-              await resignUser()
-              history.replace('/')
+              const res = await resignUser()
+              if (res?.success) {
+                alert('회원탈퇴하였습니다. 홈으로 돌아갑니다.')
+                history.replace('/')
+              }
             } catch (e) {
               alert(e)
             }

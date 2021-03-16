@@ -1,6 +1,5 @@
 import callApi from '../../utils/api'
 import callCookie from '../../utils/cookie'
-import { loginReq, loginRes } from '../sign'
 
 export interface BaseResponse<T> {
     data: T
@@ -17,7 +16,7 @@ export const fetchProfile = async () => {
 }
 
 export const resignUser = async () => {
-    const res = await callApi.delete<{}, BaseResponse<any>>('user', {})
+    const res = await callApi.delete<{}, BaseResponse<undefined>>('user', {})
     return res
 }
 
