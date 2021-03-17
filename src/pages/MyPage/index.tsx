@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {
   Avatar,
+  Button,
   Container,
   Divider,
   Grid,
@@ -43,6 +44,16 @@ const MyPage = observer(() => {
           <Typography variant='subtitle1'>
             {userStore.profile?.name ?? '(알 수 없음)'} 님 반갑습니다
           </Typography>
+        </Grid>
+        <Grid item>
+          <Button
+            variant='contained'
+            color='primary'
+            size='small'
+            onClick={() => history.push('/mypage/edit')}
+          >
+            수정
+          </Button>
         </Grid>
       </Grid>
       <Grid container spacing={4} aria-colcount={3} justify='center'>

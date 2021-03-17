@@ -17,8 +17,9 @@ import PolicyPage from '../../pages/Policy';
 import Main from '../../pages/Main';
 import Post from '../../pages/Post';
 import PostWrite from '../../pages/PostWrite';
-
+import ProfileEditPage from '../../pages/ProfileEdit'
 import MyPage from '../../pages/MyPage';
+
 // default
 import Empty from '../../pages/Enpty';
 
@@ -51,6 +52,7 @@ function Routes() {
         <AuthRoute exact path="/write/post" component={PostWrite} />
 
         <AuthRoute exact path="/mypage" component={MyPage} />
+        <AuthRoute exact path="/mypage/edit" component={ProfileEditPage} />
         <AuthRoute exact path="/cs" component={CustomerServicePage} />
 
         <Route component={Empty} />
