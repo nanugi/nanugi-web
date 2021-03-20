@@ -3,30 +3,45 @@ import history from '../../utils/browserHistory';
 
 import { postType, getPosts, getPostsRes } from '../../container/post';
 
+import NavigationBar from '../../components/NavigationBar';
+import PostInfo from '../../components/PostInfo';
+
 import {
   MainPage,
+  MainHeader,
+  SearchBox,
+  SearchInput,
   PostUl,
   PostLi,
   PostBox,
   PostImage,
-  PostInfo,
-  PostTitle,
-  PostTag,
-  PostInfoKey,
-  PostInfoKeyValueBox,
 } from './style';
 
 function Main() {
   const [posts, setPosts] = useState<postType[]>([]);
   const [currentPageInfo, setCurrentPageInfo] = useState<getPostsRes>();
+  const [nextPageLoading, setNextPageLoading] = useState(false);
+
+  const [searchWord, setSearchWord] = useState('');
 
   const nextPage = useCallback(async () => {
+    // console.log('nextPage 가져오세요');
+
     if (!currentPageInfo?.data.next) {
+      // console.log('next 가 없다요');
       return;
     }
 
+    if (nextPageLoading) {
+      // console.log('가져오는 중...');
+      return;
+    }
+
+    setNextPageLoading(true);
     const res = await getPosts(currentPageInfo.data.page + 1);
     if (res?.success) {
+      setNextPageLoading(false);
+
       const alreadyImportedPosts_id = currentPageInfo.data.posts.map(
         (post) => post.post_id,
       );
@@ -37,7 +52,7 @@ function Main() {
       setPosts([...posts, ...newPosts]);
       setCurrentPageInfo({ data: res.data });
     }
-  }, [currentPageInfo, posts]);
+  }, [currentPageInfo, posts, nextPageLoading]);
 
   useEffect(() => {
     async function init() {
@@ -59,6 +74,15 @@ function Main() {
         }
       }}
     >
+      <MainHeader>
+        <SearchBox>
+          <SearchInput
+            placeholder="검색어를 입력해주세요"
+            value={searchWord}
+            onChange={(e) => setSearchWord(e.target.value)}
+          />
+        </SearchBox>
+      </MainHeader>
       <PostUl className="col-2">
         {posts.map((post) => (
           <PostLi key={post.post_id}>
@@ -71,30 +95,12 @@ function Main() {
                   });
                 }}
               />
-              <PostInfo>
-                <PostTitle
-                  onClick={() => {
-                    history.push({
-                      pathname: `/post/${post.post_id}`,
-                      state: { propsPost: post },
-                    });
-                  }}
-                >
-                  {post.title}
-                </PostTitle>
-                <PostTag>반려동물 용품·중화2동</PostTag>
-                <PostInfoKeyValueBox>
-                  <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~{' '}
-                  {post.maxParti}개
-                </PostInfoKeyValueBox>
-                <PostInfoKeyValueBox>
-                  <PostInfoKey>나누기 가격</PostInfoKey> {post.price}원
-                </PostInfoKeyValueBox>
-              </PostInfo>
+              <PostInfo post={post} />
             </PostBox>
           </PostLi>
         ))}
       </PostUl>
+      <NavigationBar currnetUrl="main" />
     </MainPage>
   );
 }

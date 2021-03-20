@@ -1,19 +1,22 @@
 import callApi from '../../utils/api';
 
 export type postType = {
-  chatUrl: string;
-  content: string;
-  createdAt: Date;
-  maxParti: number;
-  minParti: number;
-  nanumPrice: number;
   post_id: number;
-  price: number;
-  title: string;
   user: {
     name: string;
     uid: string;
   };
+  title: string;
+  content: string;
+  createdAt: Date;
+  detail: {
+    price: number;
+    nanumPrice: number;
+    minParti: number;
+    maxParti: number;
+    chatUrl: string;
+  };
+  _close: boolean;
 };
 
 // getPosts
@@ -46,9 +49,7 @@ export type createPostReq = {
   title: string;
   content: string;
   totalPrice: number;
-  nanumPrice: number;
   minParti: number;
-  maxParti: number;
   chatUrl: string;
 };
 export type createPostRes = {

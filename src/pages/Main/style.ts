@@ -4,6 +4,44 @@ import { Page } from '../common';
 
 export const MainPage = styled.div`
   ${Page}
+  align-items: center;
+
+  height: calc(100% - 100px);
+  overflow-y: scroll;
+`;
+
+export const MainHeader = styled.div`
+  margin-bottom: 15px;
+
+  width: 360px;
+`;
+
+export const SearchBox = styled.div`
+  margin-left: auto;
+  border-radius: 10px;
+
+  width: 295px;
+  height: 35px;
+
+  background-color: #f2f2f2;
+`;
+export const SearchInput = styled.input`
+  border: none;
+  padding-left: 12px;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 12px;
+
+  background-color: rgba(0, 0, 0, 0);
+  /* background-color: red; */
+
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const PostUl = styled.ul`
@@ -24,10 +62,7 @@ export const PostUl = styled.ul`
   }
   &.col-2 {
     & > li {
-      width: calc(50% - 5px);
-    }
-    li:nth-child(2n) {
-      margin-left: 10px;
+      width: 50%;
     }
   }
   &.col-1 {
@@ -39,6 +74,9 @@ export const PostUl = styled.ul`
 
 export const PostLi = styled.li`
   position: relative;
+
+  display: flex;
+  justify-content: center;
 
   margin-bottom: 12px;
 
@@ -65,32 +103,4 @@ export const PostImage = styled.div<{ url?: string }>`
     props.url
       ? `background-image: url(${props.url}); background-size: cover;`
       : `background-color: #C4C4C4; opacity: 0.8;`}
-`;
-
-export const PostInfo = styled.div``;
-
-export const PostTitle = styled.div`
-  margin-bottom: 5px;
-
-  font-size: 15px;
-  font-weight: bold;
-`;
-export const PostTag = styled.div`
-  margin-bottom: 5px;
-
-  color: #828282;
-  font-size: 10px;
-  font-weight: 400;
-`;
-export const PostInfoKeyValueBox = styled.div`
-  margin-bottom: 5px;
-
-  font-size: 11px;
-  font-weight: bold;
-`;
-export const PostInfoKey = styled.div`
-  display: inline;
-
-  color: #11a656;
-  text-decoration: underline;
 `;

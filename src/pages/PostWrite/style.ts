@@ -1,138 +1,91 @@
 import styled from 'styled-components';
 
-import { Page } from '../common';
+import { Button } from '../common';
 
 export const PostWritePage = styled.div`
-  ${Page}
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  background-color: #f7c46a;
-`;
-
-export const CancelBtn = styled.div`
-  position: absolute;
-  top: 5%;
-  left: -74px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 6px 8px;
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
-
-  font-size: 17px;
-  font-weight: bold;
-
-  background-color: #fff;
-
-  opacity: 0.3;
-
-  transition: all 0.4s;
-
-  cursor: pointer;
-
-  &:hover {
-    left: -84px;
-
-    opacity: 1;
-  }
-`;
-
-export const PostWriteBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
   position: relative;
 
-  width: 1000px;
-  height: 650px;
+  width: 100vw;
+  height: 100vh;
 `;
 
-export const PostInfoBox = styled.div`
+export const PostWriteForm = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
-  width: 100%;
-  height: 500px;
+  padding: 25px 27px;
+
+  height: calc(100% - 105px);
 `;
 
-export const InputImage = styled.div<{ url?: string }>`
-  position: relative;
-
+export const ImageForm = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
 
-  width: 500px;
-  height: 500px;
+  margin-bottom: 20px;
+`;
+export const ImageInput = styled.div`
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
 
-  cursor: pointer;
+  width: 100px;
+  height: 100px;
+`;
+export const Image = styled.div`
+  margin-left: 10px;
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
 
-  ${(props) =>
-    props.url
-      ? `background-image: url(${props.url}); background-size: cover;`
-      : `background-color: #FFBB6B;`}
+  width: 100px;
+  height: 100px;
 `;
 
 export const InputBox = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
 
-  width: calc(100% - 500px);
+  & > input {
+    width: calc(50% - 5px);
+  }
 `;
-
 export const Input = styled.input`
-  margin-bottom: 8px;
+  margin-bottom: 17px;
+  padding-left: 20px;
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
 
-  border: solid 1px #dadada;
-  border-radius: 6px;
+  width: 100%;
+  height: 50px;
 
-  padding-left: 10px;
+  font-size: 15px;
 
-  width: 80%;
-  height: 45px;
+  box-sizing: border-box;
 
-  font-size: 16px;
+  &:focus {
+    outline: none;
+  }
+`;
+export const Textarea = styled.textarea`
+  flex-grow: 1;
 
-  background: #fffafa;
+  margin-bottom: 17px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
+
+  width: 100%;
+
+  font-size: 15px;
+
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
   }
 `;
 
-export const WriteBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const WriteBtn = styled(Button)`
+  margin-bottom: 9px;
 
-  border: none;
-  border-radius: 22px;
-
-  width: 80%;
-  height: 100px;
-
-  text-align: center;
-
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-
-  background-color: #f2a663;
-
-  cursor: pointer;
-
-  &.on {
-    background-color: #d99559;
-    color: #e6e1e1;
-  }
+  color: #ffffff;
+  background-color: #11a656;
 `;

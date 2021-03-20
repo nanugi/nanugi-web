@@ -3,18 +3,9 @@ import { RouteComponentProps, useParams } from 'react-router-dom';
 
 import { postType, getPost } from '../../container/post';
 
-import {
-  PostPage,
-  PostImage,
-  PostInfoBox,
-  PostInfo,
-  PostTitle,
-  PostTag,
-  PostInfoKeyValueBox,
-  PostInfoKey,
-  Btn,
-  PostContent,
-} from './style';
+import PostInfo from '../../components/PostInfo';
+
+import { PostPage, PostImage, PostInfoBox, Btn, PostContent } from './style';
 
 function Post({
   location,
@@ -44,23 +35,7 @@ function Post({
         <>
           <PostImage />
           <PostInfoBox>
-            <PostInfo>
-              <div>
-                <PostTitle style={{ marginBottom: '5px' }}>
-                  {post.title}
-                </PostTitle>
-                <PostTag>반려동물 용품·중화2동</PostTag>
-              </div>
-              <div>
-                <PostInfoKeyValueBox style={{ marginBottom: '5px' }}>
-                  <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~{' '}
-                  {post.maxParti}개
-                </PostInfoKeyValueBox>
-                <PostInfoKeyValueBox>
-                  <PostInfoKey>나누기 가격</PostInfoKey> {post.price}원
-                </PostInfoKeyValueBox>
-              </div>
-            </PostInfo>
+            <PostInfo post={post} />
             <Btn>나누기 참여하기</Btn>
           </PostInfoBox>
           <PostContent>{post.content}</PostContent>

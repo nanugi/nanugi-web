@@ -52,6 +52,7 @@ export const PostInfoKey = styled.div`
   text-decoration: underline;
 `;
 export const Btn = styled(Button)`
+  margin-top: 16px;
   margin-bottom: 0px;
 
   color: #ffffff;
