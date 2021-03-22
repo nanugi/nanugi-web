@@ -8,14 +8,16 @@ import TopHeader from '../../components/TopHeader';
 import {
   PostWritePage,
   PostWriteForm,
-  ImageForm,
-  ImageInput,
-  Image,
+  // ImageForm,
+  // ImageInput,
+  // Image,
   InputBox,
   Input,
   Textarea,
   WriteBtn,
 } from './style';
+import useImageInputForm from '../../components/useImageInputForm';
+import { addImage } from '../../container/image';
 
 function PostWrite() {
   const [postField, setPostField] = useState({
@@ -25,6 +27,11 @@ function PostWrite() {
     minParti: '',
     chatUrl: '',
   });
+  const {
+    FormComponent,
+    imageFormField,
+    setImageFormField,
+  } = useImageInputForm(10);
 
   const { title, content, totalPrice, minParti, chatUrl } = postField;
 
@@ -53,12 +60,12 @@ function PostWrite() {
       minParti: Number(minParti),
       chatUrl,
     });
+    // console.log('createPost!!', res);
 
     if (res?.success === false) {
       alert(res.msg);
       return;
     }
-
     setPostField({
       title: '',
       content: '',
@@ -66,6 +73,23 @@ function PostWrite() {
       minParti: '',
       chatUrl: '',
     });
+
+    if (!res?.data.post_id) {
+      return;
+    }
+    const addImageRes = await Promise.all(
+      imageFormField.map((image) =>
+        addImage(res?.data.post_id, { file: image }),
+      ),
+    );
+    // console.log('addImageRes', addImageRes);
+
+    if (addImageRes.map((r) => r?.success).includes(false)) {
+      alert(JSON.stringify(addImageRes));
+      return;
+    }
+
+    setImageFormField([]);
 
     target.disabled = false;
     target.classList.remove('on');
@@ -78,11 +102,12 @@ function PostWrite() {
     <PostWritePage>
       <TopHeader pageName="나누기 개설" />
       <PostWriteForm>
-        <ImageForm>
+        {FormComponent}
+        {/* <ImageForm>
           <ImageInput />
           <Image />
           <Image />
-        </ImageForm>
+        </ImageForm> */}
 
         <Input
           name="title"

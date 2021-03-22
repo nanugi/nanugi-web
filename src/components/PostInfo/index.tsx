@@ -1,7 +1,9 @@
 import React from 'react';
-import history from '../../utils/browserHistory';
+import Moment from 'react-moment';
+import moment from 'moment';
+import 'moment/locale/ko';
 
-import { postType } from '../../container/post';
+import history from '../../utils/browserHistory';
 
 import {
   PostInfoBox,
@@ -11,34 +13,70 @@ import {
   PostInfoKey,
 } from './style';
 
+moment.locale('ko');
+
+export type postInfoType = {
+  _close: boolean;
+  maxParti: number;
+  minParti: number;
+  nanumPrice: number;
+  post_id: number;
+  title: string;
+  createdAt: Date;
+  nickname: string;
+};
+
 interface PostInfoProps {
-  post: postType;
+  post: postInfoType;
 }
-function PostInfo({ post }: PostInfoProps) {
+export function PostInfo({ post }: PostInfoProps) {
   return (
     <PostInfoBox>
       <PostTitle
         onClick={() => {
-          history.push({
-            pathname: `/post/${post.post_id}`,
-            state: { propsPost: post },
-          });
+          history.push(`/post/${post.post_id}`);
         }}
       >
         {post.title}
       </PostTitle>
-      <PostTag>{post.user.name}·2일전</PostTag>
+      <PostTag>
+        {post.nickname}·<Moment fromNow>{post.createdAt}</Moment>
+      </PostTag>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>가격</PostInfoKey> {post.detail.price}원
+        <PostInfoKey>가격</PostInfoKey> {post.nanumPrice}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>나누기 개수</PostInfoKey> {post.detail.minParti} ~{' '}
-        {post.detail.maxParti}개
+        <PostInfoKey>나누기 개수</PostInfoKey> {post.minParti} ~ {post.maxParti}
+        개
       </PostInfoKeyValueBox>
     </PostInfoBox>
   );
 }
 
-export default PostInfo;
+export function MyPostInfo({ post }: PostInfoProps) {
+  return (
+    <PostInfoBox>
+      <PostTitle
+        onClick={() => {
+          history.push(`/post/${post.post_id}`);
+        }}
+      >
+        {post.title}
+      </PostTitle>
+      <PostTag>
+        {post.nickname}·<Moment fromNow>{post.createdAt}</Moment>
+      </PostTag>
+
+      <PostInfoKeyValueBox>
+        <PostInfoKey>가격</PostInfoKey> {post.nanumPrice}원
+      </PostInfoKeyValueBox>
+
+      <PostInfoKeyValueBox>
+        <PostInfoKey>나누기 개수</PostInfoKey> {post.minParti} ~ {post.maxParti}
+        개
+      </PostInfoKeyValueBox>
+    </PostInfoBox>
+  );
+}

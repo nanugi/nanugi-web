@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { postType, getPost } from '../../container/post';
 
-import PostInfo from '../../components/PostInfo';
+import { PostInfo } from '../../components/PostInfo';
 
 import { PostPage, PostImage, PostInfoBox, Btn, PostContent } from './style';
 
-function Post({
-  location,
-}: RouteComponentProps<{}, any, { propsPost: postType }>) {
-  const propsPost = location.state?.propsPost;
+function Post() {
+  const [post, setPost] = useState<postType>();
   const { id: stringId } = useParams<{ id: string }>();
-
-  // console.log('propsPost', propsPost);
-  const [post, setPost] = useState(propsPost);
 
   useEffect(() => {
     // console.log('useEffect');
@@ -24,10 +19,10 @@ function Post({
       if (res?.success) setPost(res.data);
     };
 
-    if (!post || post.post_id !== id) init();
+    init();
   }, [post, stringId]);
 
-  // console.log('post', post);
+  // console.log('post', post?._close);
 
   return (
     <PostPage>
@@ -35,7 +30,18 @@ function Post({
         <>
           <PostImage />
           <PostInfoBox>
-            <PostInfo post={post} />
+            <PostInfo
+              post={{
+                _close: post._close,
+                maxParti: post.detail.maxParti,
+                minParti: post.detail.minParti,
+                nanumPrice: post.detail.nanumPrice,
+                post_id: post.post_id,
+                title: post.title,
+                createdAt: post.createdAt,
+                nickname: post.user.nickname,
+              }}
+            />
             <Btn>나누기 참여하기</Btn>
           </PostInfoBox>
           <PostContent>{post.content}</PostContent>

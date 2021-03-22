@@ -3,7 +3,7 @@ import callApi from '../../utils/api';
 export type postType = {
   post_id: number;
   user: {
-    name: string;
+    nickname: string;
     uid: string;
   };
   title: string;
@@ -19,12 +19,24 @@ export type postType = {
   _close: boolean;
 };
 
+export type tinyPostType = {
+  _close: boolean;
+  maxParti: number;
+  minParti: number;
+  nanumPrice: number;
+  post_id: number;
+  thumbnail: string;
+  title: string;
+  createdAt: Date;
+  nickname: string;
+};
+
 // getPosts
 export type getPostsRes = {
   data: {
     next: string;
     page: number;
-    posts: postType[];
+    posts: tinyPostType[];
     previous: string;
     size: number;
   };
@@ -38,7 +50,6 @@ export const getPosts = async function (page: number) {
 export type getPostRes = {
   data: postType;
 };
-
 export const getPost = async function (id: number) {
   const res = await callApi.get<{}, getPostRes>(`posts/${id}`);
   return res;
@@ -46,11 +57,11 @@ export const getPost = async function (id: number) {
 
 // createPost
 export type createPostReq = {
-  title: string;
-  content: string;
-  totalPrice: number;
-  minParti: number;
   chatUrl: string;
+  content: string;
+  minParti: number;
+  title: string;
+  totalPrice: number;
 };
 export type createPostRes = {
   data: postType;

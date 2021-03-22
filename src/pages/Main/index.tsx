@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import history from '../../utils/browserHistory';
 
-import { postType, getPosts, getPostsRes } from '../../container/post';
+import { tinyPostType, getPosts, getPostsRes } from '../../container/post';
 
 import NavigationBar from '../../components/NavigationBar';
-import PostInfo from '../../components/PostInfo';
+import { PostInfo } from '../../components/PostInfo';
 
 import {
   MainPage,
@@ -18,7 +18,7 @@ import {
 } from './style';
 
 function Main() {
-  const [posts, setPosts] = useState<postType[]>([]);
+  const [posts, setPosts] = useState<tinyPostType[]>([]);
   const [currentPageInfo, setCurrentPageInfo] = useState<getPostsRes>();
   const [nextPageLoading, setNextPageLoading] = useState(false);
 
