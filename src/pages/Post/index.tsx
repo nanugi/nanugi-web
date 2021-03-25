@@ -5,21 +5,31 @@ import { postType, getPost } from '../../container/post';
 
 import { PostInfo } from '../../components/PostInfo';
 
+import { getImageByPostId, imageType } from '../../container/image';
+
 import { PostPage, PostImage, PostInfoBox, Btn, PostContent } from './style';
 
 function Post() {
   const [post, setPost] = useState<postType>();
+  const [images, setImages] = useState<imageType[]>([]);
   const { id: stringId } = useParams<{ id: string }>();
 
   useEffect(() => {
     // console.log('useEffect');
     const id = Number(stringId);
-    const init = async () => {
+
+    const postInit = async () => {
       const res = await getPost(id);
       if (res?.success) setPost(res.data);
     };
 
-    init();
+    const imageInit = async () => {
+      const res = await getImageByPostId(id);
+      if (res?.success) setImages(res.data.images);
+    };
+
+    postInit();
+    imageInit();
   }, [post, stringId]);
 
   // console.log('post', post?._close);
@@ -28,7 +38,22 @@ function Post() {
     <PostPage>
       {post ? (
         <>
-          <PostImage />
+          <div style={{ overflowX: 'scroll' }}>
+            <div
+              style={{
+                width: `${414 * images.length}px`,
+                height: '350px',
+              }}
+            >
+              {images.map((image, key) => (
+                <PostImage
+                  style={{ display: 'inline-flex' }}
+                  key={key}
+                  url={image.url}
+                />
+              ))}
+            </div>
+          </div>
           <PostInfoBox>
             <PostInfo
               post={{

@@ -88,6 +88,7 @@ function Main() {
           <PostLi key={post.post_id}>
             <PostBox>
               <PostImage
+                url={post.thumbnail}
                 onClick={() => {
                   history.push({
                     pathname: `/post/${post.post_id}`,

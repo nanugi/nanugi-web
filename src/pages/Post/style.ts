@@ -14,7 +14,7 @@ export const PostImage = styled.div<{ url?: string }>`
 
   ${(props) =>
     props.url
-      ? `background-image: url(${props.url}); background-size: cover;`
+      ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
       : `background: rgba(229, 229, 229, 0.5); opacity: 0.8;`}
 `;
 
