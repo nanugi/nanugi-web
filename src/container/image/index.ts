@@ -6,9 +6,13 @@ export type addImageReq = {
 };
 export type addImageRes = {};
 export const addImage = async function (postId: number, req: addImageReq) {
-  const res = await callApi.post<addImageReq, addImageRes>(
+  const formdata = new FormData();
+  formdata.append('file', req.file);
+
+  const res = await callApi.post<FormData, addImageRes>(
     `posts/${postId}/images`,
-    req,
+    formdata,
+    true,
   );
   return res;
 };

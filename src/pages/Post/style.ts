@@ -63,4 +63,6 @@ export const PostContent = styled.div`
   padding: 24px 29px;
 
   font-size: 14px;
+
+  white-space: pre-wrap;
 `;

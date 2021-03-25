@@ -31,7 +31,7 @@ function PostWrite() {
     FormComponent,
     imageFormField,
     setImageFormField,
-  } = useImageInputForm(10);
+  } = useImageInputForm(5);
 
   const { title, content, totalPrice, minParti, chatUrl } = postField;
 

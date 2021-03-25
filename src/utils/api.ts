@@ -20,21 +20,30 @@ const errorHandling = async function (response: Response): Promise<boolean> {
 
   return true;
 };
-const callFetch = function <I>(
+const callFetch = function (
   url: string,
   method: fetchMethod,
-  body: I | undefined = undefined,
+  body: any,
+  isFormData?: boolean,
 ): Promise<Response> {
   const jwt = callCookie.get('jwt');
 
-  const init: RequestInit = {
-    headers: {
-      'Content-Type': 'application/json',
-      'X-AUTH-TOKEN': jwt || '',
-    },
-    method,
-    body: method !== 'get' ? JSON.stringify(body) : undefined,
-  };
+  const init: RequestInit = isFormData
+    ? {
+        headers: {
+          'X-AUTH-TOKEN': jwt || '',
+        },
+        method,
+        body,
+      }
+    : {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-AUTH-TOKEN': jwt || '',
+        },
+        method,
+        body: method !== 'get' ? JSON.stringify(body) : undefined,
+      };
   return fetch(url, init);
 };
 const toJson = async function <O>(
@@ -54,16 +63,18 @@ const callApiBase = async function <I, O>(
   url: string,
   method: fetchMethod,
   body: I | undefined = undefined,
+  isFormData?: boolean,
 ): Promise<(O & networkMessage) | undefined> {
   let serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1)
     serverUrl = '';
 
-  const response: Response = await callFetch<I>(
+  const response: Response = await callFetch(
     `${serverUrl}${url}`,
     method,
     body,
+    isFormData,
   );
 
   const ok = await errorHandling(response);
@@ -79,8 +90,9 @@ export default {
   post: <I, O>(
     url: string,
     body: I,
+    isFormData?: boolean,
   ): Promise<(O & networkMessage) | undefined> =>
-    callApiBase<I, O>(url, 'post', body),
+    callApiBase<I, O>(url, 'post', body, isFormData),
   put: <I, O>(
     url: string,
     body: I,

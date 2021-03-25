@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import {
   CurrentImageBox,
@@ -16,74 +16,101 @@ export default function useImageInputForm(maxSize: number) {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string[]>([]);
   const imageInputRef = useRef({} as HTMLInputElement);
 
-  const CurrentImageList = imagePreviewUrl.map((url, key) => (
-    <CurrentImageBox key={key}>
-      <CurrentImageDelBtn
-        onClick={() => {
-          setImageFormField(
-            imageFormField.filter((f) => f !== imageFormField[key]),
-          );
-          setImagePreviewUrl(imagePreviewUrl.filter((u) => u !== url));
-        }}
-      >
-        ⛌
-      </CurrentImageDelBtn>
-      <Image url={url} />
-    </CurrentImageBox>
-  ));
-
-  const AddImageBtn = (
-    <AddImageBtnBox
-      onClick={() => {
-        if (maxSize <= imageFormField.length) {
-          return;
-        }
-        imageInputRef.current.click();
-      }}
-    >
-      <input
-        ref={imageInputRef}
-        type="file"
-        onChange={(e) => {
-          if (e.target.files) {
-            const reader = new FileReader();
-            const file = e.target.files[0];
-            reader.onload = (event) => {
-              if (event.target?.result) {
-                setImagePreviewUrl([
-                  String(event.target.result),
-                  ...imagePreviewUrl,
-                ]);
-                setImageFormField([file, ...imageFormField]);
-              }
-            };
-            reader.readAsDataURL(file);
-          }
-        }}
-        style={{ display: 'none' }}
-      />
-      <AddImageBtnInfo>
-        <Icon url={camera} />
-        <div style={{ color: '#adadad' }}>
-          <div
-            style={{
-              color: imageFormField.length ? '#11A656' : '#adadad',
-              display: 'inline',
+  const CurrentImageList = useMemo(
+    () =>
+      imagePreviewUrl.map((url, key) => (
+        <CurrentImageBox key={key}>
+          <CurrentImageDelBtn
+            onClick={() => {
+              setImageFormField(
+                imageFormField.filter((f) => f !== imageFormField[key]),
+              );
+              setImagePreviewUrl(imagePreviewUrl.filter((u) => u !== url));
             }}
           >
-            {imageFormField.length}
-          </div>{' '}
-          / {maxSize}
-        </div>
-      </AddImageBtnInfo>
-    </AddImageBtnBox>
+            ⛌
+          </CurrentImageDelBtn>
+          <Image url={url} />
+        </CurrentImageBox>
+      )),
+    [imageFormField, imagePreviewUrl],
   );
 
-  const FormComponent = (
-    <div style={{ marginBottom: '19px', display: 'flex' }}>
-      {AddImageBtn}
-      {CurrentImageList}
-    </div>
+  const AddImageBtn = useMemo(
+    () => (
+      <AddImageBtnBox
+        onClick={() => {
+          if (maxSize <= imageFormField.length) {
+            return;
+          }
+          imageInputRef.current.click();
+        }}
+      >
+        <input
+          ref={imageInputRef}
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={async (e) => {
+            if (e.target.files) {
+              const _files = Array.from(e.target.files);
+
+              _files.slice(0, maxSize - imageFormField.length);
+
+              const readAsDataURL = (file: File) =>
+                new Promise<string>((resolve, reject) => {
+                  const fr = new FileReader();
+                  fr.onerror = reject;
+                  fr.onload = function () {
+                    resolve(String(fr.result));
+                  };
+                  fr.readAsDataURL(file);
+                });
+
+              const _filesURL = await Promise.all<string>(
+                _files.map(readAsDataURL),
+              );
+
+              setImagePreviewUrl([..._filesURL, ...imagePreviewUrl]);
+              setImageFormField([..._files, ...imageFormField]);
+            }
+          }}
+          style={{ display: 'none' }}
+        />
+        <AddImageBtnInfo>
+          <Icon url={camera} />
+          <div style={{ color: '#adadad' }}>
+            <div
+              style={{
+                color: imageFormField.length ? '#11A656' : '#adadad',
+                display: 'inline',
+              }}
+            >
+              {imageFormField.length}
+            </div>{' '}
+            / {maxSize}
+          </div>
+        </AddImageBtnInfo>
+      </AddImageBtnBox>
+    ),
+    [imageFormField, imagePreviewUrl, maxSize],
+  );
+
+  const FormComponent = useMemo(
+    () => (
+      <div
+        style={{
+          marginBottom: '19px',
+          width: '100%',
+          overflowX: 'scroll',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {AddImageBtn}
+        {CurrentImageList}
+      </div>
+    ),
+    [AddImageBtn, CurrentImageList],
   );
 
   return { FormComponent, imageFormField, setImageFormField };

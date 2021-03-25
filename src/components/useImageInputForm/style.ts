@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const CurrentImageBox = styled.div`
   position: relative;
 
+  display: inline-flex;
+
   margin-left: 10px;
   border: 1px #bdbdbd solid;
   border-radius: 10px;
@@ -42,11 +44,15 @@ export const Image = styled.div<{ url: string }>`
 `;
 
 export const AddImageBtnBox = styled.div`
+  display: inline-flex;
+
   border: 1px #bdbdbd solid;
   border-radius: 10px;
 
   width: 100px;
   height: 100px;
+
+  vertical-align: top;
 `;
 export const AddImageBtnInfo = styled.div`
   display: flex;
