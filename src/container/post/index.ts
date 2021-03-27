@@ -70,3 +70,14 @@ export const createPost = async function (req: createPostReq) {
   const res = await callApi.post<createPostReq, createPostRes>(`posts`, req);
   return res;
 };
+
+// closePost
+export type closePostReq = {};
+export type closePostRes = {};
+export const closePost = async function (postId: number) {
+  const res = await callApi.put<closePostReq, closePostRes>(
+    `posts/${postId}/close`,
+    {},
+  );
+  return res;
+};

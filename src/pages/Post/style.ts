@@ -51,8 +51,26 @@ export const PostInfoKey = styled.div`
   color: #11a656;
   text-decoration: underline;
 `;
-export const Btn = styled(Button)`
-  margin-top: 16px;
+
+export const ChatBtn = styled(Button)`
+  margin-bottom: 0px;
+
+  color: #ffffff;
+  background-color: #11a656;
+`;
+
+export const FavsBtn = styled(Button)`
+  margin-bottom: 0px;
+
+  color: #bdbdbd;
+
+  background-color: #f2f2f2;
+
+  &.on {
+    color: #11a656;
+  }
+`;
+export const CloseBtn = styled(Button)`
   margin-bottom: 0px;
 
   color: #ffffff;
@@ -65,4 +83,5 @@ export const PostContent = styled.div`
   font-size: 14px;
 
   white-space: pre-wrap;
+  word-break: break-word;
 `;

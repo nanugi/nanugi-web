@@ -22,25 +22,19 @@ function NavigationBar({ currnetUrl }: NavigationBarProps) {
         onClick={() => currnetUrl !== 'main' && history.push('/main')}
       >
         <NavigationBarIcon icon={home} />
-        <NavigationBarIconLabel className={currnetUrl === 'main' ? 'on' : ''}>
-          홈
-        </NavigationBarIconLabel>
+        <NavigationBarIconLabel>홈</NavigationBarIconLabel>
       </NavigationBarIconBox>
       <NavigationBarIconBox
         onClick={() => currnetUrl !== 'divide' && history.push('/write/post')}
       >
         <NavigationBarIcon icon={divide} />
-        <NavigationBarIconLabel className={currnetUrl === 'divide' ? 'on' : ''}>
-          나누기 개설
-        </NavigationBarIconLabel>
+        <NavigationBarIconLabel>나누기 개설</NavigationBarIconLabel>
       </NavigationBarIconBox>
       <NavigationBarIconBox
         onClick={() => currnetUrl !== 'mypage' && history.push('/mypage')}
       >
         <NavigationBarIcon icon={mypage} />
-        <NavigationBarIconLabel className={currnetUrl === 'mypage' ? 'on' : ''}>
-          마이 페이지
-        </NavigationBarIconLabel>
+        <NavigationBarIconLabel>마이 페이지</NavigationBarIconLabel>
       </NavigationBarIconBox>
     </NavigationBarBox>
   );

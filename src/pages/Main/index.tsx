@@ -4,7 +4,7 @@ import history from '../../utils/browserHistory';
 import { tinyPostType, getPosts, getPostsRes } from '../../container/post';
 
 import NavigationBar from '../../components/NavigationBar';
-import { PostInfo } from '../../components/PostInfo';
+import PostInfo from '../../components/PostInfo';
 
 import {
   MainPage,

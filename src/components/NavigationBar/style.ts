@@ -35,8 +35,4 @@ export const NavigationBarIcon = styled.div<{ icon: string }>`
 export const NavigationBarIconLabel = styled.div`
   font-size: 8px;
   color: #828282;
-
-  &.on {
-    color: #11a656;
-  }
 `;

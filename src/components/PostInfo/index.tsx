@@ -29,7 +29,7 @@ export type postInfoType = {
 interface PostInfoProps {
   post: postInfoType;
 }
-export function PostInfo({ post }: PostInfoProps) {
+export default function PostInfo({ post }: PostInfoProps) {
   return (
     <PostInfoBox>
       <PostTitle
@@ -48,8 +48,7 @@ export function PostInfo({ post }: PostInfoProps) {
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>나누기 개수</PostInfoKey> {post.minParti} ~ {post.maxParti}
-        개
+        <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~ {post.maxParti}개
       </PostInfoKeyValueBox>
     </PostInfoBox>
   );
@@ -65,17 +64,13 @@ export function MyPostInfo({ post }: PostInfoProps) {
       >
         {post.title}
       </PostTitle>
-      <PostTag>
-        {post.nickname}·<Moment fromNow>{post.createdAt}</Moment>
-      </PostTag>
 
       <PostInfoKeyValueBox>
         <PostInfoKey>가격</PostInfoKey> {post.nanumPrice}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>나누기 개수</PostInfoKey> {post.minParti} ~ {post.maxParti}
-        개
+        <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~ {post.maxParti}개
       </PostInfoKeyValueBox>
     </PostInfoBox>
   );
