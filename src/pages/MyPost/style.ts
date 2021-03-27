@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const MyPostPage = styled.div`
-  position: relative;
-
   width: 100%;
   height: 100%;
+
+  position: fixed;
+  overflow: hidden;
 `;
 
 export const MyPostContainer = styled.div`

@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 import { Button } from '../common';
 
-export const PostPage = styled.div``;
+export const PostPage = styled.div`
+  position: fixed;
+  overflow: hidden;
+`;
 
 export const PostImage = styled.div<{ url?: string }>`
   position: relative;
