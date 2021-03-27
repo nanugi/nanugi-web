@@ -7,7 +7,7 @@ export const NavigationBarBox = styled.div`
   display: flex;
   justify-content: space-around;
 
-  width: 100vw;
+  width: 100%;
   height: 60px;
 
   background-color: #f2f2f2;

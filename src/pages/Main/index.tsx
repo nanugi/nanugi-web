@@ -8,6 +8,7 @@ import PostInfo from '../../components/PostInfo';
 
 import {
   MainPage,
+  MainContainer,
   MainHeader,
   SearchBox,
   SearchInput,
@@ -66,41 +67,43 @@ function Main() {
   }, []);
 
   return (
-    <MainPage
-      onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-        const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
-        if (offsetHeight + scrollTop >= scrollHeight) {
-          nextPage();
-        }
-      }}
-    >
-      <MainHeader>
-        <SearchBox>
-          <SearchInput
-            placeholder="검색어를 입력해주세요"
-            value={searchWord}
-            onChange={(e) => setSearchWord(e.target.value)}
-          />
-        </SearchBox>
-      </MainHeader>
-      <PostUl className="col-2">
-        {posts.map((post) => (
-          <PostLi key={post.post_id}>
-            <PostBox>
-              <PostImage
-                url={post.thumbnail}
-                onClick={() => {
-                  history.push({
-                    pathname: `/post/${post.post_id}`,
-                    state: { propsPost: post },
-                  });
-                }}
-              />
-              <PostInfo post={post} />
-            </PostBox>
-          </PostLi>
-        ))}
-      </PostUl>
+    <MainPage>
+      <MainContainer
+        onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+          const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
+          if (offsetHeight + scrollTop >= scrollHeight) {
+            nextPage();
+          }
+        }}
+      >
+        <MainHeader>
+          <SearchBox>
+            <SearchInput
+              placeholder="검색어를 입력해주세요"
+              value={searchWord}
+              onChange={(e) => setSearchWord(e.target.value)}
+            />
+          </SearchBox>
+        </MainHeader>
+        <PostUl className="col-2">
+          {posts.map((post) => (
+            <PostLi key={post.post_id}>
+              <PostBox>
+                <PostImage
+                  url={post.thumbnail}
+                  onClick={() => {
+                    history.push({
+                      pathname: `/post/${post.post_id}`,
+                      state: { propsPost: post },
+                    });
+                  }}
+                />
+                <PostInfo post={post} />
+              </PostBox>
+            </PostLi>
+          ))}
+        </PostUl>
+      </MainContainer>
       <NavigationBar currnetUrl="main" />
     </MainPage>
   );

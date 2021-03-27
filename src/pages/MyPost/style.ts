@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const MyPostPage = styled.div`
   position: relative;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const MyPostContainer = styled.div`
   overflow-y: scroll;
 
-  height: calc(100% - 55px);
+  height: calc(100% - 60px);
 `;
 
 export const PostUl = styled.ul`

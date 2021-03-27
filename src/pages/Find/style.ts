@@ -38,7 +38,7 @@ export const SignupLink = styled.div`
 export const Text = styled.div`
   margin-bottom: 40px;
 
-  font-size: clamp(23px, 4vw, 30px);
+  font-size: 23px;
   font-weight: bold;
 `;
 

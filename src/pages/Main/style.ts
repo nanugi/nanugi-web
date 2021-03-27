@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
-import { Page } from '../common';
-
 export const MainPage = styled.div`
-  ${Page}
-  align-items: center;
+  width: 100%;
+  height: 100%;
 
-  height: calc(100% - 100px);
+  position: fixed;
+  overflow: hidden;
+`;
+
+export const MainContainer = styled.div`
+  padding: 20px 27px;
+
+  height: calc(100% - 60px);
   overflow-y: scroll;
 `;
 
