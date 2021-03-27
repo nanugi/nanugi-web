@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/nanugi-web/static/css/main.af3670d5.chunk.css",
-    "main.js": "/nanugi-web/static/js/main.ec7ce53e.chunk.js",
-    "main.js.map": "/nanugi-web/static/js/main.ec7ce53e.chunk.js.map",
+    "main.css": "/nanugi-web/static/css/main.0924f0e8.chunk.css",
+    "main.js": "/nanugi-web/static/js/main.113b39d2.chunk.js",
+    "main.js.map": "/nanugi-web/static/js/main.113b39d2.chunk.js.map",
     "runtime-main.js": "/nanugi-web/static/js/runtime-main.2869a20c.js",
     "runtime-main.js.map": "/nanugi-web/static/js/runtime-main.2869a20c.js.map",
     "static/js/2.9a5f2038.chunk.js": "/nanugi-web/static/js/2.9a5f2038.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.b7973e0b.chunk.js": "/nanugi-web/static/js/3.b7973e0b.chunk.js",
     "static/js/3.b7973e0b.chunk.js.map": "/nanugi-web/static/js/3.b7973e0b.chunk.js.map",
     "index.html": "/nanugi-web/index.html",
-    "static/css/main.af3670d5.chunk.css.map": "/nanugi-web/static/css/main.af3670d5.chunk.css.map",
+    "static/css/main.0924f0e8.chunk.css.map": "/nanugi-web/static/css/main.0924f0e8.chunk.css.map",
     "static/js/2.9a5f2038.chunk.js.LICENSE.txt": "/nanugi-web/static/js/2.9a5f2038.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2869a20c.js",
     "static/js/2.9a5f2038.chunk.js",
-    "static/css/main.af3670d5.chunk.css",
-    "static/js/main.ec7ce53e.chunk.js"
+    "static/css/main.0924f0e8.chunk.css",
+    "static/js/main.113b39d2.chunk.js"
   ]
 }
