@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainPage = styled.div`
+export const MyFavsPage = styled.div`
   width: 100%;
   height: 100%;
 
@@ -8,7 +8,7 @@ export const MainPage = styled.div`
   overflow: hidden;
 `;
 
-export const MainContainer = styled.div`
+export const MyFavsContainer = styled.div`
   padding: 20px 27px;
 
   height: calc(100% - 60px);
@@ -18,14 +18,14 @@ export const MainContainer = styled.div`
 export const MainHeader = styled.div`
   margin-bottom: 15px;
 
-  width: 100%;
+  width: 360px;
 `;
 
 export const SearchBox = styled.div`
   margin-left: auto;
   border-radius: 10px;
 
-  width: calc(100% - 100px);
+  width: 295px;
   height: 35px;
 
   background-color: #f2f2f2;

@@ -48,7 +48,7 @@ export const LinkBox = styled.div`
 
   padding-left: 1px;
 
-  width: 360px;
+  width: 100%;
 
   box-sizing: border-box;
 `;

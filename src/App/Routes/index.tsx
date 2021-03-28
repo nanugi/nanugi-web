@@ -20,6 +20,7 @@ import PostWrite from '../../pages/PostWrite';
 import ProfileEditPage from '../../pages/ProfileEdit';
 import MyPage from '../../pages/MyPage';
 import MyPost from '../../pages/MyPost';
+import MyFavs from '../../pages/MyFavs';
 
 // default
 import Empty from '../../pages/Enpty';
@@ -54,6 +55,8 @@ function Routes() {
 
         <AuthRoute exact path="/mypage" component={MyPage} />
         <AuthRoute exact path="/mypage/posts" component={MyPost} />
+        <AuthRoute exact path="/mypage/favs" component={MyFavs} />
+
         <AuthRoute exact path="/mypage/edit" component={ProfileEditPage} />
         <AuthRoute exact path="/cs" component={CustomerServicePage} />
 

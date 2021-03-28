@@ -43,17 +43,21 @@ function Login() {
     target.classList.add('on');
 
     const res = await login(isStaySignedIn, { id: email, password });
+
+    if (res?.success === false) {
+      alert(res.msg);
+      target.disabled = false;
+      target.classList.remove('on');
+
+      return;
+    }
+
     setLoginField({
       email: '',
       password: '',
     });
     target.disabled = false;
     target.classList.remove('on');
-
-    if (res?.success === false) {
-      alert(res.msg);
-      return;
-    }
 
     history.push('/main');
   };

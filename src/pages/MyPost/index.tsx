@@ -1,3 +1,5 @@
+/* eslint react/jsx-indent: 0 */
+
 import React, { useCallback, useEffect, useState } from 'react';
 import history from '../../utils/browserHistory';
 
@@ -7,6 +9,7 @@ import { tinyPostType, getPostsRes } from '../../container/post';
 // import NavigationBar from '../../components/NavigationBar';
 import TopHeader from '../../components/TopHeader';
 import { MyPostInfo } from '../../components/PostInfo';
+import PostImage from '../../components/PostImage';
 
 import {
   MyPostPage,
@@ -15,7 +18,7 @@ import {
   Divider,
   PostLi,
   PostBox,
-  PostImage,
+  PostImageBox,
   PostContents,
   CloseStatusBox,
 } from './style';
@@ -82,15 +85,16 @@ function MyPost() {
             .map((post) => (
               <PostLi key={post.post_id}>
                 <PostBox>
-                  <PostImage
-                    url={post.thumbnail}
-                    onClick={() => {
-                      history.push({
-                        pathname: `/post/${post.post_id}`,
-                        state: { isMyPost: true },
-                      });
-                    }}
-                  />
+                  <PostImageBox>
+                    <PostImage
+                      url={post.thumbnail}
+                      onClick={() => {
+                        history.push(`/post/${post.post_id}`);
+                      }}
+                      isFavs={false}
+                      type="small"
+                    />
+                  </PostImageBox>
                   <PostContents>
                     <CloseStatusBox className={post._close ? 'close' : ''}>
                       {post._close ? '나누기 완료' : '판매중'}
@@ -104,7 +108,11 @@ function MyPost() {
               (prevPosts, currPost) =>
                 prevPosts === null
                   ? [currPost]
-                  : [...prevPosts, <Divider />, currPost],
+                  : [
+                      ...prevPosts,
+                      <Divider key={`Divider_${prevPosts.length}`} />,
+                      currPost,
+                    ],
               null,
             )}
           {/* // const list = ({ data }) => data.reduce((prev, curr) => [ prev, ', ', curr ]);
@@ -114,5 +122,4 @@ function MyPost() {
     </MyPostPage>
   );
 }
-
 export default MyPost;

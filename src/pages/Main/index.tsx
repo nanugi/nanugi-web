@@ -5,6 +5,8 @@ import { tinyPostType, getPosts, getPostsRes } from '../../container/post';
 
 import NavigationBar from '../../components/NavigationBar';
 import PostInfo from '../../components/PostInfo';
+import PostImage from '../../components/PostImage';
+import PostListTemplate from '../../components/PostListTemplate';
 
 import {
   MainPage,
@@ -12,13 +14,11 @@ import {
   MainHeader,
   SearchBox,
   SearchInput,
-  PostUl,
   PostLi,
   PostBox,
-  PostImage,
 } from './style';
 
-function Main() {
+export default function Main() {
   const [posts, setPosts] = useState<tinyPostType[]>([]);
   const [currentPageInfo, setCurrentPageInfo] = useState<getPostsRes>();
   const [nextPageLoading, setNextPageLoading] = useState(false);
@@ -85,28 +85,24 @@ function Main() {
             />
           </SearchBox>
         </MainHeader>
-        <PostUl className="col-2">
+        <PostListTemplate>
           {posts.map((post) => (
             <PostLi key={post.post_id}>
               <PostBox>
                 <PostImage
                   url={post.thumbnail}
                   onClick={() => {
-                    history.push({
-                      pathname: `/post/${post.post_id}`,
-                      state: { propsPost: post },
-                    });
+                    history.push(`/post/${post.post_id}`);
                   }}
+                  isFavs={false}
                 />
                 <PostInfo post={post} />
               </PostBox>
             </PostLi>
           ))}
-        </PostUl>
+        </PostListTemplate>
       </MainContainer>
       <NavigationBar currnetUrl="main" />
     </MainPage>
   );
 }
-
-export default Main;

@@ -64,6 +64,9 @@ function PostWrite() {
 
     if (res?.success === false) {
       alert(res.msg);
+
+      target.disabled = false;
+      target.classList.remove('on');
       return;
     }
     setPostField({
@@ -75,6 +78,8 @@ function PostWrite() {
     });
 
     if (!res?.data.post_id) {
+      target.disabled = false;
+      target.classList.remove('on');
       return;
     }
     const addImageRes = await Promise.all(
@@ -86,6 +91,9 @@ function PostWrite() {
 
     if (addImageRes.map((r) => r?.success).includes(false)) {
       alert(JSON.stringify(addImageRes));
+
+      target.disabled = false;
+      target.classList.remove('on');
       return;
     }
 

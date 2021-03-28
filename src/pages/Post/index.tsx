@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { postType, getPost, closePost } from '../../container/post';
 import { getImageByPostId, imageType } from '../../container/image';
@@ -18,12 +18,9 @@ import {
   CloseBtn,
 } from './style';
 
-function Post({
-  location,
-}: RouteComponentProps<{}, any, { isMyPost: boolean }>) {
+function Post() {
   // test
   const [isFavs, setIsFavs] = useState(false);
-  const isMyPost = location.state?.isMyPost;
 
   const [post, setPost] = useState<postType>();
   const [images, setImages] = useState<imageType[]>([]);
@@ -46,8 +43,6 @@ function Post({
     postInit();
     imageInit();
   }, [stringId]);
-
-  // console.log('post', post?._close);
 
   return (
     <PostPage>
@@ -90,7 +85,8 @@ function Post({
                 marginTop: '16px',
               }}
             >
-              {isMyPost ? (
+              {/* 수정하기 자기가 쓴글인지 확인 */}
+              {post.title === 'ㅁㄴㅇ' ? (
                 <CloseBtn
                   onClick={() => {
                     if (confirm('나눔을 종료 하시겠습니까?')) {

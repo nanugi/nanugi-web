@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
-import { Page, Button } from '../common';
+import { Button } from '../common';
 
 export const FindPage = styled.div`
-  ${Page}
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  overflow: hidden;
 `;
+export const FindContainer = styled.div`
+  padding: 20px 27px;
+
+  height: calc(100% - 60px);
+`;
+
 export const MainText = styled.div`
   margin-bottom: 18px;
 
@@ -16,7 +26,7 @@ export const MainText = styled.div`
 export const LinkBox = styled.div`
   display: flex;
 
-  width: 360px;
+  width: 100%;
 `;
 
 export const LoginLink = styled.div`

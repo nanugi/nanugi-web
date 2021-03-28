@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import history from '../../utils/browserHistory';
 import { sendCertcode, setNewPassword } from '../../container/sign';
 
+import TopHeader from '../../components/TopHeader';
+
 import {
   FindPage,
+  FindContainer,
   MainText,
   Text,
   LinkBox,
@@ -96,71 +99,74 @@ function Find() {
 
   return (
     <FindPage>
-      <MainText>비밀번호 찾기</MainText>
-      <>
-        {afterSetNewPassword ? (
-          <>
-            <Text>비밀번호가 변경되었습니다.</Text>
-            <Btn type="button" onClick={() => history.push('/login')}>
-              로그인 화면으로
-            </Btn>
-          </>
-        ) : (
-          <>
-            {afterSendingCode ? (
-              <>
-                <Input
-                  autoComplete="off"
-                  name="code"
-                  placeholder="인증 코드"
-                  value={code}
-                  onChange={changeState}
-                />
-                <Input
-                  name="password"
-                  placeholder="비밀번호"
-                  type="password"
-                  value={password}
-                  onChange={changeState}
-                />
-                <Input
-                  name="rPassword"
-                  placeholder="비밀번호 확인"
-                  type="password"
-                  value={rPassword}
-                  onChange={changeState}
-                />
+      <TopHeader pageName="비밀번호 찾기" />
+      <FindContainer>
+        <MainText>비밀번호 찾기</MainText>
+        <>
+          {afterSetNewPassword ? (
+            <>
+              <Text>비밀번호가 변경되었습니다.</Text>
+              <Btn type="button" onClick={() => history.push('/login')}>
+                로그인 화면으로
+              </Btn>
+            </>
+          ) : (
+            <>
+              {afterSendingCode ? (
+                <>
+                  <Input
+                    autoComplete="off"
+                    name="code"
+                    placeholder="인증 코드"
+                    value={code}
+                    onChange={changeState}
+                  />
+                  <Input
+                    name="password"
+                    placeholder="비밀번호"
+                    type="password"
+                    value={password}
+                    onChange={changeState}
+                  />
+                  <Input
+                    name="rPassword"
+                    placeholder="비밀번호 확인"
+                    type="password"
+                    value={rPassword}
+                    onChange={changeState}
+                  />
 
-                <Btn type="button" onClick={onClickSetNewPasswordBtn}>
-                  비밀번호 재설정
-                </Btn>
-              </>
-            ) : (
-              <>
-                <Input
-                  name="email"
-                  placeholder="이메일"
-                  value={email}
-                  onChange={changeState}
-                />
+                  <Btn type="button" onClick={onClickSetNewPasswordBtn}>
+                    비밀번호 재설정
+                  </Btn>
+                </>
+              ) : (
+                <>
+                  <Input
+                    name="email"
+                    placeholder="이메일"
+                    value={email}
+                    onChange={changeState}
+                  />
 
-                <Btn type="button" onClick={onClickSendCodeBtn}>
-                  인증메일 받기
-                </Btn>
+                  <Btn type="button" onClick={onClickSendCodeBtn}>
+                    인증메일 받기
+                  </Btn>
 
-                <LinkBox>
-                  <LoginLink onClick={() => history.push('/login')}>
-                    로그인
-                  </LoginLink>
-                  <SignupLink onClick={() => history.push('/signup')}>
-                    회원가입
-                  </SignupLink>
-                </LinkBox>
-              </>
-            )}
-          </>
-        )}
-      </>
+                  <LinkBox>
+                    <LoginLink onClick={() => history.push('/login')}>
+                      로그인
+                    </LoginLink>
+                    <SignupLink onClick={() => history.push('/signup')}>
+                      회원가입
+                    </SignupLink>
+                  </LinkBox>
+                </>
+              )}
+            </>
+          )}
+        </>
+      </FindContainer>
     </FindPage>
   );
 }

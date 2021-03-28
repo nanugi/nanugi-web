@@ -66,23 +66,10 @@ export const PostBox = styled.div`
 
   width: 100%;
 `;
-
-export const PostImage = styled.div<{ url?: string }>`
-  position: relative;
-
+export const PostImageBox = styled.div`
   margin-right: 15px;
-  border-radius: 10px;
-
-  width: 135px;
-  height: 135px;
-
-  cursor: pointer;
-
-  ${(props) =>
-    props.url
-      ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
-      : `background-color: #C4C4C4; opacity: 0.8;`}
 `;
+
 export const PostContents = styled.div``;
 
 export const CloseStatusBox = styled.div`

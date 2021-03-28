@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
-import { Page, Button } from '../common';
+import { Button } from '../common';
 
 export const SignupPage = styled.div`
-  ${Page}
+  width: 100%;
+  height: 100%;
 
-  padding-top: 161px;
+  position: fixed;
+  overflow: hidden;
+`;
+
+export const SignupContainer = styled.div`
+  padding: 20px 27px;
+  padding-top: 100px;
+
+  height: calc(100% - 60px);
 `;
 
 export const AfterSignupBox = styled.div`
@@ -53,6 +62,27 @@ export const SingupInfoStrong = styled.div`
   font-weight: bold;
   text-decoration: underline;
 `;
+
+export const RadioBtnBox = styled.div`
+  margin-top: 9px;
+  margin-bottom: 12px;
+`;
+export const RadioBtn = styled.div`
+  margin-bottom: 5px;
+`;
+export const RadioText = styled.div`
+  display: inline-flex;
+
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+
+  &.sub {
+    color: #828282;
+    font-weight: normal;
+  }
+`;
+export const Radio = styled.input``;
 
 export const SignupBtn = styled(Button)`
   color: #ffffff;
