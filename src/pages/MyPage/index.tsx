@@ -1,135 +1,75 @@
 import React, { useEffect } from 'react'
-import {
-  Avatar,
-  Button,
-  Container,
-  Divider,
-  Grid,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography
-} from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-import MyLocationIcon from '@material-ui/icons/MyLocation'
-import InfoIcon from '@material-ui/icons/Info'
-import HelpIcon from '@material-ui/icons/Help'
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer'
-import LogOutIcon from '@material-ui/icons/ExitToApp'
 import ResignIcon from '@material-ui/icons/MeetingRoom'
 import { useHistory } from 'react-router-dom'
 import { userStore } from '../../container/user/store'
-import { fetchProfile, logOut, resignUser } from '../../container/user'
+import { resignUser } from '../../container/user'
+import NavigationBar from '../../components/NavigationBar'
+import {
+  Divider,
+  EmailText,
+  ItemButtonRow,
+  LoginButton,
+  LogoutButton,
+  MyInfoLayout,
+  MyPagePage,
+  NeedSignInText,
+  SignUpButton,
+  WelcomeTitle
+} from './style'
+import TopHeader from '../../components/TopHeader'
 
 const MyPage = observer(() => {
   const history = useHistory()
 
   useEffect(() => {
-    fetchProfile().then((p) => {
-      userStore.profile = p?.data ?? null
-    })
+    userStore.fetchProfile().then()
   }, [])
 
+  const onClickLogout = () => {
+    if (!confirm('로그아웃하시겠습니까?')) return
+    if (!userStore.logOut()) return
+    alert('정상적으로 로그아웃되었습니다.')
+    history.replace('/')
+  }
+
   return (
-    <Container maxWidth='sm'>
-      <Grid container spacing={1} alignItems='center'>
-        <Grid item>
-          <Avatar>{userStore.profile?.name?.[0] ?? 'N'}</Avatar>
-        </Grid>
-        <Grid item>
-          <Typography variant='h6'>
-            {userStore.profile?.uid ?? '(알 수 없음)'}
-          </Typography>
-          <Typography variant='subtitle1'>
-            {userStore.profile?.name ?? '(알 수 없음)'} 님 반갑습니다
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Button
-            variant='contained'
-            color='primary'
-            size='small'
-            onClick={() => history.push('/mypage/edit')}
-          >
-            수정
-          </Button>
-        </Grid>
-      </Grid>
-      <Grid container spacing={4} aria-colcount={3} justify='center'>
-        <Grid item justify='center'>
-          <Avatar>
-            1
-          </Avatar>
-          <Typography variant='subtitle2'>나눔 내역</Typography>
-        </Grid>
-        <Grid item justify='center'>
-          <Avatar>
-            2
-          </Avatar>
-          <Typography variant='subtitle2'>참여 내역</Typography>
-        </Grid>
-        <Grid item justify='center'>
-          <Avatar>
-            3
-          </Avatar>
-          <Typography variant='subtitle2' align='center'>관심 목록</Typography>
-        </Grid>
-      </Grid>
+    <MyPagePage>
+      <TopHeader pageName='마이페이지'/>
+      <MyInfoLayout>
+        {userStore.profile ?
+          <WelcomeTitle>안녕하세요, <b>{userStore.profile.nickname}</b>님!</WelcomeTitle> :
+          <NeedSignInText>지금 회원가입하고, 나누기와 함께<br/><u><b>친환경 공유소비 생활</b></u>을 즐겨보아요!</NeedSignInText>}
+        {userStore.profile && <EmailText>{userStore.profile.uid}</EmailText>}
+        <div>
+          {userStore.profile ?
+            <LogoutButton onClick={onClickLogout}>로그아웃</LogoutButton> :
+            <>
+              <SignUpButton>회원가입</SignUpButton>
+              <LoginButton>로그인</LoginButton>
+            </>
+          }
+        </div>
+      </MyInfoLayout>
       <Divider />
-      <ListItem button>
-        <ListItemIcon>
-          <MyLocationIcon />
-        </ListItemIcon>
-        <ListItemText primary='내 동네 설정' />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <NotificationsIcon />
-        </ListItemIcon>
-        <ListItemText primary='키워드 알림' />
-      </ListItem>
+      <ItemButtonRow>계정 정보 관리</ItemButtonRow>
       <Divider />
-      <ListItem
-        button
-        onClick={() => history.push('/policies')}
-      >
-        <ListItemIcon>
-          <InfoIcon />
-        </ListItemIcon>
-        <ListItemText primary='이용약관' />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <HelpIcon />
-        </ListItemIcon>
-        <ListItemText primary='자주 묻는 질문' />
-      </ListItem>
-      <ListItem
-        button
+      <ItemButtonRow>나의 나누기</ItemButtonRow>
+      <Divider />
+      <ItemButtonRow>관심목록</ItemButtonRow>
+      <Divider />
+      <ItemButtonRow
         onClick={() => history.push('/cs')}
       >
-        <ListItemIcon>
-          <QuestionAnswerIcon />
-        </ListItemIcon>
-        <ListItemText primary='1:1 문의' />
-      </ListItem>
+        FAQ
+      </ItemButtonRow>
       <Divider />
-      <ListItem
-        button
-        onClick={() => {
-          if (confirm('로그아웃하시겠습니까?')) {
-            logOut()
-            alert('정상적으로 로그아웃되었습니다.')
-            history.replace('/')
-          }
-        }}
+      <ItemButtonRow
+        onClick={() => history.push('/policies')}
       >
-        <ListItemIcon>
-          <LogOutIcon />
-        </ListItemIcon>
-        <ListItemText primary='로그아웃' />
-      </ListItem>
+        이용약관
+      </ItemButtonRow>
       <ListItem
         button
         onClick={async () => {
@@ -147,11 +87,12 @@ const MyPage = observer(() => {
         }}
       >
         <ListItemIcon>
-          <ResignIcon />
+          <ResignIcon/>
         </ListItemIcon>
-        <ListItemText primary='회원탈퇴' />
+        <ListItemText primary='회원탈퇴'/>
       </ListItem>
-    </Container>
+      <NavigationBar currnetUrl='mypage'/>
+    </MyPagePage>
   )
 })
 
