@@ -7,8 +7,8 @@ export interface BaseResponse<T> {
 }
 
 export interface User {
-  name: string;
-  uid: string;
+    nickname: string
+    uid: string
 }
 
 export const fetchProfile = async () => {

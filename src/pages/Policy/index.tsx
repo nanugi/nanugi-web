@@ -1,13 +1,11 @@
 import React from 'react'
-import { Container, Typography } from '@material-ui/core'
+import TopHeader from '../../components/TopHeader'
 
 function PolicyPage() {
   return (
-    <Container maxWidth='sm'>
-      <Typography variant='h6'>
-        이용약관 페이지
-      </Typography>
-    </Container>
+    <div>
+      <TopHeader pageName='이용약관' />
+    </div>
   )
 }
 
