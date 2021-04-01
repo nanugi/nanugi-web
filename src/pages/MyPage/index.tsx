@@ -24,7 +24,7 @@ const MyPage = observer(() => {
   const history = useHistory()
 
   useEffect(() => {
-    userStore.fetchProfile().then()
+    //userStore.fetchProfile().then()
   }, [])
 
   const onClickLogout = () => {
