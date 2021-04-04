@@ -1,32 +1,33 @@
-import { makeAutoObservable } from 'mobx'
-import { fetchProfile, logOut, User } from './index'
+import { makeAutoObservable } from 'mobx';
+import { fetchProfile, logOut, User } from './index';
 
 class UserStore {
-  profile: User | null = null
+  profile: User | null = null;
 
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this);
   }
 
   async fetchProfile() {
     try {
-      const res = await fetchProfile()
-      if (!res?.success) throw new Error('Fail to fetch Profile')
-      this.profile = res?.data ?? null
+      const res = await fetchProfile();
+      if (!res?.success) throw new Error('Fail to fetch Profile');
+      this.profile = res?.data ?? null;
     } catch (e) {
-      alert(e)
+      alert(e);
     }
   }
 
   logOut() {
     try {
-      logOut()
-      this.profile = null
-      return true
+      logOut();
+      this.profile = null;
+      return true;
     } catch (e) {
-      alert(e)
+      alert(e);
+      return false;
     }
   }
 }
 
-export const userStore = new UserStore()
+export const userStore = new UserStore();
