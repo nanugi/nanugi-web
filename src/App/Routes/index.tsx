@@ -6,6 +6,7 @@ import history from '../../utils/browserHistory';
 import AuthRoute from './AuthRoute';
 
 // Route
+import LandingPage from '../../pages/LandingPage';
 import Signup from '../../pages/Signup';
 import Login from '../../pages/Login';
 import Find from '../../pages/Find';
@@ -38,6 +39,7 @@ function Routes() {
           path="/"
           render={() => (staySignedIn ? <Main /> : <Login />)}
         />
+        <Route exact path="/main" component={LandingPage}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route
