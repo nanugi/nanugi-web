@@ -39,7 +39,7 @@ function Routes() {
           path="/"
           render={() => (staySignedIn ? <Main /> : <Login />)}
         />
-        <Route exact path="/main" component={LandingPage}/>
+        <Route exact path="/main" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route
@@ -51,7 +51,7 @@ function Routes() {
         <Route exact path="/policies" component={PolicyPage} />
 
         {/* AuthRoute */}
-        <AuthRoute exact path="/main" component={Main} />
+        {/* <AuthRoute exact path="/main" component={Main} /> */}
         <AuthRoute exact path="/post/:id" component={Post} />
         <AuthRoute exact path="/write/post" component={PostWrite} />
 
