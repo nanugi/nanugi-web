@@ -12,7 +12,7 @@ import {
 import camera from '../../assets/images/icon/camera.png';
 
 export default function useImageInputForm(maxSize: number) {
-  const [imageFormField, setImageFormField] = useState<File[]>([]);
+  const [imageFormField, setImageFormField] = useState<(File | number)[]>([]);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string[]>([]);
   const imageInputRef = useRef({} as HTMLInputElement);
 
@@ -113,7 +113,12 @@ export default function useImageInputForm(maxSize: number) {
     [AddImageBtn, CurrentImageList],
   );
 
-  return { FormComponent, imageFormField, setImageFormField };
+  return {
+    FormComponent,
+    imageFormField,
+    setImageFormField,
+    setImagePreviewUrl,
+  };
 }
 /*
 const styles = StyleSheet.create({

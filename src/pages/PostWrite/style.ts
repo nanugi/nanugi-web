@@ -90,3 +90,10 @@ export const WriteBtn = styled(Button)`
   color: #ffffff;
   background-color: #11a656;
 `;
+
+export const ModifyBtn = styled(Button)`
+  margin-bottom: 9px;
+
+  color: #ffffff;
+  background-color: #11a656;
+`;

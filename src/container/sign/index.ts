@@ -11,9 +11,11 @@ export type loginRes = {
 };
 export const login = async function (isStaySignedIn: boolean, req: loginReq) {
   const res = await callApi.post<loginReq, loginRes>('signin', req);
+  // 로그인 유지 버튼 활성화   : 14일
+  // 로그인 유지 버튼 비활성화 : 0.1일 = 2.4시간
   if (res?.success) {
-    if (isStaySignedIn) callCookie.set('staySignedIn', res.data, 10000);
-    callCookie.set('jwt', res.data, 2);
+    if (isStaySignedIn) callCookie.set('staySignedIn', res.data, 14);
+    callCookie.set('jwt', res.data, 0.1);
   }
 
   return res;

@@ -17,7 +17,7 @@ import {
   PostLi,
   PostBox,
 } from './style';
-import { userStore } from '../../container/user/store'
+import { userStore } from '../../container/user/store';
 
 export default function Main() {
   const [posts, setPosts] = useState<tinyPostType[]>([]);
@@ -96,8 +96,10 @@ export default function Main() {
                   onClick={() => {
                     history.push(`/post/${post.post_id}`);
                   }}
+                  // 이 부분 추가 수정 필요
                   isFavs={false}
                 />
+                <div style={{ height: '10px' }} />
                 <PostInfo post={post} />
               </PostBox>
             </PostLi>

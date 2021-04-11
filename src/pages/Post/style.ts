@@ -10,8 +10,39 @@ export const PostPage = styled.div`
   overflow: hidden;
 `;
 
-export const PostImage = styled.div<{ url?: string }>`
+export const PostContainer = styled.div`
+  height: calc(100% - 60px);
+  overflow-y: scroll;
+`;
+
+export const PostImageContainer = styled.div`
+  overflow-x: scroll;
+`;
+
+type PostImageBoxProps = {
+  imagesLength: number;
+  isAlone?: boolean;
+};
+
+export const PostImageBox = styled.div<PostImageBoxProps>`
+  width: ${(props) =>
+    `${414 * props.imagesLength + 10 * props.imagesLength - 1}`}px;
+  height: 350px;
+
+  ${(props) =>
+    props.isAlone
+      ? `
+        display: flex;
+        justify-content: center;
+        width: 100%; 
+      `
+      : ''}
+`;
+
+export const PostImage = styled.div<{ url?: string; isFirst?: boolean }>`
   position: relative;
+
+  margin-right: ${(props) => (props.isFirst ? '10px' : '0px')};
 
   width: 414px;
   height: 350px;
@@ -24,6 +55,24 @@ export const PostImage = styled.div<{ url?: string }>`
       : `background: rgba(229, 229, 229, 0.5); opacity: 0.8;`}
 `;
 
+export const PostEmptyImage = styled.div`
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  height: 350px;
+
+  cursor: pointer;
+`;
+
+/*
+${(props) =>
+    props.url
+      ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
+      : `background: rgba(229, 229, 229, 0.5); opacity: 0.8;`}
+*/
+
 export const PostInfoBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,31 +80,12 @@ export const PostInfoBox = styled.div`
   border-bottom: 2px solid #e0e0e0;
   padding: 16px 27px 24px;
 `;
-export const PostInfo = styled.div`
+
+export const BtnBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
 
-  margin-bottom: 20px;
-`;
-
-export const PostTitle = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-`;
-export const PostTag = styled.div`
-  color: #828282;
-  font-size: 10px;
-  font-weight: 400;
-`;
-export const PostInfoKeyValueBox = styled.div`
-  font-size: 11px;
-  font-weight: bold;
-`;
-export const PostInfoKey = styled.div`
-  display: inline;
-
-  color: #11a656;
-  text-decoration: underline;
+  margin-top: 16px;
 `;
 
 export const ChatBtn = styled(Button)`
@@ -66,6 +96,17 @@ export const ChatBtn = styled(Button)`
 `;
 
 export const FavsBtn = styled(Button)`
+  margin-bottom: 0px;
+
+  color: #bdbdbd;
+
+  background-color: #f2f2f2;
+
+  &.on {
+    color: #11a656;
+  }
+`;
+export const ModifyBtn = styled(Button)`
   margin-bottom: 0px;
 
   color: #bdbdbd;

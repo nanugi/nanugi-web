@@ -22,6 +22,16 @@ export const addImage = async function (postId: number, req: addImageReq) {
   return res;
 };
 
+// deleteImage
+export type deleteImageReq = {};
+export type deleteImageRes = {};
+export const deleteImage = async function (id: number) {
+  const res = await callApi.delete<deleteImageReq, deleteImageRes>(
+    `images/${id}`,
+    {},
+  );
+  return res;
+};
 // getImageByPostId
 export type getImageByPostIdRes = {
   data: {

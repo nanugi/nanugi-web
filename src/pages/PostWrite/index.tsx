@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import history from '../../utils/browserHistory';
 
-import { createPost } from '../../container/post';
+import { createPost, modifyPost, postType } from '../../container/post';
 
 import TopHeader from '../../components/TopHeader';
 
@@ -15,11 +16,19 @@ import {
   Input,
   Textarea,
   WriteBtn,
+  ModifyBtn,
 } from './style';
 import useImageInputForm from '../../components/useImageInputForm';
-import { addImage } from '../../container/image';
+import { addImage, deleteImage, imageType } from '../../container/image';
 
 function PostWrite() {
+  const location = useLocation<{
+    isModify: boolean;
+    post: postType;
+    images: imageType[];
+  }>();
+  const isModify = location.state?.isModify;
+
   const [postField, setPostField] = useState({
     title: '',
     content: '',
@@ -31,6 +40,7 @@ function PostWrite() {
     FormComponent,
     imageFormField,
     setImageFormField,
+    setImagePreviewUrl,
   } = useImageInputForm(5);
 
   const { title, content, totalPrice, minParti, chatUrl } = postField;
@@ -62,34 +72,40 @@ function PostWrite() {
     });
     // console.log('createPost!!', res);
 
-    if (res?.success === false) {
-      alert(res.msg);
+    if (res?.success) {
+      setPostField({
+        title: '',
+        content: '',
+        totalPrice: '',
+        minParti: '',
+        chatUrl: '',
+      });
 
-      target.disabled = false;
-      target.classList.remove('on');
-      return;
-    }
-    setPostField({
-      title: '',
-      content: '',
-      totalPrice: '',
-      minParti: '',
-      chatUrl: '',
-    });
+      if (!res?.data.post_id) {
+        target.disabled = false;
+        target.classList.remove('on');
+        return;
+      }
+      const addImageRes = await Promise.all(
+        imageFormField.map((image) =>
+          typeof image !== 'number'
+            ? addImage(res?.data.post_id, { file: image })
+            : null,
+        ),
+      );
+      // console.log('addImageRes', addImageRes);
 
-    if (!res?.data.post_id) {
-      target.disabled = false;
-      target.classList.remove('on');
-      return;
-    }
-    const addImageRes = await Promise.all(
-      imageFormField.map((image) =>
-        addImage(res?.data.post_id, { file: image }),
-      ),
-    );
-    // console.log('addImageRes', addImageRes);
+      if (!addImageRes.map((r) => Boolean(r?.success)).includes(false)) {
+        setImageFormField([]);
 
-    if (addImageRes.map((r) => r?.success).includes(false)) {
+        target.disabled = false;
+        target.classList.remove('on');
+
+        alert(res?.msg);
+        history.push('/main');
+        return;
+      }
+
       alert(JSON.stringify(addImageRes));
 
       target.disabled = false;
@@ -97,14 +113,119 @@ function PostWrite() {
       return;
     }
 
-    setImageFormField([]);
+    alert(res?.msg);
 
     target.disabled = false;
     target.classList.remove('on');
-
-    alert(res?.msg);
-    history.push('/main');
   };
+
+  const onClickModifyBtn = async function (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    const { post, images } = location.state;
+
+    const target = e.currentTarget;
+    target.disabled = true;
+    target.classList.add('on');
+
+    const res = await modifyPost(
+      {
+        title,
+        content,
+        totalPrice: Number(totalPrice),
+        minParti: Number(minParti),
+        chatUrl,
+      },
+      post.post_id,
+    );
+    // console.log('modifyPost!!', res);
+
+    if (res?.success) {
+      const addImageRes = await Promise.all(
+        imageFormField.map((imageFile) =>
+          typeof imageFile !== 'number'
+            ? addImage(res?.data.post_id, { file: imageFile })
+            : null,
+        ),
+      );
+
+      const deleteImageRes = await Promise.all(
+        images.map((image) =>
+          imageFormField.includes(image.id) ? null : deleteImage(image.id),
+        ),
+      );
+
+      // console.log('addImageRes', addImageRes);
+      // console.log('deleteImageRes', deleteImageRes);
+
+      const addImageResSuccess = !addImageRes
+        .map((r) => Boolean(r?.success))
+        .includes(false);
+      const deleteImageResSuccess = !deleteImageRes
+        .map((r) => Boolean(r?.success))
+        .includes(false);
+
+      // 수정 성공
+      if (addImageResSuccess && deleteImageResSuccess) {
+        setPostField({
+          title: '',
+          content: '',
+          totalPrice: '',
+          minParti: '',
+          chatUrl: '',
+        });
+        setImageFormField([]);
+
+        target.disabled = false;
+        target.classList.remove('on');
+        alert('나누기 수정 완료!');
+        history.push('/main');
+        return;
+      }
+
+      // 이미지 등록 실패
+      if (!addImageResSuccess) {
+        alert('이미지 등록 실패!');
+        target.disabled = false;
+        target.classList.remove('on');
+        return;
+      }
+      // 이미지 삭제 실패
+      if (!deleteImageResSuccess) {
+        alert('이미지 삭제 실패!');
+        target.disabled = false;
+        target.classList.remove('on');
+        return;
+      }
+    }
+
+    if (res?.msg) {
+      alert(res?.msg);
+    } else {
+      alert('알수없는 오류!');
+    }
+
+    target.disabled = false;
+    target.classList.remove('on');
+  };
+
+  useEffect(() => {
+    // console.log('isModify 체크', isModify);
+    if (isModify) {
+      const { post, images } = location.state;
+
+      setImageFormField(images.map((i) => i.id));
+      setImagePreviewUrl(images.map((i) => i.url));
+
+      setPostField({
+        title: post.title,
+        content: post.content,
+        totalPrice: String(post.detail.totalPrice),
+        minParti: String(post.detail.minParti),
+        chatUrl: post.detail.chatUrl,
+      });
+    }
+  }, [isModify, location, setImageFormField, setImagePreviewUrl]);
 
   return (
     <PostWritePage>
@@ -195,10 +316,15 @@ function PostWrite() {
             />
           </InputBox>
         </PostInfoBox> */}
-
-        <WriteBtn type="button" onClick={onClickWriteBtn}>
-          나누기 개설 완료
-        </WriteBtn>
+        {isModify ? (
+          <ModifyBtn type="button" onClick={onClickModifyBtn}>
+            나누기 수정 완료
+          </ModifyBtn>
+        ) : (
+          <WriteBtn type="button" onClick={onClickWriteBtn}>
+            나누기 개설 완료
+          </WriteBtn>
+        )}
       </PostWriteForm>
     </PostWritePage>
   );

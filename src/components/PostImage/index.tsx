@@ -17,7 +17,7 @@ export default function PostImage({
   const _isFavs = isFavs || Math.random() < 0.5;
   return (
     <PostImageBox className={type} url={url} onClick={onClick}>
-      <FavsIcon className={_isFavs ? 'on' : ''} />
+      <FavsIcon style={{ display: 'none' }} className={_isFavs ? 'on' : ''} />
     </PostImageBox>
   );
 }

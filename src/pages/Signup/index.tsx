@@ -81,27 +81,27 @@ function Signup() {
       name,
     });
 
-    if (res?.success === false) {
-      alert(res?.msg);
+    if (res?.success) {
+      // alert('회원가입이 되었습니다.');
+      // history.push('/login');
 
-      setSignupField({
-        ...signupField,
-        email: '',
-        password: '',
-        rPassword: '',
-        name: '',
-      });
-      target.disabled = false;
-      target.classList.remove('on');
+      // 이메일 확인해달라는 문구 작성하기
+      setAfterSignup(true);
 
       return;
     }
 
-    // alert('회원가입이 되었습니다.');
-    // history.push('/login');
+    alert(res?.msg);
 
-    // 이메일 확인해달라는 문구 작성하기
-    setAfterSignup(true);
+    setSignupField({
+      ...signupField,
+      email: '',
+      password: '',
+      rPassword: '',
+      name: '',
+    });
+    target.disabled = false;
+    target.classList.remove('on');
   };
 
   const onClickRadioBtn = (_name: string) => {

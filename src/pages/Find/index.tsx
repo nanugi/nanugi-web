@@ -49,19 +49,19 @@ function Find() {
     target.disabled = false;
     target.classList.remove('on');
 
-    if (res?.success === false) {
-      alert(res.msg);
-
-      setFindField({
-        email: '',
-        code: '',
-        password: '',
-        rPassword: '',
-      });
+    if (res?.success) {
+      setAfterSendingCode(true);
       return;
     }
 
-    setAfterSendingCode(true);
+    alert(res?.msg);
+
+    setFindField({
+      email: '',
+      code: '',
+      password: '',
+      rPassword: '',
+    });
   };
 
   const onClickSetNewPasswordBtn = async function (
@@ -89,12 +89,12 @@ function Find() {
     target.disabled = false;
     target.classList.remove('on');
 
-    if (res?.success === false) {
-      alert(res.msg);
+    if (res?.success) {
+      setAfterSetNewPassword(true);
       return;
     }
 
-    setAfterSetNewPassword(true);
+    alert(res?.msg);
   };
 
   return (

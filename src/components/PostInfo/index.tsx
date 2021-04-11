@@ -1,3 +1,5 @@
+/* eslint react/no-unused-prop-types: 0 */
+
 import React from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -5,8 +7,12 @@ import 'moment/locale/ko';
 
 import history from '../../utils/browserHistory';
 
+import { tinyPostType } from '../../container/post';
+
 import {
   PostInfoBox,
+  PostLiked,
+  PostLikedIcon,
   PostTitle,
   PostTag,
   PostInfoKeyValueBox,
@@ -15,23 +21,17 @@ import {
 
 moment.locale('ko');
 
-export type postInfoType = {
-  _close: boolean;
-  maxParti: number;
-  minParti: number;
-  nanumPrice: number;
-  post_id: number;
-  title: string;
-  createdAt: Date;
-  nickname: string;
-};
-
 interface PostInfoProps {
-  post: postInfoType;
+  post: tinyPostType;
+  likedIconSize?: 16 | 8;
 }
-export default function PostInfo({ post }: PostInfoProps) {
+export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
   return (
     <PostInfoBox>
+      <PostLiked>
+        <PostLikedIcon likedIconSize={likedIconSize} />
+        {post.liked}
+      </PostLiked>
       <PostTitle
         onClick={() => {
           history.push(`/post/${post.post_id}`);
@@ -44,7 +44,7 @@ export default function PostInfo({ post }: PostInfoProps) {
       </PostTag>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>가격</PostInfoKey> {post.nanumPrice}원
+        <PostInfoKey>가격</PostInfoKey> {post.totalPrice}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
@@ -66,7 +66,7 @@ export function MyPostInfo({ post }: PostInfoProps) {
       </PostTitle>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>가격</PostInfoKey> {post.nanumPrice}원
+        <PostInfoKey>가격</PostInfoKey> {post.totalPrice}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>

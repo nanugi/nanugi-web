@@ -44,22 +44,21 @@ function Login() {
 
     const res = await login(isStaySignedIn, { id: email, password });
 
-    if (res?.success === false) {
-      alert(res.msg);
+    if (res?.success) {
+      setLoginField({
+        email: '',
+        password: '',
+      });
       target.disabled = false;
       target.classList.remove('on');
 
+      history.push('/main');
       return;
     }
 
-    setLoginField({
-      email: '',
-      password: '',
-    });
+    alert(res?.msg);
     target.disabled = false;
     target.classList.remove('on');
-
-    history.push('/main');
   };
 
   useEffect(() => {

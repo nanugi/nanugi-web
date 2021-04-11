@@ -6,7 +6,7 @@ export type toggleFavsByPostIdReq = {};
 export type toggleFavsByPostIdRes = {};
 export const toggleFavsByPostId = async function (postId: number) {
   const res = await callApi.put<toggleFavsByPostIdReq, toggleFavsByPostIdRes>(
-    `favs/${postId}`,
+    `favs?postId=${postId}`,
     {},
   );
   return res;

@@ -10,11 +10,11 @@ export type postType = {
   content: string;
   createdAt: Date;
   detail: {
-    price: number;
-    nanumPrice: number;
+    totalPrice: number;
     minParti: number;
     maxParti: number;
     chatUrl: string;
+    liked: number;
   };
   _close: boolean;
 };
@@ -23,13 +23,26 @@ export type tinyPostType = {
   _close: boolean;
   maxParti: number;
   minParti: number;
-  nanumPrice: number;
+  totalPrice: number;
   post_id: number;
   thumbnail: string;
   title: string;
   createdAt: Date;
   nickname: string;
+  liked: number;
 };
+export const postToTinyPost = (post: postType): tinyPostType => ({
+  _close: post._close,
+  maxParti: post.detail.maxParti,
+  minParti: post.detail.minParti,
+  totalPrice: post.detail.totalPrice,
+  post_id: post.post_id,
+  thumbnail: '',
+  title: post.title,
+  createdAt: post.createdAt,
+  nickname: post.user.nickname,
+  liked: post.detail.liked,
+});
 
 // getPosts
 export type getPostsRes = {
@@ -68,6 +81,25 @@ export type createPostRes = {
 };
 export const createPost = async function (req: createPostReq) {
   const res = await callApi.post<createPostReq, createPostRes>(`posts`, req);
+  return res;
+};
+
+// modifyPost
+export type modifyPostReq = {
+  chatUrl: string;
+  content: string;
+  minParti: number;
+  title: string;
+  totalPrice: number;
+};
+export type modifyPostRes = {
+  data: postType;
+};
+export const modifyPost = async function (req: modifyPostReq, id: number) {
+  const res = await callApi.put<modifyPostReq, modifyPostRes>(
+    `posts/${id}`,
+    req,
+  );
   return res;
 };
 
