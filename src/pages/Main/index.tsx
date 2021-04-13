@@ -17,7 +17,7 @@ import {
   PostLi,
   PostBox,
 } from './style';
-import { userStore } from '../../container/user/store';
+// import { userStore } from '../../container/user/store';
 
 export default function Main() {
   const [posts, setPosts] = useState<tinyPostType[]>([]);
@@ -63,7 +63,7 @@ export default function Main() {
         setPosts(res.data.posts);
         setCurrentPageInfo({ data: res.data });
       }
-      userStore.fetchProfile().then();
+      // userStore.fetchProfile().then();
     }
     init();
   }, []);
