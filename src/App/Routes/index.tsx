@@ -25,6 +25,7 @@ import MyFavs from '../../pages/MyFavs';
 
 // default
 import Empty from '../../pages/Enpty';
+import Profile from "../../pages/Profile";
 
 function Routes() {
   const staySignedIn = callCookie.get('staySignedIn');
@@ -61,6 +62,8 @@ function Routes() {
 
         <AuthRoute exact path="/mypage/edit" component={ProfileEditPage} />
         <AuthRoute exact path="/cs" component={CustomerServicePage} />
+
+        <AuthRoute exact path="/profile/:id" component={Profile} />
 
         <Route component={Empty} />
       </Switch>
