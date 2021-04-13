@@ -91,7 +91,7 @@ function Page3Content() {
         기존의 중고거래 플랫폼과는 다른,<br /><u><b>신개념 공유소비 플랫폼</b></u>
       </Page3Desc>
       <StartBtn
-        onClick={() => history.replace('/')}
+        onClick={() => history.replace('/main')}
       >
         나누기 시작
       </StartBtn>

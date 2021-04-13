@@ -34,12 +34,8 @@ function Routes() {
     <Router history={history}>
       <Switch>
         {/* Route */}
-        <Route
-          exact
-          path="/"
-          render={() => (staySignedIn ? <Main /> : <Login />)}
-        />
-        <Route exact path="/main" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/main" component={Main} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route
