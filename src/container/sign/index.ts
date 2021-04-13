@@ -24,7 +24,7 @@ export const login = async function (isStaySignedIn: boolean, req: loginReq) {
 // signup
 export type signupReq = {
   id: string;
-  name: string;
+  nickname: string;
   password: string;
 };
 export type signupRes = {

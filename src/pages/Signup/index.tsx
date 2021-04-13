@@ -34,7 +34,7 @@ function Signup() {
     email: '',
     password: '',
     rPassword: '',
-    name: '',
+    nickname: '',
 
     radio_all: false,
     radio_1: false,
@@ -43,7 +43,7 @@ function Signup() {
   });
   const [afterSignup, setAfterSignup] = useState(false);
 
-  const { email, password, rPassword, name } = signupField;
+  const { email, password, rPassword, nickname } = signupField;
   const { radio_all, radio_1, radio_2, radio_3 } = signupField;
   const changeState = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name: targetName, value } = e.target;
@@ -78,7 +78,7 @@ function Signup() {
     const res = await signup({
       id: email,
       password,
-      name,
+      nickname,
     });
 
     if (res?.success) {
@@ -98,7 +98,7 @@ function Signup() {
       email: '',
       password: '',
       rPassword: '',
-      name: '',
+      nickname: '',
     });
     target.disabled = false;
     target.classList.remove('on');
@@ -186,9 +186,9 @@ function Signup() {
             />
             <Input
               autoComplete="off"
-              name="name"
+              name="nickname"
               placeholder="이름"
-              value={name}
+              value={nickname}
               onChange={changeState}
             />
 
