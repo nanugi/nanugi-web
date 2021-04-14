@@ -59,7 +59,7 @@ function Routes() {
         <AuthRoute exact path="/mypage/edit" component={ProfileEditPage} />
         <AuthRoute exact path="/cs" component={CustomerServicePage} />
 
-        <AuthRoute exact path="/profile/:id" component={Profile} />
+        <AuthRoute exact path="/profile/:nickname" component={Profile} />
 
         <Route component={Empty} />
       </Switch>
