@@ -5,15 +5,11 @@ import TopHeader from "../../components/TopHeader";
 import { getUser } from "../../container/user";
 
 function Profile() {
-
-  const { id: userId } = useParams<{ id: string }>()
-  const [userName, setUserName] = useState('')
+  const { nickname: userName } = useParams<{ nickname: string }>()
 
   useEffect(() => {
-    getUser(userId)
-      .then((u) => {
-        setUserName(u?.data.nickname ?? '(알 수 없음)')
-      })
+    getUser(userName)
+      .then()
       .catch((e) => alert(e))
   }, [])
 

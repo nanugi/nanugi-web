@@ -29,7 +29,6 @@ export type tinyPostType = {
   title: string;
   createdAt: Date;
   nickname: string;
-  userId: string;
   liked: number;
 };
 export const postToTinyPost = (post: postType): tinyPostType => ({
@@ -42,7 +41,6 @@ export const postToTinyPost = (post: postType): tinyPostType => ({
   title: post.title,
   createdAt: post.createdAt,
   nickname: post.user.nickname,
-  userId: post.user.uid,
   liked: post.detail.liked,
 });
 

@@ -43,7 +43,7 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
       <PostTag>
         <PostInfoUserName
           onClick={() => {
-            history.push(`/profile/${post.userId}`);
+            history.push(`/profile/${post.nickname}`);
           }}
         >
           {post.nickname}
