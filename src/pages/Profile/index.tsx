@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { ProfilePage, ProfileUserNameText } from './style'
-import TopHeader from "../../components/TopHeader";
-import { getUser } from "../../container/user";
+import TopHeader from '../../components/TopHeader'
+import { getUser } from '../../container/user'
 
 function Profile() {
   const { nickname: userName } = useParams<{ nickname: string }>()
