@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import callCookie from '../../utils/cookie';
-import history from '../../utils/browserHistory';
+import React, { useEffect, useState } from 'react'
+import callCookie from '../../utils/cookie'
+import history from '../../utils/browserHistory'
 
-import { login } from '../../container/sign';
+import { login } from '../../container/sign'
 
 import {
+  FindLink,
+  LinkBox,
+  LoginBtn,
   LoginPage,
+  SignupLink,
   StaySignedInBox,
   StaySignedInBtn,
   StaySignedInLabel,
-  LinkBox,
-  FindLink,
-  LoginBtn,
-  SignupLink,
-} from './style';
+} from './style'
 
-import { Input } from '../common';
+import { Input } from '../common'
 
 function Login() {
   const [isStaySignedIn, setIsStaySignedIn] = useState(false);
