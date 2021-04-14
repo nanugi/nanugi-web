@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { Box, Button, Container, Divider, TextField, Typography } from '@material-ui/core'
+import React from 'react'
+import { Container } from '@material-ui/core'
 import TopHeader from '../../components/TopHeader'
-import { sendCs } from '../../container/cs'
 
 function CustomerServicePage() {
 
-  const [email, setEmail] = useState('')
+  /* const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState('') */
 
   return (
     <Container maxWidth='sm'>
-      <TopHeader pageName='FAQ'/>
-      <Typography variant='h6'>
-        FAQ
+      <TopHeader pageName='문의하기'/>
+      <div>준비중입니다...</div>
+      {/* <Typography variant='h6'>
+        문의하기
       </Typography>
       <Typography variant='subtitle2'>
         문의할 내용을 입력해 보내주세요.
@@ -62,7 +62,7 @@ function CustomerServicePage() {
         >
           보내기
         </Button>
-      </Box>
+      </Box> */}
     </Container>
   )
 }
