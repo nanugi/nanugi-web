@@ -7,8 +7,8 @@ export const LandingPagePage = styled.div`
   overflow: auto;
 `;
 
-export const PageContainer = styled.div<{ height: number }>`
-  ${props => `height: ${props.height}px;`}
+export const PageContainer = styled.div<{ height: number, color?: string }>`
+  ${props => `height: ${props.height}px; ${props.color && `background-color: ${props.color};`}`}
   width: 100%;
   position: relative;
 `;
@@ -16,18 +16,17 @@ export const PageContainer = styled.div<{ height: number }>`
 export const Page1Title = styled.div`
   font-family: Noto Sans KR;
   font-weight: bolder;
-  color: black;
+  color: white;
   text-align: center;
   font-size: 32px;
-  margin-top: 80px;
+  padding-top: 12px;
 `;
 
 export const Page1Desc = styled.div`
   font-family: Noto Sans KR;
   padding-left: 10px;
   padding-right: 10px;
-  font-weight: bold;
-  color: black;
+  color: white;
   text-align: center;
   font-size: 15px;
   margin-top: 20px;
