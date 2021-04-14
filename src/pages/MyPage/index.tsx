@@ -52,11 +52,14 @@ const MyPage = observer(() => {
         {userStore.profile && <EmailText>{userStore.profile.uid}</EmailText>}
         <div>
           {userStore.profile ? (
-            <LogoutButton onClick={onClickLogout}>로그아웃</LogoutButton>
+            <>
+              <LogoutButton onClick={onClickLogout}>로그아웃</LogoutButton>
+              <SignUpButton onClick={() => history.push('/signup')}>회원가입</SignUpButton>
+            </>
           ) : (
             <>
-              <SignUpButton>회원가입</SignUpButton>
-              <LoginButton>로그인</LoginButton>
+              <LoginButton onClick={() => history.push('/login')}>로그인</LoginButton>
+              <SignUpButton onClick={() => history.push('/signup')}>회원가입</SignUpButton>
             </>
           )}
         </div>
