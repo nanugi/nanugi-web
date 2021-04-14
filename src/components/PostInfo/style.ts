@@ -39,6 +39,9 @@ export const PostTag = styled.div`
   font-size: 10px;
   font-weight: 400;
 `;
+export const PostInfoUserName = styled.span`
+  cursor: pointer;
+`;
 export const PostInfoKeyValueBox = styled.div`
   margin-bottom: 5px;
 

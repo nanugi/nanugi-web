@@ -1,23 +1,19 @@
 import { observer } from 'mobx-react-lite'
 import { useHistory } from 'react-router-dom'
-import { Avatar, Button, TextField, Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { userStore } from '../../container/user/store'
-import { fetchProfile, updateProfile } from '../../container/user'
+import { fetchProfile, resignUser, updateProfile } from '../../container/user'
 import TopHeader from '../../components/TopHeader'
+import { ProfileEditPagePage, SignOutText } from './style'
 
 const ProfileEditPage = observer(() => {
   const history = useHistory()
   const [newName, setNewName] = useState('')
 
   return (
-    <div>
-      <TopHeader pageName='프로필 수정' />
-      <Avatar
-        alt='프로필 사진'
-      >
-        {userStore.profile?.nickname?.[0] ?? 'N'}
-      </Avatar>
+    <ProfileEditPagePage>
+      <TopHeader pageName='계정정보 관리' />
       <Typography>이름</Typography>
       <TextField
         value={newName}
@@ -26,6 +22,21 @@ const ProfileEditPage = observer(() => {
         placeholder={userStore.profile?.nickname ?? '(이름 없음)'}
         onChange={({ currentTarget }) => setNewName(currentTarget.value)}
       />
+      <SignOutText
+        onClick={async () => {
+          if (!confirm('정말 회원탈퇴하시겠습니까?')) return;
+          try {
+            const res = await resignUser();
+            if (res?.success) return;
+            alert('회원탈퇴하였습니다. 홈으로 돌아갑니다.');
+            history.replace('/');
+          } catch (e) {
+            alert(e);
+          }
+        }}
+      >
+        회원탈퇴
+      </SignOutText>
       <Button
         variant='contained'
         color='primary'
@@ -48,7 +59,7 @@ const ProfileEditPage = observer(() => {
       >
         수정 완료
       </Button>
-    </div>
+    </ProfileEditPagePage>
   )
 })
 

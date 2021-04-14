@@ -17,6 +17,7 @@ import {
   PostTag,
   PostInfoKeyValueBox,
   PostInfoKey,
+  PostInfoUserName,
 } from './style';
 
 moment.locale('ko');
@@ -40,9 +41,14 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
         {post.title}
       </PostTitle>
       <PostTag>
-        {post.nickname}·<Moment fromNow>{post.createdAt}</Moment>
+        <PostInfoUserName
+          onClick={() => {
+            history.push(`/profile/${post.nickname}`);
+          }}
+        >
+          {post.nickname}
+        </PostInfoUserName>·<Moment fromNow>{post.createdAt}</Moment>
       </PostTag>
-
       <PostInfoKeyValueBox>
         <PostInfoKey>가격</PostInfoKey> {post.totalPrice}원
       </PostInfoKeyValueBox>
