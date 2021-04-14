@@ -46,4 +46,11 @@ export const getMyposts = async function (page: number) {
 export const getUser = async function(id: string) {
   const res = await callApi.get<{}, BaseResponse<User>>(`users/${id}`);
   return res;
-}
+};
+
+export const getOthersPosts = async function (nickname: string, page: number) {
+  const res = await callApi.get<{}, getPostsRes>(
+    `users/posts?page=${page}&nickname=${nickname}`,
+  );
+  return res;
+};
