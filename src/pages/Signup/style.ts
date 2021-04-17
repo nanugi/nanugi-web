@@ -15,6 +15,9 @@ export const SignupContainer = styled.div`
   padding-top: 100px;
 
   height: calc(100% - 60px);
+  overflow-y: scroll;
+
+  box-sizing: border-box;
 `;
 
 export const AfterSignupBox = styled.div`
