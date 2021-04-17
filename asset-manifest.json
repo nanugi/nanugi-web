@@ -1,24 +1,25 @@
 {
   "files": {
-    "main.css": "/nanugi-web/static/css/main.0924f0e8.chunk.css",
-    "main.js": "/nanugi-web/static/js/main.3e365aaf.chunk.js",
-    "main.js.map": "/nanugi-web/static/js/main.3e365aaf.chunk.js.map",
-    "runtime-main.js": "/nanugi-web/static/js/runtime-main.dbecca33.js",
-    "runtime-main.js.map": "/nanugi-web/static/js/runtime-main.dbecca33.js.map",
-    "static/js/2.e4d2bd46.chunk.js": "/nanugi-web/static/js/2.e4d2bd46.chunk.js",
-    "static/js/2.e4d2bd46.chunk.js.map": "/nanugi-web/static/js/2.e4d2bd46.chunk.js.map",
-    "static/js/3.c1f7a26b.chunk.js": "/nanugi-web/static/js/3.c1f7a26b.chunk.js",
-    "static/js/3.c1f7a26b.chunk.js.map": "/nanugi-web/static/js/3.c1f7a26b.chunk.js.map",
+    "main.css": "/nanugi-web/static/css/main.de0ff615.chunk.css",
+    "main.js": "/nanugi-web/static/js/main.9796dc1d.chunk.js",
+    "main.js.map": "/nanugi-web/static/js/main.9796dc1d.chunk.js.map",
+    "runtime-main.js": "/nanugi-web/static/js/runtime-main.60cad2f0.js",
+    "runtime-main.js.map": "/nanugi-web/static/js/runtime-main.60cad2f0.js.map",
+    "static/js/2.0bbbbe88.chunk.js": "/nanugi-web/static/js/2.0bbbbe88.chunk.js",
+    "static/js/2.0bbbbe88.chunk.js.map": "/nanugi-web/static/js/2.0bbbbe88.chunk.js.map",
+    "static/js/3.951be9ed.chunk.js": "/nanugi-web/static/js/3.951be9ed.chunk.js",
+    "static/js/3.951be9ed.chunk.js.map": "/nanugi-web/static/js/3.951be9ed.chunk.js.map",
     "index.html": "/nanugi-web/index.html",
-    "static/css/main.0924f0e8.chunk.css.map": "/nanugi-web/static/css/main.0924f0e8.chunk.css.map",
-    "static/js/2.e4d2bd46.chunk.js.LICENSE.txt": "/nanugi-web/static/js/2.e4d2bd46.chunk.js.LICENSE.txt",
+    "static/css/main.de0ff615.chunk.css.map": "/nanugi-web/static/css/main.de0ff615.chunk.css.map",
+    "static/js/2.0bbbbe88.chunk.js.LICENSE.txt": "/nanugi-web/static/js/2.0bbbbe88.chunk.js.LICENSE.txt",
+    "static/media/logo.093011a1.png": "/nanugi-web/static/media/logo.093011a1.png",
     "static/media/phone_mockup1.61bb399a.png": "/nanugi-web/static/media/phone_mockup1.61bb399a.png",
     "static/media/phone_mockup2.6ea1db70.png": "/nanugi-web/static/media/phone_mockup2.6ea1db70.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.dbecca33.js",
-    "static/js/2.e4d2bd46.chunk.js",
-    "static/css/main.0924f0e8.chunk.css",
-    "static/js/main.3e365aaf.chunk.js"
+    "static/js/runtime-main.60cad2f0.js",
+    "static/js/2.0bbbbe88.chunk.js",
+    "static/css/main.de0ff615.chunk.css",
+    "static/js/main.9796dc1d.chunk.js"
   ]
 }
