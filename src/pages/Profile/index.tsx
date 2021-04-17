@@ -70,6 +70,7 @@ function Profile() {
       <TopHeader pageName='프로필' />
       <ProfileUserNameText><u>{userName}</u>님의 프로필</ProfileUserNameText>
       <MyPostContainer
+        style={{ height: "calc(100% - 130px)"}}
         onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
           const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
           if (offsetHeight + scrollTop >= scrollHeight) {
