@@ -63,7 +63,7 @@ function Profile() {
       }
     }
     init();
-  }, []);
+  }, [userName]);
 
   return (
     <ProfilePage>
