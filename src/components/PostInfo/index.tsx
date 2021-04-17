@@ -47,14 +47,15 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
           }}
         >
           {post.nickname}
-        </PostInfoUserName>·<Moment fromNow>{post.createdAt}</Moment>
+        </PostInfoUserName>
+        ·<Moment fromNow>{post.createdAt}</Moment>
       </PostTag>
       <PostInfoKeyValueBox>
         <PostInfoKey>가격</PostInfoKey> {post.totalPrice}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
-        <PostInfoKey>나누기 수</PostInfoKey> {post.minParti} ~ {post.maxParti}개
+        <PostInfoKey>나누기 수</PostInfoKey> {post.minParti}개
       </PostInfoKeyValueBox>
     </PostInfoBox>
   );
