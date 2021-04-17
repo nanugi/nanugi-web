@@ -12,6 +12,7 @@ import {
   MainPage,
   MainContainer,
   MainHeader,
+  MainLogo,
   SearchBox,
   SearchInput,
   PostLi,
@@ -79,6 +80,7 @@ export default function Main() {
         }}
       >
         <MainHeader>
+          <MainLogo />
           <SearchBox>
             <SearchInput
               placeholder="검색어를 입력해주세요"

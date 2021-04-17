@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import logo from '../../assets/images/logo.png';
+
 export const MainPage = styled.div`
   width: 100%;
   height: 100%;
@@ -16,9 +18,20 @@ export const MainContainer = styled.div`
 `;
 
 export const MainHeader = styled.div`
+  display: flex;
+
   margin-bottom: 15px;
 
   width: 100%;
+`;
+
+export const MainLogo = styled.div`
+  width: 91px;
+  height: 36px;
+
+  background-image: url(${logo});
+  background-size: cover;
+  background-position: center center;
 `;
 
 export const SearchBox = styled.div`
