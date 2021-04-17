@@ -88,6 +88,13 @@ export const BtnBox = styled.div`
   margin-top: 16px;
 `;
 
+export const Closed = styled(Button)`
+  margin-bottom: 0px;
+
+  color: #bdbdbd;
+  background-color: #f2f2f2;
+`;
+
 export const ChatBtn = styled(Button)`
   margin-bottom: 0px;
 

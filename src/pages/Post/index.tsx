@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { userStore } from '../../container/user/store';
+import { fetchProfile, User } from '../../container/user';
 
 import history from '../../utils/browserHistory';
 
@@ -27,6 +27,7 @@ import {
   PostInfoBox,
   BtnBox,
   PostContent,
+  Closed,
   ChatBtn,
   FavsBtn,
   CloseBtn,
@@ -35,6 +36,7 @@ import {
 
 function Post() {
   // test
+  const [myUser, setMyUser] = useState<User>();
   const [isFavs, setIsFavs] = useState(false);
 
   const [post, setPost] = useState<postType>();
@@ -57,6 +59,19 @@ function Post() {
       if (res?.success) setImages(res.data.images);
     };
 
+    const myUserInit = async () => {
+      const res = await fetchProfile();
+      // console.log('res', res);
+      if (res?.success) {
+        setMyUser(res.data);
+        return;
+      }
+
+      history.push(`/login`);
+      // throw new Error('Fail to fetch Profile');
+    };
+
+    myUserInit();
     postInit();
     imageInit();
   }, [stringId]);
@@ -90,60 +105,72 @@ function Post() {
               <PostInfo post={postToTinyPost(post)} likedIconSize={16} />
               <BtnBox>
                 {/* 수정하기 자기가 쓴글인지 확인 */}
-                {userStore.profile?.nickname === post.user.nickname ? (
-                  <>
-                    <CloseBtn
-                      onClick={() => {
-                        if (confirm('나눔을 종료 하시겠습니까?')) {
-                          closePost(post.post_id);
-                        }
-                      }}
-                      style={{ marginRight: 11 }}
-                    >
-                      나누기 종료
-                    </CloseBtn>
-                    <ModifyBtn
-                      onClick={async () => {
-                        history.push({
-                          pathname: `/write/post`,
-                          state: {
-                            isModify: true,
-                            post,
-                            images,
-                          },
-                        });
-                      }}
-                    >
-                      수정하기
-                    </ModifyBtn>
-                  </>
+                {post._close ? (
+                  <Closed>종료된 나누기입니다</Closed>
                 ) : (
                   <>
-                    <ChatBtn
-                      onClick={() => {
-                        if (
-                          confirm(
-                            '나누기 개설자의 오픈채팅방으로 이동하시겠습니까?',
-                          )
-                        ) {
-                          window.open(post.detail.chatUrl);
-                        }
-                      }}
-                      style={{ marginRight: 11 }}
-                    >
-                      나누기 참여하기
-                    </ChatBtn>
-                    <FavsBtn
-                      className={isFavs ? 'on' : ''}
-                      onClick={async () => {
-                        const res = await toggleFavsByPostId(post.post_id);
-                        if (res?.success) {
-                          setIsFavs(!isFavs);
-                        }
-                      }}
-                    >
-                      관심 나누기
-                    </FavsBtn>
+                    {myUser?.nickname === post.user.nickname ? (
+                      <>
+                        <CloseBtn
+                          onClick={async () => {
+                            if (confirm('나눔을 종료 하시겠습니까?')) {
+                              const res = await closePost(post.post_id);
+                              if (res?.success) {
+                                setPost({ ...post, _close: true });
+                                return;
+                              }
+
+                              throw new Error('Fail to fetch closePost');
+                            }
+                          }}
+                          style={{ marginRight: 11 }}
+                        >
+                          나누기 종료
+                        </CloseBtn>
+                        <ModifyBtn
+                          onClick={async () => {
+                            history.push({
+                              pathname: `/write/post`,
+                              state: {
+                                isModify: true,
+                                post,
+                                images,
+                              },
+                            });
+                          }}
+                        >
+                          수정하기
+                        </ModifyBtn>
+                      </>
+                    ) : (
+                      <>
+                        <ChatBtn
+                          onClick={() => {
+                            if (
+                              confirm(
+                                '나누기 개설자의 오픈채팅방으로 이동하시겠습니까?',
+                              )
+                            ) {
+                              window.open(post.detail.chatUrl);
+                            }
+                          }}
+                          style={{ marginRight: 11 }}
+                        >
+                          나누기 참여하기
+                        </ChatBtn>
+                        <FavsBtn
+                          className={isFavs ? 'on' : ''}
+                          onClick={async () => {
+                            const res = await toggleFavsByPostId(post.post_id);
+                            if (res?.success) {
+                              setIsFavs(!isFavs);
+                            }
+                          }}
+                        >
+                          관심 나누기
+                        </FavsBtn>
+                      </>
+                    )}
                   </>
                 )}
               </BtnBox>

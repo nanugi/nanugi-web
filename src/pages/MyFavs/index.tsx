@@ -37,6 +37,7 @@ export default function MyFavs() {
                   onClick={() => {
                     history.push(`/post/${post.post_id}`);
                   }}
+                  isClose={post._close}
                   isFavs={false}
                 />
                 <PostInfo post={post} />

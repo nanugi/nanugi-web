@@ -13,14 +13,34 @@ export const PostImageBox = styled.div<{ url?: string }>`
 
   cursor: pointer;
 
+  overflow: hidden;
+
   ${(props) =>
     props.url
       ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
       : `background-color: #C4C4C4; opacity: 0.8;`}
-
   &.small {
     width: 135px;
     height: 135px;
+  }
+`;
+
+export const CloseCover = styled.div`
+  display: none;
+
+  width: 100%;
+  height: 100%;
+
+  &.on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+
+    background-color: rgba(0, 0, 0, 0.5);
   }
 `;
 

@@ -98,6 +98,7 @@ export default function Main() {
                   onClick={() => {
                     history.push(`/post/${post.post_id}`);
                   }}
+                  isClose={post._close}
                   // 이 부분 추가 수정 필요
                   isFavs={false}
                 />
