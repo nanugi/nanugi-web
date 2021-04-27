@@ -76,21 +76,5 @@ export const PostLi = styled.li`
 export const PostBox = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const PostImage = styled.div<{ url?: string }>`
-  position: relative;
-
-  margin-bottom: 10px;
-  border-radius: 10px;
-
-  width: 175px;
-  height: 185px;
-
-  cursor: pointer;
-
-  ${(props) =>
-    props.url
-      ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
-      : `background-color: #C4C4C4; opacity: 0.8;`}
+  width: 140px;
 `;

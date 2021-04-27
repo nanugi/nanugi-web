@@ -37,7 +37,6 @@ import {
 function Post() {
   // test
   const [myUser, setMyUser] = useState<User>();
-  const [isFavs, setIsFavs] = useState(false);
 
   const [post, setPost] = useState<postType>();
   const [images, setImages] = useState<imageType[]>([]);
@@ -159,11 +158,11 @@ function Post() {
                           나누기 참여하기
                         </ChatBtn>
                         <FavsBtn
-                          className={isFavs ? 'on' : ''}
+                          className={post._myfav ? 'on' : ''}
                           onClick={async () => {
                             const res = await toggleFavsByPostId(post.post_id);
                             if (res?.success) {
-                              setIsFavs(!isFavs);
+                              setPost({ ...post, _myfav: !post._myfav });
                             }
                           }}
                         >

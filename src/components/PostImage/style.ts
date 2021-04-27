@@ -8,8 +8,8 @@ export const PostImageBox = styled.div<{ url?: string }>`
 
   border-radius: 10px;
 
-  width: 175px;
-  height: 175px;
+  width: 140px;
+  height: 140px;
 
   cursor: pointer;
 

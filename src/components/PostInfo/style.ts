@@ -31,6 +31,10 @@ export const PostTitle = styled.div`
 
   font-size: 15px;
   font-weight: bold;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 export const PostTag = styled.div`
   margin-bottom: 5px;

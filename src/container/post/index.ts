@@ -17,6 +17,7 @@ export type postType = {
     liked: number;
   };
   _close: boolean;
+  _myfav: boolean;
 };
 
 export type tinyPostType = {

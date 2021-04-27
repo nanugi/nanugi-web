@@ -12,8 +12,8 @@ export default function PostListTemplate({ children }: PostListTemplateProps) {
 
   let colNum = 0;
 
-  if (windowSize.width < 440) colNum = 1;
-  else if (windowSize.width < 825) colNum = 2;
+  if (windowSize.width < 370) colNum = 1;
+  else if (windowSize.width < 735) colNum = 2;
   else colNum = 4;
 
   return <PostUl className={`col-${colNum}`}>{children}</PostUl>;
