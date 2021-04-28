@@ -44,6 +44,7 @@ function Routes() {
           path="/emailVerification/:code"
           component={EmailVerification}
         />
+        <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/find" component={Find} />
         <Route exact path="/policies" component={PolicyPage} />
 
@@ -52,10 +53,8 @@ function Routes() {
         <AuthRoute exact path="/post/:id" component={Post} />
         <AuthRoute exact path="/write/post" component={PostWrite} />
 
-        <AuthRoute exact path="/mypage" component={MyPage} />
         <AuthRoute exact path="/mypage/posts" component={MyPost} />
         <AuthRoute exact path="/mypage/favs" component={MyFavs} />
-
         <AuthRoute exact path="/mypage/edit" component={ProfileEditPage} />
         <AuthRoute exact path="/cs" component={CustomerServicePage} />
 
