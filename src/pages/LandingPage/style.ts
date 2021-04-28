@@ -14,7 +14,6 @@ export const PageContainer = styled.div<{ height: number, color?: string }>`
 `;
 
 export const Page1Title = styled.div`
-  font-family: Noto Sans KR;
   font-weight: bolder;
   color: white;
   text-align: center;
@@ -22,8 +21,16 @@ export const Page1Title = styled.div`
   padding-top: 12px;
 `;
 
+export const Page1Logo = styled.img`
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 50%;
+  width: 250px;
+  height: 84px;
+`;
+
 export const Page1Desc = styled.div`
-  font-family: Noto Sans KR;
   padding-left: 10px;
   padding-right: 10px;
   color: white;
@@ -33,7 +40,6 @@ export const Page1Desc = styled.div`
 `
 
 export const Page2Title = styled.div`
-  font-family: Noto Sans KR;
   font-weight: bold;
   color: white;
   text-align: left;
@@ -45,7 +51,6 @@ export const Page2Title = styled.div`
 `;
 
 export const Page3Title = styled.div`
-  font-family: Noto Sans KR;
   font-weight: bold;
   color: #11A656;
   text-align: center;
@@ -57,7 +62,6 @@ export const Page3Title = styled.div`
 `;
 
 export const Page3Desc = styled.div`
-  font-family: Noto Sans KR;
   color: black;
   text-align: center;
   font-size: 15px;
