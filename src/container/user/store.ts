@@ -16,7 +16,7 @@ class UserStore {
       this.profile = res?.data ?? null;
       this.saveProfile()
     } catch (e) {
-      console.log(e)
+      return false
     }
   }
 
