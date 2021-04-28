@@ -14,9 +14,10 @@ class UserStore {
       const res = await fetchProfile();
       if (!res?.success) throw new Error('Fail to fetch Profile');
       this.profile = res?.data ?? null;
-      this.saveProfile()
+      this.saveProfile();
+      return true;
     } catch (e) {
-      return false
+      return false;
     }
   }
 
