@@ -187,7 +187,7 @@ function Signup() {
             <Input
               autoComplete="off"
               name="nickname"
-              placeholder="이름"
+              placeholder="닉네임"
               value={nickname}
               onChange={changeState}
             />

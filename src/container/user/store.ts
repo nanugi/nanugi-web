@@ -6,6 +6,7 @@ class UserStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.init()
   }
 
   async fetchProfile() {
@@ -13,8 +14,9 @@ class UserStore {
       const res = await fetchProfile();
       if (!res?.success) throw new Error('Fail to fetch Profile');
       this.profile = res?.data ?? null;
+      this.saveProfile()
     } catch (e) {
-      alert(e);
+      console.log(e)
     }
   }
 
@@ -22,11 +24,23 @@ class UserStore {
     try {
       logOut();
       this.profile = null;
+      sessionStorage.removeItem('profile')
       return true;
     } catch (e) {
       alert(e);
       return false;
     }
+  }
+
+  saveProfile() {
+    if (this.profile)
+      sessionStorage.setItem('profile', JSON.stringify(this.profile))
+  }
+
+  init() {
+    const savedProfile = sessionStorage.getItem('profile')
+    if (savedProfile == null) this.profile = null
+    else this.profile = JSON.parse(savedProfile)
   }
 }
 

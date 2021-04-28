@@ -28,7 +28,7 @@ export const logOut = () => {
 
 export const updateProfile = async (name: string) => {
   const res = await callApi.post<{ name: string }, BaseResponse<User>>(
-    '/user',
+    'user',
     {
       name,
     },

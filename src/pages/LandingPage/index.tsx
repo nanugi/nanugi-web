@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { LandingPagePage, Page1Desc, Page1Title, Page2Title, Page3Desc, Page3Title, PageContainer, StartBtn } from './style';
+import { LandingPagePage, Page1Desc, Page1Logo, Page1Title, Page2Title, Page3Desc, Page3Title, PageContainer, StartBtn } from './style';
 
 import logo from './logo.png'
 import mockUpImage1 from './phone_mockup1.png'
@@ -10,17 +10,9 @@ import mockUpImage2 from './phone_mockup2.png'
 function Page1Content() {
   return (
     <>
-      <img
+      <Page1Logo
         alt='logo'
         src={logo}
-        width={250}
-        height={84}
-        style={{
-          display: 'block',
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          paddingTop: '50%',
-        }}
       />
       <Page1Title>
         함께 나누는<br />친환경 소비 플랫폼
