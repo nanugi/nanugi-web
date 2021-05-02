@@ -4,7 +4,27 @@ export const EmailVerificationPage = styled.div`
   width: 100vw;
   height: 100vh;
 
+  position: fixed;
   overflow: hidden;
+`;
+
+export const EmailVerificationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+`;
+
+export const Title = styled.div`
+  color: #11a656;
+  font-size: 35px;
+  font-weight: bold;
+`;
+export const SubTitle = styled.div`
+  font-size: 20px;
 `;
 
 export const ContentsBox = styled.div`
@@ -50,16 +70,18 @@ export const SlothVideo = styled.video`
 `;
 
 export const Btn = styled.div`
-  color: #fff;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
 
-  height: 40px;
+  border-radius: 10px;
+  padding: 0px 110px;
+  height: 50px;
 
-  transition: all 0.2s;
+  color: #11a656;
+  font-size: 17px;
+  font-weight: bold;
+
+  background-color: #f2f2f2;
 
   cursor: pointer;
-
-  &:hover {
-    font-size: 22px;
-  }
 `;
