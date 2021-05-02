@@ -13,7 +13,7 @@ export const MainPage = styled.div`
 export const MainContainer = styled.div`
   padding: 20px 27px;
 
-  height: calc(100% - 60px);
+  height: calc(100% - 100px);
   overflow-y: scroll;
 `;
 
