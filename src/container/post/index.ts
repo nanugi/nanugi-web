@@ -60,6 +60,11 @@ export const getPosts = async function (page: number) {
   return res;
 };
 
+export const searchPosts = async function (page: number, keyword: string) {
+  const res = await callApi.get<{}, getPostsRes>(`posts?page=${page}&search=${keyword}`);
+  return res;
+};
+
 // getPost
 export type getPostRes = {
   data: postType;

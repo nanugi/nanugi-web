@@ -26,6 +26,7 @@ import MyFavs from '../../pages/MyFavs';
 // default
 import Empty from '../../pages/Enpty';
 import Profile from "../../pages/Profile";
+import Search from '../../pages/Search'
 
 function Routes() {
   const staySignedIn = callCookie.get('staySignedIn');
@@ -37,6 +38,7 @@ function Routes() {
         {/* Route */}
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/main" component={Main} />
+        <Route exact path="/main/:query" component={Search} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route
