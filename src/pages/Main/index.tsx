@@ -45,13 +45,7 @@ export default function Main() {
       setPosts([...posts, ...newPosts]);
       setCurrentPageInfo({ data: res.data });
     }
-  }, [currentPageInfo, posts, nextPageLoading]);
-
-  const enterListener = (e: any) => {
-    if (e.key === 'Enter') {
-      history.push(`/main/${searchWord}`)
-    }
-  }
+  }, [currentPageInfo, posts, nextPageLoading])
 
   useEffect(() => {
     async function init() {
@@ -63,6 +57,11 @@ export default function Main() {
       // userStore.fetchProfile().then();
     }
     init();
+    const enterListener = (e: any) => {
+      if (e.key === 'Enter') {
+        history.push(`/main/${searchWord}`)
+      }
+    }
     addEventListener('keydown', enterListener)
     return () => {
       removeEventListener('keydown', enterListener)

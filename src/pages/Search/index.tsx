@@ -31,7 +31,7 @@ export default function Search() {
       setPosts([...posts, ...newPosts]);
       setCurrentPageInfo({ data: res.data });
     }
-  }, [currentPageInfo, posts, nextPageLoading, searchWord, query]);
+  }, [currentPageInfo, posts, nextPageLoading, searchWord]);
 
   const loadSearchQuery = async (page: number, word?: string) => {
     const res = await searchPosts(page, word ?? "");
@@ -41,14 +41,13 @@ export default function Search() {
     }
   }
 
-  const enterListener = (event: any) => {
-    if (event.key === 'Enter' && searchWord !== query) {
-      history.push(`/main/${searchWord}`)
-    }
-  }
-
   useEffect(() => {
     loadSearchQuery(0, query)
+    const enterListener = (event: any) => {
+      if (event.key === 'Enter' && searchWord !== query) {
+        history.push(`/main/${searchWord}`)
+      }
+    }
     addEventListener('keydown', enterListener)
     return () => {
       removeEventListener('keydown', enterListener)
