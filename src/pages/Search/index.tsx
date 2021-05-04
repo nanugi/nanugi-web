@@ -1,77 +1,63 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import history from '../../utils/browserHistory'
-
-import { getPosts, getPostsRes, tinyPostType } from '../../container/post'
-
-import NavigationBar from '../../components/NavigationBar'
+import { getPostsRes, searchPosts, tinyPostType } from '../../container/post'
 import PostInfo from '../../components/PostInfo'
 import PostImage from '../../components/PostImage'
 import PostListTemplate from '../../components/PostListTemplate'
+import { MainLogo, PostBox, PostLi, SearchBox, SearchContainer, SearchHeader, SearchInput, SearchPage, } from './style'
 
-import { MainContainer, MainHeader, MainLogo, MainPage, PostBox, PostLi, SearchBox, SearchInput, } from './style'
-// import { userStore } from '../../container/user/store';
-
-export default function Main() {
+export default function Search() {
   const [posts, setPosts] = useState<tinyPostType[]>([]);
   const [currentPageInfo, setCurrentPageInfo] = useState<getPostsRes>();
   const [nextPageLoading, setNextPageLoading] = useState(false);
-  const [searchWord, setSearchWord] = useState('')
+  const { query } = useParams<{ query: string }>();
+  const [searchWord, setSearchWord] = useState(query)
 
   const nextPage = useCallback(async () => {
-    // console.log('nextPage 가져오세요');
-
-    if (!currentPageInfo?.data.next) {
-      // console.log('next 가 없다요');
+    if (!currentPageInfo?.data.next || nextPageLoading) {
       return;
     }
-
-    if (nextPageLoading) {
-      // console.log('가져오는 중...');
-      return;
-    }
-
     setNextPageLoading(true);
-    const res = await getPosts(currentPageInfo.data.page + 1);
+    const res = await searchPosts(currentPageInfo.data.page + 1, searchWord);
     if (res?.success) {
       setNextPageLoading(false);
-
       const alreadyImportedPosts_id = currentPageInfo.data.posts.map(
         (post) => post.post_id,
       );
       const newPosts = res.data.posts.filter(
         (post) => !alreadyImportedPosts_id.includes(post.post_id),
       );
-
       setPosts([...posts, ...newPosts]);
       setCurrentPageInfo({ data: res.data });
     }
-  }, [currentPageInfo, posts, nextPageLoading]);
+  }, [currentPageInfo, posts, nextPageLoading, searchWord, query]);
 
-  const enterListener = (e: any) => {
-    if (e.key === 'Enter') {
+  const loadSearchQuery = async (page: number, word?: string) => {
+    const res = await searchPosts(page, word ?? "");
+    if (res?.success) {
+      setPosts(res.data.posts);
+      setCurrentPageInfo({ data: res.data });
+    }
+  }
+
+  const enterListener = (event: any) => {
+    if (event.key === 'Enter' && searchWord !== query) {
       history.push(`/main/${searchWord}`)
     }
   }
 
   useEffect(() => {
-    async function init() {
-      const res = await getPosts(0);
-      if (res?.success) {
-        setPosts(res.data.posts);
-        setCurrentPageInfo({ data: res.data });
-      }
-      // userStore.fetchProfile().then();
-    }
-    init();
+    loadSearchQuery(0, query)
     addEventListener('keydown', enterListener)
     return () => {
       removeEventListener('keydown', enterListener)
     }
-  }, [searchWord]);
+  }, [searchWord, query]);
 
   return (
-    <MainPage>
-      <MainContainer
+    <SearchPage>
+      <SearchContainer
         onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
           const { offsetHeight, scrollHeight, scrollTop } = e.currentTarget;
           if (offsetHeight + scrollTop >= scrollHeight) {
@@ -79,8 +65,8 @@ export default function Main() {
           }
         }}
       >
-        <MainHeader>
-          <MainLogo />
+        <SearchHeader>
+          <MainLogo onClick={() => history.push('/main')} />
           <SearchBox>
             <SearchInput
               placeholder="검색어를 입력해주세요"
@@ -88,7 +74,7 @@ export default function Main() {
               onChange={({ currentTarget }) => setSearchWord(currentTarget.value)}
             />
           </SearchBox>
-        </MainHeader>
+        </SearchHeader>
         <PostListTemplate>
           {posts.map((post) => (
             <PostLi key={post.post_id}>
@@ -108,8 +94,7 @@ export default function Main() {
             </PostLi>
           ))}
         </PostListTemplate>
-      </MainContainer>
-      <NavigationBar currnetUrl="main" />
-    </MainPage>
+      </SearchContainer>
+    </SearchPage>
   );
 }
