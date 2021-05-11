@@ -66,7 +66,7 @@ export default function Main() {
     return () => {
       removeEventListener('keydown', enterListener)
     }
-  }, [searchWord]);
+  }, []);
 
   return (
     <MainPage>

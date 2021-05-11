@@ -52,7 +52,7 @@ export default function Search() {
     return () => {
       removeEventListener('keydown', enterListener)
     }
-  }, [searchWord, query]);
+  }, []);
 
   return (
     <SearchPage>
