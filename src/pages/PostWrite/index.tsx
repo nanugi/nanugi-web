@@ -22,11 +22,12 @@ import useImageInputForm from '../../components/useImageInputForm';
 import { addImage, deleteImage, imageType } from '../../container/image';
 
 function PostWrite() {
-  const location = useLocation<{
-    isModify: boolean;
-    post: postType;
-    images: imageType[];
-  }>();
+  const location =
+    useLocation<{
+      isModify: boolean;
+      post: postType;
+      images: imageType[];
+    }>();
   const isModify = location.state?.isModify;
 
   const [postField, setPostField] = useState({
@@ -73,6 +74,7 @@ function PostWrite() {
     // console.log('createPost!!', res);
 
     if (res?.success) {
+      // console.log('createPost!! 성공', res);
       setPostField({
         title: '',
         content: '',
@@ -96,6 +98,7 @@ function PostWrite() {
       // console.log('addImageRes', addImageRes);
 
       if (!addImageRes.map((r) => Boolean(r?.success)).includes(false)) {
+        // console.log('addImageRes 성공', addImageRes);
         setImageFormField([]);
 
         target.disabled = false;
@@ -106,6 +109,7 @@ function PostWrite() {
         return;
       }
 
+      // console.log('addImageRes 실패', addImageRes);
       alert(JSON.stringify(addImageRes));
 
       target.disabled = false;
@@ -113,6 +117,7 @@ function PostWrite() {
       return;
     }
 
+    // console.log('addImageRes 실패', res);
     alert(res?.msg);
 
     target.disabled = false;
@@ -159,12 +164,13 @@ function PostWrite() {
       // console.log('deleteImageRes', deleteImageRes);
 
       const addImageResSuccess = !addImageRes
-        .map((r) => Boolean(r?.success))
+        .map((r) => (r === null ? true : Boolean(r?.success)))
         .includes(false);
       const deleteImageResSuccess = !deleteImageRes
-        .map((r) => Boolean(r?.success))
+        .map((r) => (r === null ? true : Boolean(r?.success)))
         .includes(false);
 
+      // console.log(addImageResSuccess, deleteImageResSuccess);
       // 수정 성공
       if (addImageResSuccess && deleteImageResSuccess) {
         setPostField({

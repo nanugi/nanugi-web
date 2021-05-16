@@ -53,9 +53,9 @@ export default function useImageInputForm(maxSize: number) {
           accept="image/*"
           onChange={async (e) => {
             if (e.target.files) {
-              const _files = Array.from(e.target.files);
+              let _files = Array.from(e.target.files);
 
-              _files.slice(0, maxSize - imageFormField.length);
+              _files = _files.slice(0, maxSize - imageFormField.length);
 
               const readAsDataURL = (file: File) =>
                 new Promise<string>((resolve, reject) => {

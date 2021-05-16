@@ -7,8 +7,8 @@ export interface BaseResponse<T> {
 }
 
 export interface User {
-    nickname: string
-    uid: string
+  nickname: string;
+  uid: string;
 }
 
 export const fetchProfile = async () => {
@@ -26,11 +26,11 @@ export const logOut = () => {
   callCookie.delete('jwt');
 };
 
-export const updateProfile = async (name: string) => {
-  const res = await callApi.post<{ name: string }, BaseResponse<User>>(
+export const updateProfile = async (nickname: string) => {
+  const res = await callApi.put<{ nickname: string }, BaseResponse<User>>(
     'user',
     {
-      name,
+      nickname,
     },
   );
   return res;
@@ -43,7 +43,7 @@ export const getMyposts = async function (page: number) {
   return res;
 };
 
-export const getUser = async function(id: string) {
+export const getUser = async function (id: string) {
   const res = await callApi.get<{}, BaseResponse<User>>(`users/${id}`);
   return res;
 };
