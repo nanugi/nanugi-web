@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
 import TopHeader from '../../components/TopHeader'
+import { ContactButton, CustomerServicePagePage } from './style'
 
 function CustomerServicePage() {
 
@@ -8,10 +8,15 @@ function CustomerServicePage() {
   const [phone, setPhone] = useState('')
   const [content, setContent] = useState('') */
 
+  const onClickPlusFriend = () => {
+    if (!confirm('카카오 플러스친구로 연결합니다')) return
+    window.open('https://pf.kakao.com/_iJUEs')
+  }
+
   return (
-    <Container maxWidth='sm'>
+    <CustomerServicePagePage>
       <TopHeader pageName='문의하기'/>
-      <div>준비중입니다...</div>
+      <ContactButton onClick={onClickPlusFriend}>카카오로 문의</ContactButton>
       {/* <Typography variant='h6'>
         문의하기
       </Typography>
@@ -63,7 +68,7 @@ function CustomerServicePage() {
           보내기
         </Button>
       </Box> */}
-    </Container>
+    </CustomerServicePagePage>
   )
 }
 
