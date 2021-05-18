@@ -5,7 +5,7 @@ import plus from '../../assets/images/icon/plus.png';
 export const PostInfoBox = styled.div``;
 
 export const PostLiked = styled.div`
-  display: flex;
+  display: inline-block;
   align-items: center;
 
   height: 18px;
@@ -16,7 +16,7 @@ export const PostLiked = styled.div`
 export const PostLikedIcon = styled.div<{ likedIconSize: 16 | 8 | undefined }>`
   margin-right: 4px;
   border-radius: 16px;
-
+  display: inline-block;
   width: ${(props) => (props.likedIconSize ? props.likedIconSize : 8)}px;
   height: ${(props) => (props.likedIconSize ? props.likedIconSize : 8)}px;
 
@@ -25,6 +25,15 @@ export const PostLikedIcon = styled.div<{ likedIconSize: 16 | 8 | undefined }>`
   background-size: cover;
   background-position: center center;
 `;
+
+export const PostViewd = styled.div`
+  margin-left: 8px;
+  display: inline-block;
+  align-items: center;
+  height: 18px;
+  color: #828282;
+  font-size: 11px;
+`
 
 export const PostTitle = styled.div`
   margin-bottom: 5px;

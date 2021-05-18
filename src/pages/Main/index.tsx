@@ -57,6 +57,9 @@ export default function Main() {
       // userStore.fetchProfile().then();
     }
     init();
+  }, []);
+
+  useEffect(() => {
     const enterListener = (e: any) => {
       if (e.key === 'Enter') {
         history.push(`/main/${searchWord}`)
@@ -66,7 +69,7 @@ export default function Main() {
     return () => {
       removeEventListener('keydown', enterListener)
     }
-  }, []);
+  }, [searchWord])
 
   return (
     <MainPage>

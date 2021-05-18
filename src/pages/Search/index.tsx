@@ -33,16 +33,18 @@ export default function Search() {
     }
   }, [currentPageInfo, posts, nextPageLoading, searchWord]);
 
-  const loadSearchQuery = async (page: number, word?: string) => {
-    const res = await searchPosts(page, word ?? "");
-    if (res?.success) {
-      setPosts(res.data.posts);
-      setCurrentPageInfo({ data: res.data });
+  useEffect(() => {
+    const loadSearchQuery = async (page: number, word?: string) => {
+      const res = await searchPosts(page, word ?? "");
+      if (res?.success) {
+        setPosts(res.data.posts);
+        setCurrentPageInfo({ data: res.data });
+      }
     }
-  }
+    loadSearchQuery(0, query)
+  }, []);
 
   useEffect(() => {
-    loadSearchQuery(0, query)
     const enterListener = (event: any) => {
       if (event.key === 'Enter' && searchWord !== query) {
         history.push(`/main/${searchWord}`)
@@ -52,7 +54,7 @@ export default function Search() {
     return () => {
       removeEventListener('keydown', enterListener)
     }
-  }, []);
+  }, [searchWord])
 
   return (
     <SearchPage>

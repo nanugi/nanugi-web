@@ -18,6 +18,7 @@ import {
   PostInfoKeyValueBox,
   PostInfoKey,
   PostInfoUserName,
+  PostViewd,
 } from './style';
 
 moment.locale('ko');
@@ -33,6 +34,9 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
         <PostLikedIcon likedIconSize={likedIconSize} />
         {post.liked}
       </PostLiked>
+      <PostViewd>
+        조회 {post.view}
+      </PostViewd>
       <PostTitle
         onClick={() => {
           history.push(`/post/${post.post_id}`);
