@@ -3,11 +3,15 @@ import { useLocation } from 'react-router-dom';
 import history from '../../utils/browserHistory';
 
 import { createPost, modifyPost, postType } from '../../container/post';
+import { addImage, deleteImage, imageType } from '../../container/image';
 
 import TopHeader from '../../components/TopHeader';
+import Spinner from '../../components/Spinner';
 
 import {
   PostWritePage,
+  LoadingModal,
+  LoadingModalText,
   PostWriteForm,
   // ImageForm,
   // ImageInput,
@@ -19,7 +23,7 @@ import {
   ModifyBtn,
 } from './style';
 import useImageInputForm from '../../components/useImageInputForm';
-import { addImage, deleteImage, imageType } from '../../container/image';
+
 
 function PostWrite() {
   const location =
@@ -29,6 +33,8 @@ function PostWrite() {
       images: imageType[];
     }>();
   const isModify = location.state?.isModify;
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [postField, setPostField] = useState({
     title: '',
@@ -235,6 +241,16 @@ function PostWrite() {
 
   return (
     <PostWritePage>
+      {loading ? (
+        <LoadingModal>
+          <LoadingModalText>
+            업로드중
+          </LoadingModalText>
+          <Spinner />
+        </LoadingModal>
+      ) : (
+        <></>
+      )}
       <TopHeader pageName="나누기 개설" />
       <PostWriteForm>
         {FormComponent}
@@ -323,11 +339,25 @@ function PostWrite() {
           </InputBox>
         </PostInfoBox> */}
         {isModify ? (
-          <ModifyBtn type="button" onClick={onClickModifyBtn}>
+          <ModifyBtn
+            type="button"
+            onClick={async (e) => {
+              setLoading(true);
+              await onClickModifyBtn(e);
+              setLoading(false);
+            }}
+          >
             나누기 수정 완료
           </ModifyBtn>
         ) : (
-          <WriteBtn type="button" onClick={onClickWriteBtn}>
+          <WriteBtn
+            type="button"
+            onClick={async (e) => {
+              setLoading(true);
+              await onClickWriteBtn(e);
+              setLoading(false);
+            }}
+          >
             나누기 개설 완료
           </WriteBtn>
         )}

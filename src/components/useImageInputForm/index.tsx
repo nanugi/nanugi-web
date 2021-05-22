@@ -2,11 +2,13 @@ import React, { useMemo, useRef, useState } from 'react';
 
 import {
   CurrentImageBox,
+  CurrentImage,
   CurrentImageDelBtn,
   Image,
   AddImageBtnBox,
   AddImageBtnInfo,
   Icon,
+  ComponentScroll
 } from './style';
 
 import camera from '../../assets/images/icon/camera.png';
@@ -19,7 +21,7 @@ export default function useImageInputForm(maxSize: number) {
   const CurrentImageList = useMemo(
     () =>
       imagePreviewUrl.map((url, key) => (
-        <CurrentImageBox key={key}>
+        <CurrentImageBox>
           <CurrentImageDelBtn
             onClick={() => {
               setImageFormField(
@@ -27,10 +29,10 @@ export default function useImageInputForm(maxSize: number) {
               );
               setImagePreviewUrl(imagePreviewUrl.filter((u) => u !== url));
             }}
-          >
-            ⛌
-          </CurrentImageDelBtn>
-          <Image url={url} />
+          />
+          <CurrentImage key={key}>
+            <Image url={url} />
+          </CurrentImage>
         </CurrentImageBox>
       )),
     [imageFormField, imagePreviewUrl],
@@ -98,17 +100,14 @@ export default function useImageInputForm(maxSize: number) {
 
   const FormComponent = useMemo(
     () => (
-      <div
+      <ComponentScroll
         style={{
-          marginBottom: '19px',
-          width: '100%',
-          overflowX: 'scroll',
-          whiteSpace: 'nowrap',
+
         }}
       >
         {AddImageBtn}
         {CurrentImageList}
-      </div>
+      </ComponentScroll>
     ),
     [AddImageBtn, CurrentImageList],
   );

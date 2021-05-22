@@ -81,25 +81,29 @@ function Post() {
       <PostContainer>
         {post ? (
           <>
-            <PostImageContainer>
-              <PostImageBox
-                imagesLength={images.length}
-                isAlone={images.length === 1}
-              >
-                {images.length ? (
-                  images.map((image, key) => (
-                    <PostImage
-                      style={{ display: 'inline-flex' }}
-                      key={key}
-                      url={image.url}
-                      isFirst={key === 0}
-                    />
-                  ))
-                ) : (
-                  <PostEmptyImage />
-                )}
-              </PostImageBox>
-            </PostImageContainer>
+            {images.length ? (
+              <PostImageContainer>
+                <PostImageBox
+                  imagesLength={images.length}
+                  isAlone={images.length === 1}
+                >
+                  {images.length ? (
+                    images.map((image, key) => (
+                      <PostImage
+                        style={{ display: 'inline-flex' }}
+                        key={key}
+                        url={image.url}
+                        isFirst={key === 0}
+                      />
+                    ))
+                  ) : (
+                    <PostEmptyImage />
+                  )}
+                </PostImageBox>
+              </PostImageContainer>
+            ) : (
+              <></>
+            )}
             <PostInfoBox>
               <PostInfo post={postToTinyPost(post)} likedIconSize={16} />
               <BtnBox>

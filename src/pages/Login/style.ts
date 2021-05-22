@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 import { Page, Button } from '../common';
 
+import checkbox from '../../assets/images/icon/checkbox.png';
+import checkboxOn from '../../assets/images/icon/checkbox_on.png';
+
 export const LoginPage = styled.div`
   ${Page}
 `;
@@ -12,7 +15,7 @@ export const StaySignedInBox = styled.div`
 
   cursor: pointer;
 `;
-export const StaySignedInBtn = styled.button`
+export const StaySignedInBtn = styled.div`
   padding: 0px;
   border: solid 1px #dadada;
   margin-right: 8px;
@@ -29,6 +32,10 @@ export const StaySignedInBtn = styled.button`
 
   background-color: #fff;
 
+  background-image: url(${checkbox});
+  background-size: cover;
+  background-position: center center;
+
   transition: all 0.5s;
 
   &:focus {
@@ -37,6 +44,9 @@ export const StaySignedInBtn = styled.button`
   &.on {
     border: none;
     background-color: #11a656;
+    background-image: url(${checkboxOn});
+    background-size: cover;
+    background-position: center center;
   }
 `;
 export const StaySignedInLabel = styled.div`

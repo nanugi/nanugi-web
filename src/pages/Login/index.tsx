@@ -96,9 +96,7 @@ function Login() {
             setIsStaySignedIn(!isStaySignedIn);
           }}
         >
-          <StaySignedInBtn type="button" className={isStaySignedIn ? 'on' : ''}>
-            ✔
-          </StaySignedInBtn>
+          <StaySignedInBtn className={isStaySignedIn ? 'on' : ''} />
           <StaySignedInLabel>로그인 상태 유지</StaySignedInLabel>
         </StaySignedInBox>
 

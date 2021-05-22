@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import history from '../../utils/browserHistory'
 import { getPostsRes, searchPosts, tinyPostType } from '../../container/post'
+
+import NavigationBar from '../../components/NavigationBar'
 import PostInfo from '../../components/PostInfo'
 import PostImage from '../../components/PostImage'
 import PostListTemplate from '../../components/PostListTemplate'
@@ -34,6 +36,8 @@ export default function Search() {
   }, [currentPageInfo, posts, nextPageLoading, searchWord]);
 
   useEffect(() => {
+    setSearchWord(query);
+
     const loadSearchQuery = async (page: number, word?: string) => {
       const res = await searchPosts(page, word ?? "");
       if (res?.success) {
@@ -42,7 +46,7 @@ export default function Search() {
       }
     }
     loadSearchQuery(0, query)
-  }, []);
+  }, [query]);
 
   useEffect(() => {
     const enterListener = (event: any) => {
@@ -55,6 +59,7 @@ export default function Search() {
       removeEventListener('keydown', enterListener)
     }
   }, [searchWord])
+
 
   return (
     <SearchPage>
@@ -96,6 +101,7 @@ export default function Search() {
           ))}
         </PostListTemplate>
       </SearchContainer>
+      <NavigationBar currnetUrl="main" />
     </SearchPage>
   );
 }

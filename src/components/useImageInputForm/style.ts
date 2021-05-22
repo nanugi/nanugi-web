@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import imageDeleteBtn from '../../assets/images/icon/image_delete_btn.png';
+
 export const CurrentImageBox = styled.div`
   position: relative;
 
@@ -11,13 +13,19 @@ export const CurrentImageBox = styled.div`
 
   width: 100px;
   height: 100px;
+`;
+export const CurrentImage = styled.div`
+  border-radius: 10px;
+  
+  width: 100px;
+  height: 100px;
 
   overflow: hidden;
 `;
 export const CurrentImageDelBtn = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -10px;
+  right: -10px;
 
   display: flex;
   justify-content: center;
@@ -28,9 +36,13 @@ export const CurrentImageDelBtn = styled.div`
   width: 20px;
   height: 20px;
 
-  background-color: #fff;
+  background-image: url(${imageDeleteBtn});
+  background-size: cover;
+  background-position: center center;
 
-  z-index: 1;
+  z-index: 1000;
+
+  cursor: pointer;
 `;
 export const Image = styled.div<{ url: string }>`
   /* margin-left: 10px;
@@ -40,7 +52,7 @@ export const Image = styled.div<{ url: string }>`
 
   background-size: cover;
   background-position: center center;
-  background-image: ${(props) => `url(${props.url})`};
+  background-image: ${props => `url(${props.url})`};
 `;
 
 export const AddImageBtnBox = styled.div`
@@ -53,6 +65,8 @@ export const AddImageBtnBox = styled.div`
   height: 100px;
 
   vertical-align: top;
+
+  cursor: pointer;
 `;
 export const AddImageBtnInfo = styled.div`
   display: flex;
@@ -70,5 +84,21 @@ export const Icon = styled.div<{ url?: string }>`
 
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: ${(props) => `url(${props.url})`};
+  background-image: ${props => `url(${props.url})`};
+`;
+
+export const ComponentScroll = styled.div`
+  margin-bottom: 19px;
+  width: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  padding-top: 10px;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `;

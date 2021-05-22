@@ -30,6 +30,8 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
+  position: relative;
+
   margin-bottom: 18px;
 
   border: none;
@@ -43,7 +45,18 @@ export const Button = styled.button`
 
   cursor: pointer;
 
-  &.on {
+  &:active {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background-color: rgba(0, 0, 0, 0.2);
+    }
     /* 클릭 시 컬러 */
   }
 `;

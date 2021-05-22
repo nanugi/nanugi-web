@@ -9,6 +9,28 @@ export const PostWritePage = styled.div`
   position: fixed;
   overflow: hidden;
 `;
+export const LoadingModal = styled.div`
+  position: absolute;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  z-index: 10;
+`;
+export const LoadingModalText = styled.div`
+  margin-bottom: 10px;
+
+  color: #e2e2e2;
+  font-size: 17px;
+  font-weight: bold;
+`;
 
 export const PostWriteForm = styled.div`
   display: flex;

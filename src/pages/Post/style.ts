@@ -17,6 +17,13 @@ export const PostContainer = styled.div`
 
 export const PostImageContainer = styled.div`
   overflow-x: scroll;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
 type PostImageBoxProps = {
@@ -25,11 +32,10 @@ type PostImageBoxProps = {
 };
 
 export const PostImageBox = styled.div<PostImageBoxProps>`
-  width: ${(props) =>
-    `${414 * props.imagesLength + 10 * props.imagesLength - 1}`}px;
+  width: ${props => `${414 * props.imagesLength + 10 * props.imagesLength - 1}`}px;
   height: 350px;
 
-  ${(props) =>
+  ${props =>
     props.isAlone
       ? `
         display: flex;
@@ -42,14 +48,13 @@ export const PostImageBox = styled.div<PostImageBoxProps>`
 export const PostImage = styled.div<{ url?: string; isFirst?: boolean }>`
   position: relative;
 
-  margin-right: ${(props) => (props.isFirst ? '10px' : '0px')};
+  margin-right: ${props => (props.isFirst ? '10px' : '0px')};
 
   width: 414px;
   height: 350px;
 
-  cursor: pointer;
 
-  ${(props) =>
+  ${props =>
     props.url
       ? `background-image: url(${props.url}); background-size: cover; background-position: center center;`
       : `background: rgba(229, 229, 229, 0.5); opacity: 0.8;`}
@@ -63,7 +68,6 @@ export const PostEmptyImage = styled.div`
 
   height: 350px;
 
-  cursor: pointer;
 `;
 
 /*
@@ -102,12 +106,15 @@ export const ChatBtn = styled(Button)`
   background-color: #11a656;
 `;
 
+export const SignupLink = styled(Button)`
+  margin-bottom: 13px;
+`;
+
 export const FavsBtn = styled(Button)`
   margin-bottom: 0px;
 
-  color: #bdbdbd;
-
-  background-color: #f2f2f2;
+  border: solid 1px #11a656;
+  background-color: #ffffff;
 
   &.on {
     color: #11a656;
@@ -116,9 +123,8 @@ export const FavsBtn = styled(Button)`
 export const ModifyBtn = styled(Button)`
   margin-bottom: 0px;
 
-  color: #bdbdbd;
-
-  background-color: #f2f2f2;
+  border: solid 1px #11a656;
+  background-color: #ffffff;
 
   &.on {
     color: #11a656;

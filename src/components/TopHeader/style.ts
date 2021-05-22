@@ -25,6 +25,8 @@ export const BackBtn = styled.div`
   background-image: url(${leftArrow});
   background-repeat: no-repeat;
   background-position: center center;
+
+  cursor: pointer;
 `;
 
 export const PageName = styled.div`
