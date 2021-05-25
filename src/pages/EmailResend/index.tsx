@@ -21,6 +21,7 @@ function EmailResend() {
   const location = useLocation()
   const history = useHistory()
   const [email, setEmail] = useState('')
+
   useEffect(() => {
     setEmail((location.state as IEmailResend)?.email ?? "")
   }, [])
@@ -47,7 +48,10 @@ function EmailResend() {
       <ResendBtn
         type="button"
         onClick={async () => {
-          if (!email) return alert('유효하지 않은 이메일입니다.')
+          if (!email) {
+            alert('유효하지 않은 이메일입니다.')
+            return
+          }
           const res = await resendVerificationEmail({ email })
           alert(res?.success ? '인증메일을 다시 보냈습니다.' : res?.msg)
         }}
