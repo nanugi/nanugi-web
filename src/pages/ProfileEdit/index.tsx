@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { userStore } from '../../container/user/store'
 import { fetchProfile, resignUser, updateProfile } from '../../container/user'
 import TopHeader from '../../components/TopHeader'
-import { LinkBox, ProfileEditPagePage, SignOutText } from './style'
+import { FindPwLink, LinkBox, ProfileEditPagePage, SignOutText } from './style'
 import { Button, Input } from '../common'
 
 const ProfileEditPage = observer(() => {
@@ -62,6 +62,11 @@ const ProfileEditPage = observer(() => {
         변경 완료
       </Button>
       <LinkBox>
+        <FindPwLink
+          onClick={() => history.push('/find')}
+        >
+          비밀번호 변경
+        </FindPwLink>
         <SignOutText
           onClick={async () => {
             if (!confirm('정말 회원탈퇴하시겠습니까?')) return;
