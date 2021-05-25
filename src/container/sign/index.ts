@@ -62,3 +62,8 @@ export const setNewPassword = async (req: setNewPasswordReq) => {
   );
   return res;
 };
+
+export const resendVerificationEmail = async (req: sendCertcodeReq) => {
+  const res = await callApi.post<sendCertcodeReq, {}>('reverification', req);
+  return res;
+}

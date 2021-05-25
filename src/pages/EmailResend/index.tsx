@@ -11,6 +11,7 @@ import {
   ResendTextSpamHelp
 } from './style'
 import TopHeader from '../../components/TopHeader'
+import { resendVerificationEmail } from '../../container/sign'
 
 interface IEmailResend {
   email: string
@@ -43,7 +44,14 @@ function EmailResend() {
       <ResendText3 style={{ marginBottom: '90px' }}>
         로그인을 다시 시도해주세요.
       </ResendText3>
-      <ResendBtn type="button" onClick={() => {}}>
+      <ResendBtn
+        type="button"
+        onClick={async () => {
+          if (!email) return alert('유효하지 않은 이메일입니다.')
+          const res = await resendVerificationEmail({ email })
+          alert(res?.success ? '인증메일을 다시 보냈습니다.' : res?.msg)
+        }}
+      >
         인증메일 다시 보내기
       </ResendBtn>
       <HomeBtn type="button" onClick={() => history.push('/main')}>
