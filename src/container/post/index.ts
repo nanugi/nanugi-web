@@ -18,7 +18,7 @@ export type postType = {
   };
   _close: boolean;
   _myfav: boolean;
-  view: number;
+  view?: number;
 };
 
 export type tinyPostType = {
@@ -45,7 +45,7 @@ export const postToTinyPost = (post: postType): tinyPostType => ({
   createdAt: post.createdAt,
   nickname: post.user.nickname,
   liked: post.detail.liked,
-  view: post.view,
+  view: post.view ?? 0,
 });
 
 // getPosts

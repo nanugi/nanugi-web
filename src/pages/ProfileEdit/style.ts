@@ -19,10 +19,18 @@ export const ProfileEmailText = styled.div`
 
 export const LinkBox = styled.div`
   display: flex;
-
   padding-left: 1px;
-  width: 95%;
+  width: 90%;
+  margin: auto;
   box-sizing: border-box;
+`;
+
+export const FindPwLink = styled.div`
+  color: #828282;
+  font-size: 12px;
+  font-family: Noto Sans KR;
+  font-weight: bold;
+  cursor: pointer;
 `;
 
 export const SignOutText = styled.div`

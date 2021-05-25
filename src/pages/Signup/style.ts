@@ -33,6 +33,9 @@ export const AfterSignupText1 = styled.div`
 export const AfterSignupText2 = styled.div`
   font-size: 22px;
 `;
+export const AfterSignUpTextSpamHelp = styled.div`
+  font-size: 10px
+`;
 export const AfterSignupText2Strong = styled.div`
   display: inline;
 

@@ -20,6 +20,7 @@ import {
   PostInfoUserName,
   PostViewd,
 } from './style';
+import { priceString } from '../../utils/converters'
 
 moment.locale('ko');
 
@@ -34,9 +35,7 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
         <PostLikedIcon likedIconSize={likedIconSize} />
         {post.liked}
       </PostLiked>
-      <PostViewd>
-        조회 {post.view}
-      </PostViewd>
+      {post.view && <PostViewd>조회 {post.view}</PostViewd>}
       <PostTitle
         onClick={() => {
           history.push(`/post/${post.post_id}`);
@@ -55,7 +54,7 @@ export default function PostInfo({ post, likedIconSize }: PostInfoProps) {
         ·<Moment fromNow>{post.createdAt}</Moment>
       </PostTag>
       <PostInfoKeyValueBox>
-        <PostInfoKey>가격</PostInfoKey> {post.totalPrice}원
+        <PostInfoKey>가격</PostInfoKey> {priceString(post.totalPrice)}원
       </PostInfoKeyValueBox>
 
       <PostInfoKeyValueBox>
