@@ -27,6 +27,7 @@ import MyFavs from '../../pages/MyFavs';
 import Empty from '../../pages/Enpty';
 import Profile from "../../pages/Profile";
 import Search from '../../pages/Search'
+import EmailResend from '../../pages/EmailResend'
 
 function Routes() {
   const staySignedIn = callCookie.get('staySignedIn');
@@ -49,6 +50,8 @@ function Routes() {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/find" component={Find} />
         <Route exact path="/policies" component={PolicyPage} />
+        <Route exact path="/email-resend" component={EmailResend} />
+
 
         {/* AuthRoute */}
         {/* <AuthRoute exact path="/main" component={Main} /> */}

@@ -144,7 +144,7 @@ function Signup() {
               이메일을 전송하였습니다.
             </AfterSignupText2>
             <AfterSignUpTextSpamHelp>(메일이 오지 않았을 경우, 스팸메일함을 확인해주세요!)</AfterSignUpTextSpamHelp>
-            <AfterSignupText3>이메일 인증을 완료하고,</AfterSignupText3>
+            <AfterSignupText3 style={{ marginTop: '38px' }}>이메일 인증을 완료하고,</AfterSignupText3>
             <AfterSignupText3 style={{ marginBottom: '90px' }}>
               나누기와 함께{' '}
               <AfterSignupText3Strong>

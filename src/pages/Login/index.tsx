@@ -43,7 +43,6 @@ function Login() {
     target.classList.add('on');
 
     const res = await login(isStaySignedIn, { id: email, password });
-
     if (res?.success) {
       setLoginField({
         email: '',
@@ -59,6 +58,10 @@ function Login() {
     alert(res?.msg);
     target.disabled = false;
     target.classList.remove('on');
+    if (res?.code === -1010) {
+      // 이메일 아직 미인증 고객
+      history.push('/email-resend', { email })
+    }
   };
 
   useEffect(() => {
